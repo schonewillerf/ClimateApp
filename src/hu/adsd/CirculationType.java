@@ -1,6 +1,6 @@
 package hu.adsd;
 
-public enum RecycleType
+public enum CirculationType
 {
     NEW,
     RECYCLED,

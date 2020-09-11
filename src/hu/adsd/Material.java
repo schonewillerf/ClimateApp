@@ -4,16 +4,16 @@ public class Material
 {
     private int id;
     private String name;
-    private int carbon;
-    private RecycleType recycleType;
+    private int carbonAmount;
+    private CirculationType circulationType;
     private int quantity;
 
-    public Material( int id, String name, int carbon, RecycleType recycleType, int quantity )
+    public Material( int id, String name, int carbon, CirculationType circulationType, int quantity )
     {
         this.id = id;
         this.name = name;
-        this.carbon = carbon;
-        this.recycleType = recycleType;
+        this.carbonAmount = carbon;
+        this.circulationType = circulationType;
         this.quantity = quantity;
     }
 
@@ -37,24 +37,24 @@ public class Material
         this.name = name;
     }
 
-    public int getCarbon()
+    public int getCarbonAmount()
     {
-        return carbon;
+        return carbonAmount;
     }
 
-    public void setCarbon( int carbon )
+    public void setCarbonAmount( int carbonAmount )
     {
-        this.carbon = carbon;
+        this.carbonAmount = carbonAmount;
     }
 
-    public RecycleType getRecycleType()
+    public CirculationType getCirculationType()
     {
-        return recycleType;
+        return circulationType;
     }
 
-    public void setRecycleType( RecycleType recycleType )
+    public void setCirculationType( CirculationType circulationType )
     {
-        this.recycleType = recycleType;
+        this.circulationType = circulationType;
     }
 
     public int getQuantity()
@@ -71,11 +71,17 @@ public class Material
     public String toString()
     {
         return String.format(
-                "Productnaam: %s, Carbon: %s, Quantity: %s, RecycleType: %s",
+                "Id: %s, Name: %s, Carbon Amount: %s, CirculationType: %s Quantity: %s,",
+                this.id,
                 this.name,
-                this.carbon,
-                this.quantity,
-                this.recycleType
+                this.carbonAmount,
+                this.circulationType,
+                this.quantity
         );
+    }
+
+    public int getTotalCarbonAmount()
+    {
+        return this.carbonAmount * this.quantity;
     }
 }

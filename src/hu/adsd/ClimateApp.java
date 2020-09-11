@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class ClimateApp
 {
-    private Project project;
-    private List<Material> availableMaterials;
-    private Scanner scanner;
+    private final Project project;
+    private final List<Material> availableMaterials;
+    private final Scanner scanner;
 
     public ClimateApp()
     {
@@ -17,75 +17,102 @@ public class ClimateApp
         this.availableMaterials = new ArrayList<>();
         this.scanner = new Scanner( System.in );
 
-        Material material1 = new Material( 1, "Wasbak", 30, RecycleType.RECYCLED, 30 );
-        Material material2 = new Material( 2, "Wasbak", 0, RecycleType.REUSED, 10 );
-        Material material3 = new Material( 3, "Wasbak", 100, RecycleType.NEW, 1000 );
+        // Create some data
+        availableMaterials.add( new Material( 1, "Wasbak", 0, CirculationType.REUSED, 10 ) );
+        availableMaterials.add( new Material( 2, "Wasbak", 30, CirculationType.RECYCLED, 35 ) );
+        availableMaterials.add( new Material( 3, "Wasbak", 100, CirculationType.NEW, 80 ) );
+        availableMaterials.add( new Material( 4, "Toilet", 0, CirculationType.REUSED, 12 ) );
+        availableMaterials.add( new Material( 5, "Toilet", 40, CirculationType.RECYCLED, 10 ) );
+        availableMaterials.add( new Material( 6, "Toilet", 150, CirculationType.NEW, 100 ) );
+        availableMaterials.add( new Material( 7, "Kraan", 0, CirculationType.REUSED, 30 ) );
+        availableMaterials.add( new Material( 8, "Kraan", 60, CirculationType.RECYCLED, 40 ) );
+        availableMaterials.add( new Material( 9, "Kraan", 200, CirculationType.NEW, 10 ) );
 
-        availableMaterials.add( material1 );
-        availableMaterials.add( material2 );
-        availableMaterials.add( material3 );
-
-        getHomePage();
+        // Show UI in Console
+        showUI();
     }
 
-    private void getHomePage()
+    private void showUI()
     {
         while ( true )
         {
             // Option menu
-            System.out.println( "\nOptions:");
-            System.out.println( "1. Add item to project");
-            System.out.println("2. Edit project list");
-            System.out.println("3. Quit program");
+            System.out.println( "\nOptions:" );
+            System.out.println( "1. Show available products" );
+            System.out.println( "2. Show products used in project" );
+            System.out.println( "3. Quit program" );
             String answer = scanner.next();
 
-            if ( answer.equals( "1" ))
+            if ( answer.equals( "1" ) )
             {
-                System.out.println( "\nChoose product:");
+                System.out.println( "\nAvailable products:" );
 
                 // Display available products
-                for ( Material material : availableMaterials )
+                for ( int i = 0; i < availableMaterials.size(); i++ )
                 {
-                    System.out.println( material.toString() );
+                    System.out.printf( "%s. %s\n", i + 1, availableMaterials.get( i ).toString() );
                 }
 
+                System.out.println( "\nChoose product to add to project or press 0 to return:" );
+
                 String materialSelected = scanner.next();
-                project.addProjectMaterial( availableMaterials.get( Integer.parseInt( materialSelected ) ) );
+
+                if ( !materialSelected.equals( "0" ))
+                {
+                    Material material = availableMaterials.get( Integer.parseInt( materialSelected ) - 1 );
+
+                    System.out.println( "\nEnter amount of product:" );
+
+                    String amountOfProduct = scanner.next();
+
+                    material.setQuantity( Integer.parseInt( amountOfProduct ) );
+
+                    project.addProjectMaterial( material );
+                }
             }
-            else if ( answer.equals( "2" ))
+            else if ( answer.equals( "2" ) )
             {
                 // Check project material not empty
                 if ( project.getProjectMaterials().size() == 0 )
                 {
-                    System.out.println( "\nThere are no products in project" );
+                    System.out.println( "\nThere are no products used in project" );
                 }
                 else
                 {
-                    System.out.println( "\nThe following product are used" );
+                    System.out.println( "\nThe following product are used in project" );
 
-                    for ( Material material : project.getProjectMaterials() )
+                    int totalAmountOfCarbon = 0;
+
+                    for ( int i = 0; i < project.getProjectMaterials().size(); i++)
                     {
-                        System.out.println( material.toString() );
+                        System.out.printf( "%s. %s\n", i + 1, project.getProjectMaterial( i ).toString() );
+
+                        totalAmountOfCarbon += project.getProjectMaterial( i ).getTotalCarbonAmount();
                     }
 
-                    System.out.println( "\nChoose item to edit:" );
+                    System.out.printf( "The total carbon amount in the project is: %s\n", totalAmountOfCarbon);
+
+                    System.out.println( "\nChoose item to editor or press 0 to return:" );
                     String itemSelected = scanner.next();
 
-                    System.out.println("\nEdit quantity of product:");
-                    String quantity = scanner.next();
-
-                    if ( quantity.equals( "0" ) )
+                    if ( !itemSelected.equals( "0" ))
                     {
-                        project.removeProjectMaterial( Integer.parseInt( itemSelected ) );
-                    }
-                    else
-                    {
-                        int index = Integer.parseInt( itemSelected );
+                        System.out.println( "\nEdit quantity of product:" );
+                        String quantity = scanner.next();
 
-                        Material material = project.getProjectMaterials().get( index );
-                        material.setQuantity( Integer.parseInt( quantity ) );
+                        if ( quantity.equals( "0" ) )
+                        {
+                            project.removeProjectMaterial( Integer.parseInt( itemSelected ) );
+                        }
+                        else
+                        {
+                            int index = Integer.parseInt( itemSelected ) - 1;
 
-                        project.getProjectMaterials().set( index, material );
+                            Material material = project.getProjectMaterial( index );
+                            material.setQuantity( Integer.parseInt( quantity ) );
+
+                            project.updateProjectMaterial( index, material );
+                        }
                     }
                 }
             }
