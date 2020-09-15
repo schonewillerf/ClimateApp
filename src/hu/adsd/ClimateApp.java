@@ -64,10 +64,21 @@ public class ClimateApp
                     System.out.println( "\nEnter amount of product:" );
 
                     String amountOfProduct = scanner.next();
+                    int amountOfProductAsInteger = Integer.parseInt( amountOfProduct );
 
-                    material.setQuantity( Integer.parseInt( amountOfProduct ) );
+                    // Lower inventory by amount
+                    material.setQuantity( material.getQuantity() - amountOfProductAsInteger );
 
-                    project.addProjectMaterial( material );
+                    // Create a new material object
+                    Material projectMaterial = new Material(
+                            material.getId(),
+                            material.getName(),
+                            material.getCarbonAmount(),
+                            material.getCirculationType(),
+                            amountOfProductAsInteger
+                    );
+
+                    project.addProjectMaterial( projectMaterial );
                 }
             }
             else if ( answer.equals( "2" ) )
