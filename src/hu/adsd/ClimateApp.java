@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.lang.model.util.ElementScanner14;
+
 public class ClimateApp
 {
     private final Project project;
@@ -34,6 +36,7 @@ public class ClimateApp
 
     private void showUI()
     {
+        // println welkom tekst
         while ( true )
         {
             // Option menu
@@ -90,6 +93,7 @@ public class ClimateApp
                 }
                 else
                 {
+                    // while (boolean) loop, wanneer quantity gewijzigd word. Word 0 (terug) ingevoerd? boolean op false
                     System.out.println( "\nThe following product are used in project" );
 
                     int totalAmountOfCarbon = 0;
@@ -106,14 +110,17 @@ public class ClimateApp
                     System.out.println( "\nChoose item to editor or press 0 to return:" );
                     String itemSelected = scanner.next();
 
+                    // niet alleen checken op 0 (return) maar ook producten lijst controleren of dit getal erin past
                     if ( !itemSelected.equals( "0" ))
                     {
                         System.out.println( "\nEdit quantity of product:" );
                         String quantity = scanner.next();
 
+                        // ook controleren of ingevoerde quantity wel beschikbaar is in productenlijst
                         if ( quantity.equals( "0" ) )
                         {
                             project.removeProjectMaterial( Integer.parseInt( itemSelected ) );
+                            // boolean while loop op false zetten
                         }
                         else
                         {
@@ -125,11 +132,19 @@ public class ClimateApp
                             project.updateProjectMaterial( index, material );
                         }
                     }
+                    // einde while loop
                 }
             }
+            
+            else if (answer.equals( "3" ))
+            {
+                // println gemaakt door codeninjas en succesvol afgesloten melding
+                return;
+            }
+
             else
             {
-                return;
+                // println melding verkeerd ingevoerd probeer opnieuw
             }
         }
     }
