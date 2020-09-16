@@ -116,17 +116,43 @@ public class ClimateApp
                         System.out.println( "\nEdit quantity of product:" );
                         String quantity = scanner.next();
 
-                        // ook controleren of ingevoerde quantity wel beschikbaar is in productenlijst
+                        int index = Integer.parseInt( itemSelected ) - 1;
+
+                        Material material = project.getProjectMaterial( index );
+
                         if ( quantity.equals( "0" ) )
                         {
-                            project.removeProjectMaterial( Integer.parseInt( itemSelected ) );
-                            // boolean while loop op false zetten
+                            for ( Material materialLoop : availableMaterials )
+                            {
+                                if ( materialLoop.getId() == material.getId())
+                                {
+                                    materialLoop.setQuantity( materialLoop.getQuantity() + material.getQuantity());
+                                }
+                            }
+                            project.removeProjectMaterial( index );
                         }
                         else
                         {
-                            int index = Integer.parseInt( itemSelected ) - 1;
+                            // Loop through availableMaterials to find id match with material
+                            for ( Material materialLoop : availableMaterials )
+                            {
+                                if ( materialLoop.getId() == material.getId() )
+                                {
+                                    // If new quantity is smaller add diffrence to material in availablematerials
+                                    if ( material.getQuantity() > Integer.parseInt( quantity ))
+                                    {
+                                        materialLoop.setQuantity( materialLoop.getQuantity() +
+                                                ( material.getQuantity() - Integer.parseInt( quantity )));
+                                    }
+                                    // If new quantity is bigger subtract difference from material in availablematerials
+                                    else if ( material.getQuantity() < Integer.parseInt( quantity ))
+                                    {
+                                        materialLoop.setQuantity( materialLoop.getQuantity() -
+                                                ( Integer.parseInt( quantity ) - material.getQuantity()));
+                                    }
+                                }
+                            }
 
-                            Material material = project.getProjectMaterial( index );
                             material.setQuantity( Integer.parseInt( quantity ) );
 
                             project.updateProjectMaterial( index, material );
