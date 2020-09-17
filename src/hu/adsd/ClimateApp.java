@@ -16,19 +16,8 @@ public class ClimateApp
     {
         // Initialisation
         this.project = new Project();
-        this.availableMaterials = new ArrayList<>();
+        this.availableMaterials = new MaterialDatabaseParser().getMaterialList();
         this.scanner = new Scanner( System.in );
-
-        // Create some data
-        availableMaterials.add( new Material( 1, "Wasbak", 0, CirculationType.REUSED, 10 ) );
-        availableMaterials.add( new Material( 2, "Wasbak", 30, CirculationType.RECYCLED, 35 ) );
-        availableMaterials.add( new Material( 3, "Wasbak", 100, CirculationType.NEW, 80 ) );
-        availableMaterials.add( new Material( 4, "Toilet", 0, CirculationType.REUSED, 12 ) );
-        availableMaterials.add( new Material( 5, "Toilet", 40, CirculationType.RECYCLED, 10 ) );
-        availableMaterials.add( new Material( 6, "Toilet", 150, CirculationType.NEW, 100 ) );
-        availableMaterials.add( new Material( 7, "Kraan", 0, CirculationType.REUSED, 30 ) );
-        availableMaterials.add( new Material( 8, "Kraan", 60, CirculationType.RECYCLED, 40 ) );
-        availableMaterials.add( new Material( 9, "Kraan", 200, CirculationType.NEW, 10 ) );
 
         // Show UI in Console
         showUI();
