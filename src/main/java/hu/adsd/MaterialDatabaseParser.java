@@ -30,7 +30,8 @@ public class MaterialDatabaseParser
         try
         {
             JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("src/hu/adsd/MaterialDatabase.JSON"));
+            FileReader in = new FileReader( "src/main/resources/MaterialDatabase.JSON" );
+            JSONObject jsonObject = (JSONObject) jsonParser.parse( in );
             JSONArray jsonArray = (JSONArray) jsonObject.get("materials");
 
             for (Object object : jsonArray)

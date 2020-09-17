@@ -1,10 +1,7 @@
 package hu.adsd;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.lang.model.util.ElementScanner14;
 
 public class ClimateApp
 {
@@ -49,7 +46,7 @@ public class ClimateApp
 
                 String materialSelected = scanner.next();
 
-                if ( !materialSelected.equals( "0" ))
+                if ( !materialSelected.equals( "0" ) )
                 {
                     Material material = availableMaterials.get( Integer.parseInt( materialSelected ) - 1 );
 
@@ -87,20 +84,20 @@ public class ClimateApp
 
                     int totalAmountOfCarbon = 0;
 
-                    for ( int i = 0; i < project.getProjectMaterials().size(); i++)
+                    for ( int i = 0; i < project.getProjectMaterials().size(); i++ )
                     {
                         System.out.printf( "%s. %s\n", i + 1, project.getProjectMaterial( i ).toString() );
 
                         totalAmountOfCarbon += project.getProjectMaterial( i ).getTotalCarbonAmount();
                     }
 
-                    System.out.printf( "The total carbon amount in the project is: %s\n", totalAmountOfCarbon);
+                    System.out.printf( "The total carbon amount in the project is: %s\n", totalAmountOfCarbon );
 
                     System.out.println( "\nChoose item to editor or press 0 to return:" );
                     String itemSelected = scanner.next();
 
                     // niet alleen checken op 0 (return) maar ook producten lijst controleren of dit getal erin past
-                    if ( !itemSelected.equals( "0" ))
+                    if ( !itemSelected.equals( "0" ) )
                     {
                         System.out.println( "\nEdit quantity of product:" );
                         String quantity = scanner.next();
@@ -113,9 +110,9 @@ public class ClimateApp
                         {
                             for ( Material materialLoop : availableMaterials )
                             {
-                                if ( materialLoop.getId() == material.getId())
+                                if ( materialLoop.getId() == material.getId() )
                                 {
-                                    materialLoop.setQuantity( materialLoop.getQuantity() + material.getQuantity());
+                                    materialLoop.setQuantity( materialLoop.getQuantity() + material.getQuantity() );
                                 }
                             }
                             project.removeProjectMaterial( index );
@@ -128,16 +125,16 @@ public class ClimateApp
                                 if ( materialLoop.getId() == material.getId() )
                                 {
                                     // If new quantity is smaller add diffrence to material in availablematerials
-                                    if ( material.getQuantity() > Integer.parseInt( quantity ))
+                                    if ( material.getQuantity() > Integer.parseInt( quantity ) )
                                     {
                                         materialLoop.setQuantity( materialLoop.getQuantity() +
-                                                ( material.getQuantity() - Integer.parseInt( quantity )));
+                                                                  ( material.getQuantity() - Integer.parseInt( quantity ) ) );
                                     }
                                     // If new quantity is bigger subtract difference from material in availablematerials
-                                    else if ( material.getQuantity() < Integer.parseInt( quantity ))
+                                    else if ( material.getQuantity() < Integer.parseInt( quantity ) )
                                     {
                                         materialLoop.setQuantity( materialLoop.getQuantity() -
-                                                ( Integer.parseInt( quantity ) - material.getQuantity()));
+                                                                  ( Integer.parseInt( quantity ) - material.getQuantity() ) );
                                     }
                                 }
                             }
@@ -150,13 +147,11 @@ public class ClimateApp
                     // einde while loop
                 }
             }
-            
-            else if (answer.equals( "3" ))
+            else if ( answer.equals( "3" ) )
             {
                 // println gemaakt door codeninjas en succesvol afgesloten melding
                 return;
             }
-
             else
             {
                 // println melding verkeerd ingevoerd probeer opnieuw
