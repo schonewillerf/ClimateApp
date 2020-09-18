@@ -26,15 +26,15 @@ public class ClimateApp
         while ( true )
         {
             // Option menu
-            System.out.println( "\nOptions:" );
-            System.out.println( "1. Show available products" );
-            System.out.println( "2. Show products used in project" );
-            System.out.println( "3. Quit program" );
+            System.out.println( "\nOpties:" );
+            System.out.println( "1. Toon beschikbare producten" );
+            System.out.println( "2. Toon producten die in het project worden gebruikt" );
+            System.out.println( "3. Sluit het programma af" );
             String answer = scanner.next();
 
             if ( answer.equals( "1" ) )
             {
-                System.out.println( "\nAvailable products:" );
+                System.out.println( "\nBeschikbare producten:" );
 
                 // Display available products
                 for ( int i = 0; i < availableMaterials.size(); i++ )
@@ -42,7 +42,7 @@ public class ClimateApp
                     System.out.printf( "%s. %s\n", i + 1, availableMaterials.get( i ).toString() );
                 }
 
-                System.out.println( "\nChoose product to add to project or press 0 to return:" );
+                System.out.println( "\nKies een product om toe te voegen aan het project of druk op 0 om terug te keren:" );
 
                 String materialSelected = scanner.next();
 
@@ -50,7 +50,7 @@ public class ClimateApp
                 {
                     Material material = availableMaterials.get( Integer.parseInt( materialSelected ) - 1 );
 
-                    System.out.println( "\nEnter amount of product:" );
+                    System.out.println( "\nVoer de aantal van het product in:" );
 
                     String amountOfProduct = scanner.next();
                     int amountOfProductAsInteger = Integer.parseInt( amountOfProduct );
@@ -75,12 +75,12 @@ public class ClimateApp
                 // Check project material not empty
                 if ( project.getProjectMaterials().size() == 0 )
                 {
-                    System.out.println( "\nThere are no products used in project" );
+                    System.out.println( "\nEr worden geen producten gebruikt in het project" );
                 }
                 else
                 {
                     // while (boolean) loop, wanneer quantity gewijzigd word. Word 0 (terug) ingevoerd? boolean op false
-                    System.out.println( "\nThe following product are used in project" );
+                    System.out.println( "\nHet volgende product wordt in het project gebruikt" );
 
                     int totalAmountOfCarbon = 0;
 
@@ -91,15 +91,15 @@ public class ClimateApp
                         totalAmountOfCarbon += project.getProjectMaterial( i ).getTotalCarbonAmount();
                     }
 
-                    System.out.printf( "The total carbon amount in the project is: %s\n", totalAmountOfCarbon );
+                    System.out.printf( "De totale hoeveelheid koolstof in het project is: %s\n", totalAmountOfCarbon );
 
-                    System.out.println( "\nChoose item to editor or press 0 to return:" );
+                    System.out.println( "\nKies het item om te bewerken of druk op 0 om terug te keren:" );
                     String itemSelected = scanner.next();
 
                     // niet alleen checken op 0 (return) maar ook producten lijst controleren of dit getal erin past
                     if ( !itemSelected.equals( "0" ) )
                     {
-                        System.out.println( "\nEdit quantity of product:" );
+                        System.out.println( "\nVoer de aantal van het product in:" );
                         String quantity = scanner.next();
 
                         int index = Integer.parseInt( itemSelected ) - 1;
