@@ -71,7 +71,7 @@ public class Material
     public String toString()
     {
         return String.format(
-                "Id: %s, Name: %s, Carbon Amount: %s, CirculationType: %s, Quantity: %s,",
+                "Id: %s, Naam: %s, Hoeveelheid koolstof: %s, Circulatietype: %s, Kwantiteit: %s,",
                 this.id,
                 this.name,
                 this.carbonAmount,
