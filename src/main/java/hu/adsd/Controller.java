@@ -33,7 +33,7 @@ public class Controller implements Initializable
         // TODO Auto-generated method stub
         
         // stap 1 arraylist maken
-        ArrayList<Material> = new ArrayList<Material>();
+        //ArrayList<Material> = new ArrayList<Material>();
 
         // stap 2 observable arraylist maken (javafx functie)
         // ObservableList materialData
