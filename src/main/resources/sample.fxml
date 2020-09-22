@@ -2,143 +2,53 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.adsd.Controller">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <Pane prefHeight="583.0" prefWidth="456.0">
-         <children>
-            <ImageView fitHeight="610.0" fitWidth="401.0" layoutX="63.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="photo-1536566482680-fca31930a0bd.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="711.0" fitWidth="437.0" layoutX="-7.0" layoutY="-66.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="photo-1536566482680-fca31930a0bd.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="24.0" layoutX="426.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="Cross.png" />
-               </image></ImageView>
-            <ImageView fitHeight="47.0" fitWidth="67.0" layoutX="315.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="Minus.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="34.0" layoutX="322.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="Plus.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="14.0" layoutY="14.0" text="Co2 Configurator">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+      <children>
+        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+          <font>
+            <Font size="18.0" />
+          </font>
+        </Label>
+            <Text layoutX="29.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Configer" wrappingWidth="176.66015625">
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
-            </Label>
-            <Button layoutX="14.0" layoutY="48.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Artikel toevoegen" />
-            <Label layoutX="31.0" layoutY="111.0" text="Co2 Nummer:">
+            </Text>
+            <Text layoutX="29.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artikelen (Materialen)" underline="true" wrappingWidth="148.09765625">
                <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextField layoutX="17.0" layoutY="128.0" prefHeight="25.0" prefWidth="107.0" styleClass="css-input" stylesheets="@Styling.css" />
-            <TextField layoutX="155.0" layoutY="128.0" prefHeight="25.0" prefWidth="74.0" styleClass="css-input" stylesheets="@Styling.css" />
-            <Label layoutX="168.0" layoutY="111.0" prefHeight="17.0" prefWidth="47.0" text="Aantal:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="47.0" layoutY="181.0" prefHeight="17.0" prefWidth="74.0" text="Type:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="163.0" layoutY="181.0" prefHeight="17.0" prefWidth="74.0" text="Circulatie:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextField layoutX="17.0" layoutY="198.0" prefHeight="25.0" prefWidth="107.0" styleClass="css-input" stylesheets="@Styling.css" />
-            <TextField layoutX="155.0" layoutY="198.0" prefHeight="25.0" prefWidth="74.0" styleClass="css-input" stylesheets="@Styling.css" />
-            <TableView layoutX="14.0" layoutY="255.0" prefHeight="200.0" prefWidth="299.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="Soort:" />
-                  <TableColumn prefWidth="75.0" text="Naam:" />
-                  <TableColumn prefWidth="75.0" text="Type:" />
-                <TableColumn prefWidth="75.0" text="Co2:" />
-              </columns>
-            </TableView>
-            <Button layoutX="320.0" layoutY="325.0" mnemonicParsing="false" opacity="0.0" prefHeight="34.0" prefWidth="41.0" text="MinusButton" />
-            <Button layoutX="324.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0" text="Button" />
-            <Label layoutX="14.0" layoutY="472.0" prefHeight="26.0" prefWidth="141.0" text="Energie waardes:">
-               <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font size="14.0" />
                </font>
-            </Label>
-            <TextField layoutX="67.0" layoutY="505.0" prefHeight="25.0" prefWidth="34.0" />
-            <TextField layoutX="211.0" layoutY="505.0" prefHeight="25.0" prefWidth="34.0" />
-            <TextField layoutX="67.0" layoutY="539.0" prefHeight="25.0" prefWidth="34.0" />
-            <Label layoutX="14.0" layoutY="509.0" text="Co2:">
+            </Text>
+            <Button layoutX="29.0" layoutY="448.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="177.0" text="Voeg Product Toe" />
+            <Text layoutX="29.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Energie Waardes" underline="true">
                <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="14.0" layoutY="543.0" text="Score:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Button fx:id="AddButton" layoutX="323.0" layoutY="289.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="32.0" text="AddButton" />
-            <MenuButton layoutX="330.0" layoutY="48.0" mnemonicParsing="false" text="Selecteer kamer:">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Keuken" />
-                <MenuItem mnemonicParsing="false" text="Badkamer" />
-              </items>
-            </MenuButton>
-            <Button fx:id="OffImage" layoutX="426.0" layoutY="9.0" mnemonicParsing="false" onAction="#closeApp" opacity="0.0" prefHeight="25.0" prefWidth="24.0" text="OFFBUTTON" />
-            <ImageView fitHeight="41.0" fitWidth="34.0" layoutX="322.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Edit.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="138.0" layoutY="509.0" text="Gemiddelde:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <ImageView fitHeight="40.0" fitWidth="47.0" layoutX="320.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="Glass.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="TableViewButton" layoutX="320.0" layoutY="417.0" mnemonicParsing="false" onAction="#OpenTableViewLarge" opacity="0.0" prefHeight="34.0" prefWidth="34.0" text="Button" />
-            <ImageView fx:id="TableViewAwayGlassImage" fitHeight="40.0" fitWidth="40.0" layoutX="387.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="Glass.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="TableViewLargeAwayButton" layoutX="389.0" layoutY="473.0" mnemonicParsing="false" onAction="#CloseTableViewLarge" opacity="0.0" prefHeight="25.0" prefWidth="34.0" text="TableViewLargeAway" visible="false" />
-            <TableView fx:id="TableViewLarge" layoutX="10.0" layoutY="102.0" prefHeight="365.0" prefWidth="437.0" visible="false">
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="29.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2: 0g" />
+            <Text layoutX="92.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gemiddelde: 0g" />
+            <Text layoutX="29.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score: 0" />
+            <TableView fx:id="materialTable" layoutX="29.0" layoutY="109.0" prefHeight="317.0" prefWidth="480.0">
               <columns>
-                <TableColumn prefWidth="99.33334636688232" text="Soort:" />
-                <TableColumn prefWidth="114.66667938232422" text="Naam:" />
-                  <TableColumn prefWidth="113.33332824707031" text="Type:" />
-                  <TableColumn prefWidth="109.33331298828125" text="Co2:" />
+                <TableColumn fx:id="productColumn" prefWidth="120.0" text="Product" />
+                <TableColumn editable="false" prefWidth="120.0" text="Naam" />
+                  <TableColumn editable="false" prefWidth="120.0" text="Type" />
+                  <TableColumn editable="false" prefWidth="120.0" text="CO2" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
-         </children>
-      </Pane>
-   </children>
-</GridPane>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
