@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class DatabaseHandler
 {
+    //Returns a list of all products in database
     public ArrayList<Product> getMaterialList()
     {
         try
@@ -37,22 +38,27 @@ public class DatabaseHandler
         //
     }
 
+    //Returns a list of all products in database
     private ArrayList<Product> parseDatabase()
     {
         ArrayList<Product> productArrayList = new ArrayList<>();
 
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl("jdbc:sqlite:src/main/resources/database_sqlite.db");
+
+        //Connection with database started, closes automatically at end of code block
         try ( Connection c = dataSource.getConnection() )
         {
             String sql = "SELECT * FROM products;";
 
+            //Run SQL query and get the results, closes automatically at end of code block
             try
                     (
                             Statement stmt = c.createStatement();
                             ResultSet rs = stmt.executeQuery(sql)
                     )
             {
+                //each item in database initialized as a Product and put into ArrayList
                 while ( rs.next() )
                 {
                     int id = rs.getInt( "id" );
