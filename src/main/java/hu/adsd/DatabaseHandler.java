@@ -1,7 +1,8 @@
 package hu.adsd;
 
+import org.sqlite.SQLiteDataSource;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -36,36 +37,34 @@ public class DatabaseHandler
         //
     }
 
-    private ArrayList<Product> parseDatabase() throws Exception
+    private ArrayList<Product> parseDatabase()
     {
         ArrayList<Product> productArrayList = new ArrayList<>();
 
-        // Lookup try with resources statement
-        try
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl("jdbc:sqlite:src/main/resources/database_sqlite.db");
+        try ( Connection c = dataSource.getConnection() )
         {
-            Connection c = null;
-            Statement stmt = null;
+            String sql = "SELECT * FROM products;";
 
-            Class.forName( "org.sqlite.JDBC" );
-            c = DriverManager.getConnection( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-            stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT * FROM products;" );
-
-            while ( rs.next() )
+            try
+                    (
+                            Statement stmt = c.createStatement();
+                            ResultSet rs = stmt.executeQuery(sql)
+                    )
             {
-                int id = rs.getInt( "id" );
-                String name = rs.getString( "name" );
-                String carbon = rs.getString( "co2" );
-                int quantity = rs.getInt( "units" );
+                while ( rs.next() )
+                {
+                    int id = rs.getInt( "id" );
+                    String name = rs.getString( "name" );
+                    String carbon = rs.getString( "co2" );
+                    int quantity = rs.getInt( "units" );
 
 
-                Product product = new Product( id, name, carbon, CirculationType.NEW, quantity );
-                productArrayList.add( product );
+                    Product product = new Product( id, name, carbon, CirculationType.NEW, quantity );
+                    productArrayList.add( product );
+                }
             }
-            rs.close();
-            stmt.close();
-            c.close();
         }
         catch ( Exception e )
         {
