@@ -40,6 +40,7 @@ public class DatabaseHandler
     {
         ArrayList<Product> productArrayList = new ArrayList<>();
 
+        // Lookup try with resources statement
         try
         {
             Connection c = null;
