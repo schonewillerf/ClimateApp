@@ -5,35 +5,35 @@ import java.util.List;
 
 public class Project
 {
-    private List<Material> projectMaterials;
+    private List<Product> projectProducts;
 
     public Project()
     {
-        this.projectMaterials = new ArrayList<>();
+        this.projectProducts = new ArrayList<>();
     }
 
-    public List<Material> getProjectMaterials()
+    public List<Product> getProjectMaterials()
     {
-        return projectMaterials;
+        return projectProducts;
     }
 
-    public void addProjectMaterial( Material material )
+    public void addProjectMaterial( Product product )
     {
-        this.projectMaterials.add( material );
+        this.projectProducts.add( product );
     }
 
     public void removeProjectMaterial( int index )
     {
-        this.projectMaterials.remove( index );
+        this.projectProducts.remove( index );
     }
 
-    public void updateProjectMaterial( int index, Material material )
+    public void updateProjectMaterial( int index, Product product )
     {
-        this.projectMaterials.set( index, material );
+        this.projectProducts.set( index, product );
     }
 
-    public Material getProjectMaterial( int index )
+    public Product getProjectMaterial( int index )
     {
-        return projectMaterials.get( index );
+        return projectProducts.get( index );
     }
 }

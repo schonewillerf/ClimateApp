@@ -8,17 +8,12 @@ import javafx.stage.Stage;
 
 public class ClimateApp extends Application
 {
-    // Constructor
-    public ClimateApp() {
-        new Project();
-        new MaterialDatabaseParser().getMaterialList();
-    }
-
     // Start the JavaFX Application
     @Override
     public void start( Stage stage ) throws Exception
     {
-        Parent root = FXMLLoader.load( getClass().getResource( "../../productsListView.fxml" ) );
+        Parent root = FXMLLoader.load( getClass().getResource( "../../projectView.fxml" ) );
+        // Parent root = FXMLLoader.load( getClass().getResource( "../../productsListView.fxml" ) );
         Scene scene = new Scene( root );
 
         stage.setScene(scene);

@@ -21,13 +21,13 @@ public class ProductsListController implements Initializable
     {
         // Create a connection with the database.
         // Could be replaced with future API class.
-        MaterialDatabaseParser db = new MaterialDatabaseParser();
+        DatabaseHandler db = new DatabaseHandler();
 
         // Loops over products from the database.
-        for ( Material material : db.getMaterialList() )
+        for ( Product product : db.getMaterialList() )
         {
             // Add Custom ProductCard Components to TilePane.
-            productsBox.getChildren().add( new ProductCardComponent( material ) );
+            productsBox.getChildren().add( new ProductCardComponent( product ) );
         }
     }
 }

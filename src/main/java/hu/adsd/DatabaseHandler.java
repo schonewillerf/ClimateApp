@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class MaterialDatabaseParser
+public class DatabaseHandler
 {
-    public ArrayList<Material> getMaterialList()
+    public ArrayList<Product> getMaterialList()
     {
         try
         {
@@ -21,9 +21,24 @@ public class MaterialDatabaseParser
         }
     }
 
-    private ArrayList<Material> parseDatabase() throws Exception
+    public Product getProductById( int id )
     {
-        ArrayList<Material> materialArrayList = new ArrayList<>();
+        return null;
+    }
+
+    public void updateProduct( Product product )
+    {
+        //
+    }
+
+    public void removeProductById( int id )
+    {
+        //
+    }
+
+    private ArrayList<Product> parseDatabase() throws Exception
+    {
+        ArrayList<Product> productArrayList = new ArrayList<>();
 
         try
         {
@@ -44,8 +59,8 @@ public class MaterialDatabaseParser
                 int quantity = rs.getInt( "units" );
 
 
-                Material material = new Material( id, name, carbon, CirculationType.NEW, quantity );
-                materialArrayList.add( material );
+                Product product = new Product( id, name, carbon, CirculationType.NEW, quantity );
+                productArrayList.add( product );
             }
             rs.close();
             stmt.close();
@@ -56,6 +71,6 @@ public class MaterialDatabaseParser
             e.printStackTrace();
         }
 
-        return materialArrayList;
+        return productArrayList;
     }
 }

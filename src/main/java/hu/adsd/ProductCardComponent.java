@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
  */
 public class ProductCardComponent extends VBox implements Initializable
 {
-    private final Material material;
+    private final Product product;
 
     @FXML
     private Label productNameLabel;
@@ -30,9 +30,9 @@ public class ProductCardComponent extends VBox implements Initializable
     @FXML
     private Button addButton;
 
-    public ProductCardComponent( Material material )
+    public ProductCardComponent( Product product )
     {
-        this.material = material;
+        this.product = product;
 
         // Loads a product VBox from FXML document and sets root and controller as this class.
         FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../productCardView.fxml" ) );
@@ -52,10 +52,11 @@ public class ProductCardComponent extends VBox implements Initializable
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
-        productNameLabel.setText( material.getName() );
-        carbonAmountLabel.setText( String.valueOf( material.getCarbonAmount() ) );
+        productNameLabel.setText( product.getName() );
+        carbonAmountLabel.setText( String.valueOf( product.getCarbonAmount() ) );
 
         // Adds lambda expression to addButton action
-        addButton.setOnAction( event -> System.out.println( "clicked product with id: " + material.getId() ) );
+        // Add sql method
+        addButton.setOnAction( event -> System.out.println( "clicked product with id: " + product.getId() ) );
     }
 }

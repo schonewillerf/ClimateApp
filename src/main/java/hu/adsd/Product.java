@@ -1,6 +1,6 @@
 package hu.adsd;
 
-public class Material
+public class Product
 {
     private int id;
     private String name;
@@ -8,7 +8,7 @@ public class Material
     private CirculationType circulationType;
     private int quantity;
 
-    public Material( int id, String name, String carbon, CirculationType circulationType, int quantity )
+    public Product( int id, String name, String carbon, CirculationType circulationType, int quantity )
     {
         this.id = id;
         this.name = name;
