@@ -1,11 +1,5 @@
 package hu.adsd;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import javax.lang.model.util.ElementScanner14;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +10,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class Controller implements Initializable
 {
@@ -117,9 +114,9 @@ public class Controller implements Initializable
         
         // stap 1 arraylist maken
         ArrayList<Material> materialen = new ArrayList<Material>();
-        materialen.add(new Material(1, "Kraan", 200, CirculationType.RECYCLED, 20));
-        materialen.add(new Material(2, "Wasbak", 350, CirculationType.REUSED, 7));
-        materialen.add(new Material(3, "Douche", 1400, CirculationType.NEW, 2));
+        materialen.add(new Material(1, "Kraan", "200", CirculationType.RECYCLED, 20));
+        materialen.add(new Material(2, "Wasbak", "350", CirculationType.REUSED, 7));
+        materialen.add(new Material(3, "Douche", "1400", CirculationType.NEW, 2));
         
 
         // stap 2 observable arraylist maken (javafx functie)
