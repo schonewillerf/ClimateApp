@@ -4,11 +4,11 @@ public class Material
 {
     private int id;
     private String name;
-    private int carbonAmount;
+    private String carbonAmount;
     private CirculationType circulationType;
     private int quantity;
 
-    public Material( int id, String name, int carbon, CirculationType circulationType, int quantity )
+    public Material( int id, String name, String carbon, CirculationType circulationType, int quantity )
     {
         this.id = id;
         this.name = name;
@@ -37,12 +37,12 @@ public class Material
         this.name = name;
     }
 
-    public int getCarbonAmount()
+    public String getCarbonAmount()
     {
         return carbonAmount;
     }
 
-    public void setCarbonAmount( int carbonAmount )
+    public void setCarbonAmount( String carbonAmount )
     {
         this.carbonAmount = carbonAmount;
     }
@@ -80,8 +80,8 @@ public class Material
         );
     }
 
-    public int getTotalCarbonAmount()
+    public float getTotalCarbonAmount()
     {
-        return this.carbonAmount * this.quantity;
+        return Float.valueOf( this.carbonAmount ) * this.quantity;
     }
 }

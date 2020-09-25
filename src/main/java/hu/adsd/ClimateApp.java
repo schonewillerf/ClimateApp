@@ -32,59 +32,42 @@ public class ClimateApp
             System.out.println( "3. Sluit het programma af" );
             String answer = scanner.next();
 
-            if ( answer.equals( "1" ) ) {
-                System.out.println("\nBeschikbare producten:");
+            if ( answer.equals( "1" ) )
+            {
+                System.out.println( "\nBeschikbare producten:" );
 
                 // Display available products
-                for (int i = 0; i < availableMaterials.size(); i++) {
-                    System.out.printf("%s. %s\n", i + 1, availableMaterials.get(i).toString());
+                for ( int i = 0; i < availableMaterials.size(); i++ )
+                {
+                    System.out.printf( "%s. %s\n", i + 1, availableMaterials.get( i ).toString() );
                 }
 
-                System.out.println("\nKies een product om toe te voegen aan het project of druk op 0 om terug te keren:");
+                System.out.println( "\nKies een product om toe te voegen aan het project of druk op 0 om terug te keren:" );
 
                 String materialSelected = scanner.next();
 
-                if (!materialSelected.equals("0")) {
-                    Material material = availableMaterials.get(Integer.parseInt(materialSelected) - 1);
+                if ( !materialSelected.equals( "0" ) )
+                {
+                    Material material = availableMaterials.get( Integer.parseInt( materialSelected ) - 1 );
 
-                    System.out.println("\nVoer de aantal van het product in:");
+                    System.out.println( "\nVoer de aantal van het product in:" );
 
                     String amountOfProduct = scanner.next();
-                    int amountOfProductAsInteger = Integer.parseInt(amountOfProduct);
+                    int amountOfProductAsInteger = Integer.parseInt( amountOfProduct );
 
                     // Lower inventory by amount
-                    material.setQuantity(material.getQuantity() - amountOfProductAsInteger);
+                    material.setQuantity( material.getQuantity() - amountOfProductAsInteger );
 
                     // Create a new material object
-                    Material addMaterial = new Material(
+                    Material projectMaterial = new Material(
                             material.getId(),
                             material.getName(),
                             material.getCarbonAmount(),
                             material.getCirculationType(),
                             amountOfProductAsInteger
                     );
-                    boolean isInProject = false;
 
-
-                    // Check if product exist in project.
-                    for (Material projectMaterial : project.getProjectMaterials()) {
-
-                        if (projectMaterial.getId() == addMaterial.getId()) {
-                            isInProject = true;
-                            projectMaterial.setQuantity(projectMaterial.getQuantity() + addMaterial.getQuantity());
-                        }
-
-                    }
-
-
-                    if ( !isInProject )
-                    {
-
-                        project.addProjectMaterial( addMaterial );
-
-                    }
-
-
+                    project.addProjectMaterial( projectMaterial );
                 }
             }
             else if ( answer.equals( "2" ) )

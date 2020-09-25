@@ -1,11 +1,9 @@
 package hu.adsd;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class MaterialDatabaseParser
@@ -16,7 +14,7 @@ public class MaterialDatabaseParser
         {
             return parseDatabase();
         }
-        catch (Exception e)
+        catch ( Exception e )
         {
             e.printStackTrace();
             return new ArrayList<>();
@@ -29,29 +27,31 @@ public class MaterialDatabaseParser
 
         try
         {
-            JSONParser jsonParser = new JSONParser();
-            FileReader in = new FileReader( "src/main/resources/MaterialDatabase.JSON" );
-            JSONObject jsonObject = (JSONObject) jsonParser.parse( in );
-            JSONArray jsonArray = (JSONArray) jsonObject.get("materials");
+            Connection c = null;
+            Statement stmt = null;
 
-            for (Object object : jsonArray)
+            Class.forName( "org.sqlite.JDBC" );
+            c = DriverManager.getConnection( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+            stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery( "SELECT * FROM products;" );
+
+            while ( rs.next() )
             {
-                JSONObject materialObject = (JSONObject) object;
+                int id = rs.getInt( "id" );
+                String name = rs.getString( "name" );
+                String carbon = rs.getString( "co2" );
+                int quantity = rs.getInt( "units" );
 
-                String materialId = (String) materialObject.get("id");
 
-                String materialName = (String) materialObject.get("name");
-
-                String materialCarbon = (String) materialObject.get("carbon");
-
-                String materialCirculationType = (String) materialObject.get("circulationtype");
-
-                String materialQuantity = (String) materialObject.get("quantity");
-
-                materialArrayList.add(new Material(Integer.valueOf(materialId), materialName, Integer.valueOf(materialCarbon), CirculationType.valueOf(materialCirculationType), Integer.valueOf(materialQuantity)));
+                Material material = new Material( id, name, carbon, CirculationType.NEW, quantity );
+                materialArrayList.add( material );
             }
+            rs.close();
+            stmt.close();
+            c.close();
         }
-        catch (FileNotFoundException e)
+        catch ( Exception e )
         {
             e.printStackTrace();
         }
