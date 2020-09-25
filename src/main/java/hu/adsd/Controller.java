@@ -1,5 +1,9 @@
 package hu.adsd;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,10 +14,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class Controller implements Initializable
 {
@@ -80,10 +80,15 @@ public class Controller implements Initializable
     @FXML
     void deleteListItem(ActionEvent event)
     {
+        int index = materialTable.getSelectionModel().getSelectedIndex();
+
         switch(deleteButton.getText())
         {
             case"Opslaan":
-                System.out.println("opslaan knop ingedrukt!");
+                int Aantal = Integer.parseInt(editField.getText());
+
+                System.out.println("\nopslaan knop ingedrukt! \nNieuw Quantity: ");
+                System.out.println(Aantal);
 
                 // opslaan functie
 
@@ -97,6 +102,7 @@ public class Controller implements Initializable
                 if(!materialTable.getSelectionModel().getSelectedItems().isEmpty())
                 {
                     System.out.println("verwijder knop ingedrukt!");
+                    materialTable.getItems().remove(index);
                 } else
                 {
                     System.out.println("Selecteer eerst een rij voor u wilt verwijderen!");
@@ -114,9 +120,9 @@ public class Controller implements Initializable
         
         // stap 1 arraylist maken
         ArrayList<Material> materialen = new ArrayList<Material>();
-        materialen.add(new Material(1, "Kraan", "200", CirculationType.RECYCLED, 20));
-        materialen.add(new Material(2, "Wasbak", "350", CirculationType.REUSED, 7));
-        materialen.add(new Material(3, "Douche", "1400", CirculationType.NEW, 2));
+        materialen.add(new Material(1, "Kraan", 200, CirculationType.RECYCLED, 20));
+        materialen.add(new Material(2, "Wasbak", 350, CirculationType.REUSED, 7));
+        materialen.add(new Material(3, "Douche", 1400, CirculationType.NEW, 2));
         
 
         // stap 2 observable arraylist maken (javafx functie)
