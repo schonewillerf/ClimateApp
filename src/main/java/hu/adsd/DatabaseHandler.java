@@ -64,10 +64,11 @@ public class DatabaseHandler
                     int id = rs.getInt( "id" );
                     String name = rs.getString( "name" );
                     String carbon = rs.getString( "co2" );
+                    String circulationType = rs.getString( "materialtype" );
                     int quantity = rs.getInt( "units" );
 
 
-                    Product product = new Product( id, name, carbon, CirculationType.NEW, quantity );
+                    Product product = new Product( id, name, carbon, CirculationType.valueOf( circulationType ), quantity );
                     productArrayList.add( product );
                 }
             }
