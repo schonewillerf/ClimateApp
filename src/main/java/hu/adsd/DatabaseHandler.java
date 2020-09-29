@@ -21,103 +21,53 @@ public class DatabaseHandler
         }
     }
 
-    public Product getProductById( int id ) {
-        Product product = null;
-
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl("jdbc:sqlite:src/main/resources/database_sqlite.db");
-
-        //Connection with database started, closes automatically at end of code block
-        try ( Connection c = dataSource.getConnection() )
+    //Returns product with given id from database
+    public Product getProductById( int id )
+    {
+        try
         {
-            String sql = "SELECT * FROM products WHERE id=" + String.valueOf(id) + ";";
+            return parseGetProductById( id );
+        }
+        catch ( Exception e )
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-            try
-                    (
-                            Statement stmt = c.createStatement();
-                            ResultSet rs = stmt.executeQuery(sql)
-                    )
-            {
-                while ( rs.next() )
-                {
-                    int dataId = rs.getInt( "id" );
-                    String name = rs.getString( "name" );
-                    Double minCarbon = rs.getDouble( "co2_min" );
-                    Double maxCarbon = rs.getDouble("co2_max");
-                    String circulationType = rs.getString( "materialtype" );
-                    int quantity = rs.getInt( "units" );
-
-
-                    product = new Product( dataId, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), quantity );
-                }
-            }
+    //Updates quantity of given product in database
+    public void updateProduct( Product product )
+    {
+        try
+        {
+            parseUpdateProduct( product );
         }
         catch ( Exception e )
         {
             e.printStackTrace();
         }
-        return product;
     }
 
-    public void updateProduct( Product product ) throws SQLException
+    //Removes product with given id from database
+    public void removeProductById( int id )
     {
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl("jdbc:sqlite:src/main/resources/database_sqlite.db");
-
-        String SQL = "UPDATE products SET units= ? WHERE id = ?";
-
-        try (
-                Connection connection = dataSource.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(SQL)
-        )
+        try
         {
-            preparedStatement.setInt(1, product.getQuantity());
-            preparedStatement.setInt(2, product.getId());
-
-
-            int betrokkenRijen = preparedStatement.executeUpdate();
-
-            if (betrokkenRijen != 1)
-            {
-                throw new SQLException(
-                        String.format("Updaten van meetmoment gefaald, %s rijen geupdatet", betrokkenRijen)
-                );
-            }
+            parseRemoveProductById( id );
         }
-    }
-
-    public void removeProductById( int id ) throws SQLException
-    {
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl("jdbc:sqlite:src/main/resources/database_sqlite.db");
-
-        String SQL = "DELETE from products WHERE id = ?";
-
-        try (
-                Connection connection = dataSource.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(SQL)
-        )
+        catch ( Exception e )
         {
-            preparedStatement.setInt(1, id);
-
-            int betrokkenRijen = preparedStatement.executeUpdate();
-
-            if (betrokkenRijen != 1)
-            {
-                throw new SQLException(
-                        String.format("Updaten van meetmoment gefaald, %s rijen geupdatet", betrokkenRijen)
-                );
-            }
+            e.printStackTrace();
         }
     }
 
     //Returns a list of all products in database
-    private ArrayList<Product> parseDatabase()
+    private ArrayList<Product> parseDatabase() throws SQLException
     {
         ArrayList<Product> productArrayList = new ArrayList<>();
 
         SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl("jdbc:sqlite:src/main/resources/database_sqlite.db");
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
         //Connection with database started, closes automatically at end of code block
         try ( Connection c = dataSource.getConnection() )
@@ -136,8 +86,8 @@ public class DatabaseHandler
                 {
                     int id = rs.getInt( "id" );
                     String name = rs.getString( "name" );
-                    Double minCarbon = rs.getDouble( "co2_min" );
-                    Double maxCarbon = rs.getDouble("co2_max");
+                    double minCarbon = rs.getDouble( "co2_min" );
+                    double maxCarbon = rs.getDouble("co2_max");
                     String circulationType = rs.getString( "materialtype" );
                     int quantity = rs.getInt( "units" );
 
@@ -147,11 +97,102 @@ public class DatabaseHandler
                 }
             }
         }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-        }
 
         return productArrayList;
+    }
+
+    //Returns product with given id from database
+    private Product parseGetProductById( int id ) throws SQLException
+    {
+        Product product = null;
+
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+        //Connection with database started, closes automatically at end of code block
+        try ( Connection c = dataSource.getConnection() )
+        {
+            String sql = "SELECT * FROM products WHERE id=" + id + ";";
+
+            //Run SQL query and get the results, closes automatically at end of code block
+            try
+                    (
+                            Statement stmt = c.createStatement();
+                            ResultSet rs = stmt.executeQuery(sql)
+                    )
+            {
+                //Result is put into new Product
+                while ( rs.next() )
+                {
+                    int dataId = rs.getInt( "id" );
+                    String name = rs.getString( "name" );
+                    double minCarbon = rs.getDouble( "co2_min" );
+                    double maxCarbon = rs.getDouble("co2_max");
+                    String circulationType = rs.getString( "materialtype" );
+                    int quantity = rs.getInt( "units" );
+
+
+                    product = new Product( dataId, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), quantity );
+                }
+            }
+        }
+
+        return product;
+    }
+
+    //Updates quantity of given product in database
+    private void parseUpdateProduct( Product product ) throws SQLException
+    {
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+        String SQL = "UPDATE products SET units= ? WHERE id = ?";
+
+        try
+                (
+                    Connection connection = dataSource.getConnection();
+                    PreparedStatement preparedStatement = connection.prepareStatement( SQL )
+                )
+        {
+            preparedStatement.setInt( 1, product.getQuantity() );
+            preparedStatement.setInt( 2, product.getId() );
+
+
+            int betrokkenRijen = preparedStatement.executeUpdate();
+
+            if ( betrokkenRijen != 1 )
+            {
+                throw new SQLException(
+                        String.format( "Updaten van Product gefaald." )
+                );
+            }
+        }
+    }
+
+    //Removes product with given id from database
+    private void parseRemoveProductById( int id ) throws SQLException
+    {
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+        String SQL = "DELETE from products WHERE id = ?";
+
+        try
+                (
+                    Connection connection = dataSource.getConnection();
+                    PreparedStatement preparedStatement = connection.prepareStatement( SQL )
+                )
+        {
+            preparedStatement.setInt( 1, id );
+
+            int betrokkenRijen = preparedStatement.executeUpdate();
+
+            if ( betrokkenRijen != 1 )
+            {
+                throw new SQLException(
+                        String.format( "Verwijderen van product gefaald" )
+                );
+            }
+        }
     }
 }
