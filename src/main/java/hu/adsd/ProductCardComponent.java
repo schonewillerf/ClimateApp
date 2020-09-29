@@ -53,7 +53,7 @@ public class ProductCardComponent extends VBox implements Initializable
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
         productNameLabel.setText( product.getName() );
-        carbonAmountLabel.setText( String.valueOf( product.getCarbonAmount() ) );
+        carbonAmountLabel.setText( String.valueOf( product.getMinCarbonAmount() ) );
 
         // Adds lambda expression to addButton action
         // Add sql method

@@ -27,7 +27,10 @@ public class ProjectController implements Initializable
     private TableColumn<Product, CirculationType> circulationColumn;
 
     @FXML
-    private TableColumn<Product, Integer> carbonColumn;
+    private TableColumn<Product, Integer> carbonMinColumn;
+
+    @FXML
+    private TableColumn<Product, Integer> carbonMaxColumn;
 
     @FXML
     private TableColumn<Product, Integer> amountColumn;
@@ -129,7 +132,8 @@ public class ProjectController implements Initializable
         // stap 3 cell value properties
         productColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         circulationColumn.setCellValueFactory(new PropertyValueFactory<>("circulationType"));
-        carbonColumn.setCellValueFactory(new PropertyValueFactory<>("carbonAmount"));
+        carbonMinColumn.setCellValueFactory(new PropertyValueFactory<>("minCarbonAmount"));
+        carbonMaxColumn.setCellValueFactory(new PropertyValueFactory<>("maxCarbonAmount"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         // stap 4 set items van de tabel

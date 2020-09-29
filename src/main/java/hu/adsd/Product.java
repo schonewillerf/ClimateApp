@@ -4,15 +4,17 @@ public class Product
 {
     private int id;
     private String name;
-    private String carbonAmount;
+    private double minCarbonAmount;
+    private double maxCarbonAmount;
     private CirculationType circulationType;
     private int quantity;
 
-    public Product( int id, String name, String carbon, CirculationType circulationType, int quantity )
+    public Product( int id, String name, double minCarbon, double maxCarbon, CirculationType circulationType, int quantity )
     {
         this.id = id;
         this.name = name;
-        this.carbonAmount = carbon;
+        this.minCarbonAmount = minCarbon;
+        this.maxCarbonAmount = maxCarbon;
         this.circulationType = circulationType;
         this.quantity = quantity;
     }
@@ -37,14 +39,24 @@ public class Product
         this.name = name;
     }
 
-    public String getCarbonAmount()
+    public double getMinCarbonAmount()
     {
-        return carbonAmount;
+        return minCarbonAmount;
     }
 
-    public void setCarbonAmount( String carbonAmount )
+    public void setMinCarbonAmount( double minCarbonAmount )
     {
-        this.carbonAmount = carbonAmount;
+        this.minCarbonAmount = minCarbonAmount;
+    }
+
+    public double getMaxCarbonAmount()
+    {
+        return maxCarbonAmount;
+    }
+
+    public void setMaxCarbonAmount( double maxCarbonAmount )
+    {
+        this.maxCarbonAmount = maxCarbonAmount;
     }
 
     public CirculationType getCirculationType()
@@ -71,17 +83,26 @@ public class Product
     public String toString()
     {
         return String.format(
-                "Id: %s, Naam: %s, Hoeveelheid koolstof: %s, Circulatietype: %s, Kwantiteit: %s,",
+                "Id: %s, Naam: %s, " +
+                        "Minimale hoeveelheid koolstof: %s, " +
+                        "Maximale hoeveelheid koolstof: %s, " +
+                        "Circulatietype: %s, Kwantiteit: %s,",
                 this.id,
                 this.name,
-                this.carbonAmount,
+                this.minCarbonAmount,
+                this.maxCarbonAmount,
                 this.circulationType,
                 this.quantity
         );
     }
 
-    public float getTotalCarbonAmount()
+    public double getTotalMinCarbonAmount()
     {
-        return Float.valueOf( this.carbonAmount ) * this.quantity;
+        return this.minCarbonAmount * this.quantity;
+    }
+
+    public double getTotalMaxCarbonAmount()
+    {
+        return this.maxCarbonAmount * this.quantity;
     }
 }
