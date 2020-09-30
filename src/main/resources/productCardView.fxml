@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: white;" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black;" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <Label text="Product:">
       <VBox.margin>
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
