@@ -17,7 +17,7 @@ public class Tester
 
     public static void test2()
     {
-       DatabaseHandler databaseHandler = new DatabaseHandler();
+        DatabaseHandler databaseHandler = new DatabaseHandler();
         ArrayList<Product> productArrayList = new ArrayList<>();
 
         productArrayList = databaseHandler.getMaterialList();
@@ -50,8 +50,44 @@ public class Tester
         }
     }
 
+    public static void test4()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        try
+        {
+            databaseHandler.addProductToProjectById(4);
+        }
+        catch ( Exception e )
+        {
+
+        }
+    }
+
+    public static void test5()
+    {
+        ArrayList<Product> productArrayList = new ArrayList<>();
+
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        try
+        {
+            productArrayList = databaseHandler.getProjectProductsList();
+
+            for (Product product : productArrayList)
+            {
+                System.out.println(product.getName());
+                System.out.println(product.getMaxCarbonAmount());
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
     public static void main(String[] args)
     {
         test1();
+        test4();
+        test5();
     }
 }

@@ -25,7 +25,15 @@ public class DatabaseHandler
     public ArrayList<Product> getProjectProductsList()
     {
         // Should fetch product from prejectproduct table with quantity
-        return null;
+        try
+        {
+            return parseGetProjectProductsList();
+        }
+        catch ( Exception e )
+        {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
     //Returns product with given id from database
@@ -75,12 +83,29 @@ public class DatabaseHandler
     public void updateProjectProduct( Product product )
     {
         // Update product based on id in projectproducts table
+        try
+        {
+            parseUpdateProjectProduct(product);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     // Should be executed from projectView Delete Button
     public void removeProjectProduct( int id )
     {
         // Remove product based on id in projectproducts table
+        try
+        {
+               parseRemoveProjectProduct( id );
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
     // Should be executed from productCard add Button
@@ -88,6 +113,14 @@ public class DatabaseHandler
     {
         // Add product by id to projectproducts table
         // Default quantity is 1??
+        try
+        {
+            parseAddProductToProjectById( id );
+        }
+        catch ( Exception e )
+        {
+            e.printStackTrace();
+        }
     }
 
     //Returns a list of all products in database
@@ -130,6 +163,43 @@ public class DatabaseHandler
         return productArrayList;
     }
 
+    private ArrayList<Product> parseGetProjectProductsList() throws SQLException
+    {
+        ArrayList<Product> productList = new ArrayList<>();
+
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+        try ( Connection c = dataSource.getConnection() )
+        {
+            String sql = "SELECT products.*, project.units FROM project " +
+                    "INNER JOIN products ON project.productid = products.id";
+
+            try
+                    (
+                            Statement stmt = c.createStatement();
+                            ResultSet rs = stmt.executeQuery(sql)
+                    )
+            {
+                while ( rs.next() )
+                {
+                    int dataId = rs.getInt( "id" );
+                    String name = rs.getString( "name" );
+                    double minCarbon = rs.getDouble( "co2_min" );
+                    double maxCarbon = rs.getDouble("co2_max");
+                    String circulationType = rs.getString( "materialtype" );
+                    int quantity = rs.getInt( "units" );
+
+
+                    Product product = new Product( dataId, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), quantity );
+                    productList.add( product );
+                }
+            }
+        }
+
+        return productList;
+    }
+
     //Returns product with given id from database
     private Product parseGetProductById( int id ) throws SQLException
     {
@@ -158,10 +228,9 @@ public class DatabaseHandler
                     double minCarbon = rs.getDouble( "co2_min" );
                     double maxCarbon = rs.getDouble("co2_max");
                     String circulationType = rs.getString( "materialtype" );
-                    int quantity = rs.getInt( "units" );
 
 
-                    product = new Product( dataId, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), quantity );
+                    product = new Product( dataId, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), 1 );
                 }
             }
         }
@@ -220,6 +289,86 @@ public class DatabaseHandler
             {
                 throw new SQLException(
                         String.format( "Verwijderen van product gefaald" )
+                );
+            }
+        }
+    }
+
+    private void parseUpdateProjectProduct(Product product) throws SQLException
+    {
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+        String SQL = "UPDATE project SET units= ? WHERE productid = ?";
+
+        try
+                (
+                        Connection connection = dataSource.getConnection();
+                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
+                )
+        {
+            preparedStatement.setInt( 1, product.getQuantity() );
+            preparedStatement.setInt( 2, product.getId() );
+
+
+            int betrokkenRijen = preparedStatement.executeUpdate();
+
+            if ( betrokkenRijen != 1 )
+            {
+                throw new SQLException(
+                        String.format( "Updaten van Product gefaald." )
+                );
+            }
+        }
+    }
+
+    private void parseRemoveProjectProduct( int id ) throws SQLException
+    {
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+        String SQL = "DELETE from project WHERE id = ?";
+
+        try
+                (
+                        Connection connection = dataSource.getConnection();
+                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
+                )
+        {
+            preparedStatement.setInt( 1, id );
+
+            int betrokkenRijen = preparedStatement.executeUpdate();
+
+            if ( betrokkenRijen != 1 )
+            {
+                throw new SQLException(
+                        String.format( "Verwijderen van product gefaald" )
+                );
+            }
+        }
+    }
+
+    private void parseAddProductToProjectById( int id ) throws SQLException
+    {
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+        String SQL = "INSERT INTO project (productid, units) VALUES (?, 1) ON CONFLICT(productid) DO UPDATE SET units = units + 1;";
+
+        try
+                (
+                        Connection connection = dataSource.getConnection();
+                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
+                )
+        {
+            preparedStatement.setInt( 1, id );
+
+            int betrokkenRijen = preparedStatement.executeUpdate();
+
+            if ( betrokkenRijen != 1 )
+            {
+                throw new SQLException(
+                        String.format( "Toevoegen van Product gefaald." )
                 );
             }
         }
