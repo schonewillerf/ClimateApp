@@ -2,7 +2,7 @@ package hu.adsd;
 
 public enum CirculationType
 {
-    NEW,
-    RECYCLED,
+    fossiele_energie,
+    secundaire_grondstoffen,
     REUSED
 }

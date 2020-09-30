@@ -26,7 +26,8 @@
             <TableView fx:id="materialTable" layoutX="29.0" layoutY="109.0" prefHeight="317.0" prefWidth="480.0" styleClass="table">
               <columns>
                 <TableColumn fx:id="productColumn" editable="false" prefWidth="120.0" sortable="false" styleClass="tableColumn" text="Product" />
-                  <TableColumn fx:id="carbonColumn" editable="false" prefWidth="120.0" styleClass="tableColumn" text="CO2" />
+                  <TableColumn fx:id="carbonMinColumn" prefWidth="75.0" text="CO2 Min" />
+                  <TableColumn fx:id="carbonMaxColumn" editable="false" prefWidth="120.0" styleClass="tableColumn" text="CO2 Max" />
                   <TableColumn fx:id="circulationColumn" editable="false" prefWidth="120.0" sortable="false" styleClass="tableColumn" text="Circulatie" />
                 <TableColumn fx:id="amountColumn" editable="false" prefWidth="120.0" sortable="false" styleClass="tableColumn" text="Aantal" />
               </columns>
