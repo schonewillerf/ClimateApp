@@ -57,6 +57,9 @@ public class ProductCardComponent extends VBox implements Initializable
 
         // Adds lambda expression to addButton action
         // Add sql method
-        addButton.setOnAction( event -> System.out.println( "clicked product with id: " + product.getId() ) );
+        addButton.setOnAction( event -> {
+            System.out.println( "clicked product with id: " + product.getId() );
+            new DatabaseHandler().addProductToProjectById( product.getId() );
+        } );
     }
 }
