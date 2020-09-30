@@ -125,7 +125,7 @@ public class ProjectController implements Initializable
 
         // stap 1 arraylist uit db ophalen
         DatabaseHandler db = new DatabaseHandler();
-        List<Product> materialen = db.getMaterialList();
+        List<Product> materialen = db.getProjectProductsList();
 
         // stap 2 observable arraylist maken (javafx functie)
         final ObservableList<Product> materiaal = FXCollections.observableArrayList( materialen);
