@@ -151,10 +151,10 @@ public class DatabaseHandler
                     double minCarbon = rs.getDouble( "co2_min" );
                     double maxCarbon = rs.getDouble("co2_max");
                     String circulationType = rs.getString( "materialtype" );
-                    int quantity = rs.getInt( "units" );
+                    // int quantity = rs.getInt( "units" );
 
 
-                    Product product = new Product( id, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), quantity );
+                    Product product = new Product( id, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), 0 );
                     productArrayList.add( product );
                 }
             }
