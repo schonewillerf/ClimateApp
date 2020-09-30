@@ -1,9 +1,11 @@
 package hu.adsd;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.TilePane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,5 +31,11 @@ public class ProductsListController implements Initializable
             // Add Custom ProductCard Components to TilePane.
             productsBox.getChildren().add( new ProductCardComponent( product ) );
         }
+    }
+
+    // Method for handling button click to go to other screen
+    public void goToProject() throws IOException
+    {
+        ClimateApp.goToScreen( "projectView" ); // Change the Scene
     }
 }

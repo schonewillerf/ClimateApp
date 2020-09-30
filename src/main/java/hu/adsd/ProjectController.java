@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -138,6 +139,12 @@ public class ProjectController implements Initializable
 
         // stap 4 set items van de tabel
         materialTable.setItems(materiaal);
+    }
+
+    // Method for handling button click to go to other screen
+    public void goToProducts() throws IOException
+    {
+        ClimateApp.goToScreen( "productsListView" ); // Change the Scene
     }
 
 }
