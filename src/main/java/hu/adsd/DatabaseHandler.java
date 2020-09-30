@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class DatabaseHandler
 {
     //Returns a list of all products in database
+    // Should be used in the productsListView
     public ArrayList<Product> getMaterialList()
     {
         try
@@ -21,7 +22,14 @@ public class DatabaseHandler
         }
     }
 
+    public ArrayList<Product> getProjectProductsList()
+    {
+        // Should fetch product from prejectproduct table with quantity
+        return null;
+    }
+
     //Returns product with given id from database
+    // Maybe applicable later for product-detail view
     public Product getProductById( int id )
     {
         try
@@ -36,6 +44,7 @@ public class DatabaseHandler
     }
 
     //Updates quantity of given product in database
+    // Future Admin method
     public void updateProduct( Product product )
     {
         try
@@ -49,6 +58,7 @@ public class DatabaseHandler
     }
 
     //Removes product with given id from database
+    // Future admin task
     public void removeProductById( int id )
     {
         try
@@ -59,6 +69,25 @@ public class DatabaseHandler
         {
             e.printStackTrace();
         }
+    }
+
+    // Should be executed from projectView Edit -> Save Button
+    public void updateProjectProduct( Product product )
+    {
+        // Update product based on id in projectproducts table
+    }
+
+    // Should be executed from projectView Delete Button
+    public void removeProjectProduct( int id )
+    {
+        // Remove product based on id in projectproducts table
+    }
+
+    // Should be executed from productCard add Button
+    public void addProductToProjectById( int id )
+    {
+        // Add product by id to projectproducts table
+        // Default quantity is 1??
     }
 
     //Returns a list of all products in database
