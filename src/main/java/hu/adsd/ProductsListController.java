@@ -33,8 +33,9 @@ public class ProductsListController implements Initializable
         }
     }
 
+    // Method for handling button click to go to other screen
     public void goToProject() throws IOException
     {
-        ClimateApp.goToScreen( "projectView" );
+        ClimateApp.goToScreen( "projectView" ); // Change the Scene
     }
 }
