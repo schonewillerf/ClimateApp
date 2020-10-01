@@ -16,6 +16,11 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.script.Bindings;
+
+import org.sqlite.SQLiteDataSource;
+import java.sql.*;
+
 public class ProjectController implements Initializable
 {
     @FXML
@@ -83,22 +88,31 @@ public class ProjectController implements Initializable
     }
 
     @FXML
-    void deleteListItem(ActionEvent event)
+    void deleteListItem(ActionEvent event) throws SQLException, IOException
     {
         int index = materialTable.getSelectionModel().getSelectedIndex();
 
         switch(deleteButton.getText())
         {
             case"Opslaan":
-                int Aantal = Integer.parseInt(editField.getText());
+                int amount = Integer.parseInt(editField.getText());
 
                 System.out.println("\nopslaan knop ingedrukt! \nNieuw Quantity: ");
-                System.out.println(Aantal);
+                System.out.println(amount);
 
                 // opslaan functie
 
                 deleteButton.setText("Verwijderen");
                 editButton.setText("Bewerken");
+                editField.setText("");
+                editField.setEditable(false);
+
+                Product selectedProduct = materialTable.getSelectionModel().getSelectedItem();
+                selectedProduct.setQuantity(amount);
+
+                new DatabaseHandler().updateProjectProduct(selectedProduct);
+
+                ClimateApp.goToScreen( "projectView" );
 
                 break;
 
@@ -107,7 +121,11 @@ public class ProjectController implements Initializable
                 if(!materialTable.getSelectionModel().getSelectedItems().isEmpty())
                 {
                     System.out.println("verwijder knop ingedrukt!");
+
+                    new DatabaseHandler().removeProjectProduct(materialTable.getSelectionModel().getSelectedItem().getId());
+
                     materialTable.getItems().remove(index);
+
                 }
                 else
                 {
@@ -118,10 +136,54 @@ public class ProjectController implements Initializable
         }
     }
 
+    private void deleteProduct(int id) throws SQLException
+    {
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+        String SQL = "DELETE from products WHERE id = ?";
+
+        try
+                (
+                    Connection connection = dataSource.getConnection();
+                    PreparedStatement preparedStatement = connection.prepareStatement( SQL )
+                )
+        {
+            preparedStatement.setInt( 1, id );
+
+            int betrokkenRijen = preparedStatement.executeUpdate();
+
+            if ( betrokkenRijen != 1 )
+            {
+                throw new SQLException(
+                        String.format( "Verwijderen van product gefaald" )
+                );
+            }
+        }
+    }
+
+    private void mpSelectionChangeAction(int selected)
+    {
+        if (selected == -1) // Als er geen rij geselecteerd is in de tableview
+        {
+            System.out.println("geen selected");
+            editButton.setDisable(true);
+            deleteButton.setDisable(true);
+        } else // Als er wel een rij geselecteerd is in de tableview
+        {
+            System.out.println("wel selected");
+            editButton.setDisable(false);
+            deleteButton.setDisable(false);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         editField.setEditable(false);
+        editButton.setDisable(true);
+        deleteButton.setDisable(true);
+
 
         // stap 1 arraylist uit db ophalen
         DatabaseHandler db = new DatabaseHandler();
@@ -139,6 +201,11 @@ public class ProjectController implements Initializable
 
         // stap 4 set items van de tabel
         materialTable.setItems(materiaal);
+        materialTable.getSelectionModel().selectedIndexProperty().addListener((o, oldVal, newVal) -> {
+            mpSelectionChangeAction(newVal.intValue());
+        });
+
+        // wanneer table leeg is, table weg en een label toevoegen
     }
 
     // Method for handling button click to go to other screen

@@ -85,6 +85,7 @@ public class DatabaseHandler
         // Update product based on id in projectproducts table
         try
         {
+            System.out.println("gelukt");
             parseUpdateProjectProduct(product);
         }
         catch (Exception e)
@@ -327,7 +328,7 @@ public class DatabaseHandler
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
-        String SQL = "DELETE from project WHERE id = ?";
+        String SQL = "DELETE from project WHERE productid = ?";
 
         try
                 (

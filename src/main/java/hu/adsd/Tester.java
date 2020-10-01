@@ -84,10 +84,30 @@ public class Tester
         }
     }
 
+    public static void test6()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        try
+        {
+            databaseHandler.removeProjectProduct(16);
+            try
+            {
+                databaseHandler.getProductById(16);
+            }
+            catch(Exception d)
+            {
+                System.out.println(d);
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
     public static void main(String[] args)
     {
-        test1();
-        test4();
-        test5();
+        test6();
     }
 }

@@ -18,8 +18,8 @@ public class ClimateApp extends Application
     @Override
     public void start( Stage stage ) throws Exception
     {
-        // Parent root = FXMLLoader.load( getClass().getResource( "../../projectView.fxml" ) );
-        Parent root = FXMLLoader.load( getClass().getResource( "../../productsListView.fxml" ) );
+        Parent root = FXMLLoader.load( getClass().getResource( "../../projectView.fxml" ) );
+        // Parent root = FXMLLoader.load( getClass().getResource( "../../productsListView.fxml" ) );
 
         // Now the scene is initialised
         scene = new Scene( root );
