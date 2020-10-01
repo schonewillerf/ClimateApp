@@ -1,6 +1,7 @@
 package hu.adsd;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Tester
 {
@@ -18,11 +19,11 @@ public class Tester
     public static void test2()
     {
         DatabaseHandler databaseHandler = new DatabaseHandler();
-        ArrayList<Product> productArrayList = new ArrayList<>();
+        List<Product> productArrayList;
 
-        productArrayList = databaseHandler.getMaterialList();
+        productArrayList = databaseHandler.getProductsList(ProductSort.NAME);
 
-        Product product = productArrayList.get(3);
+        /*Product product = productArrayList.get(3);
 
         product.setQuantity(23);
 
@@ -33,6 +34,11 @@ public class Tester
         catch (Exception e)
         {
             e.printStackTrace();
+        }*/
+
+        for ( Product p : productArrayList)
+        {
+            System.out.println( p.getName() + " " + p.getMinCarbonAmount());
         }
 
     }
@@ -86,8 +92,9 @@ public class Tester
 
     public static void main(String[] args)
     {
-        test1();
+        /*test1();
         test4();
-        test5();
+        test5();*/
+        test2();
     }
 }
