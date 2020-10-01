@@ -36,7 +36,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </ScrollPane>
-            <Button layoutX="710.0" layoutY="46.0" mnemonicParsing="false" onAction="#goToProject" text="Project" />
+            <Button layoutX="649.0" layoutY="18.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="29.0" prefWidth="137.0" text="Terug naar project" />
             <ComboBox fx:id="sortingBox" layoutX="444.0" layoutY="46.0" prefWidth="150.0" />
             <Label layoutX="358.0" layoutY="51.0" text="Sorteren op:" />
       </children>
