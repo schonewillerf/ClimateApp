@@ -4,16 +4,36 @@ import org.sqlite.SQLiteDataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHandler
 {
-    //Returns a list of all products in database
+    /*//Returns a list of all products in database
     // Should be used in the productsListView
     public ArrayList<Product> getMaterialList()
     {
         try
         {
             return parseDatabase();
+        }
+        catch ( Exception e )
+        {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }*/
+
+    /**
+     * Returns a list of all products from database
+     *
+     * @param sort sorts on property
+     * @return List<Product>
+     */
+    public List<Product> getProductsList( ProductSort sort )
+    {
+        try
+        {
+            return parseDatabase( sort );
         }
         catch ( Exception e )
         {
@@ -125,23 +145,23 @@ public class DatabaseHandler
     }
 
     //Returns a list of all products in database
-    private ArrayList<Product> parseDatabase() throws SQLException
+    private ArrayList<Product> parseDatabase( ProductSort sort ) throws SQLException
     {
         ArrayList<Product> productArrayList = new ArrayList<>();
 
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
+        String sqlOrderedByName = "SELECT * FROM products ORDER BY name;";
+        String sqlOrderedByCarbonAmount = "SELECT * FROM products ORDER BY co2_min;";
+
         //Connection with database started, closes automatically at end of code block
         try ( Connection c = dataSource.getConnection() )
         {
-            String sql = "SELECT * FROM products;";
-
             //Run SQL query and get the results, closes automatically at end of code block
             try
-                    (
-                            Statement stmt = c.createStatement();
-                            ResultSet rs = stmt.executeQuery(sql)
+                    ( Statement stmt = c.createStatement();
+                      ResultSet rs = stmt.executeQuery( ( sort.equals( ProductSort.NAME ) ) ? sqlOrderedByName : sqlOrderedByCarbonAmount)
                     )
             {
                 //each item in database initialized as a Product and put into ArrayList
@@ -152,8 +172,6 @@ public class DatabaseHandler
                     double minCarbon = rs.getDouble( "co2_min" );
                     double maxCarbon = rs.getDouble("co2_max");
                     String circulationType = rs.getString( "materialtype" );
-                    // int quantity = rs.getInt( "units" );
-
 
                     Product product = new Product( id, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), 0 );
                     productArrayList.add( product );

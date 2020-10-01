@@ -16,11 +16,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.script.Bindings;
-
-import org.sqlite.SQLiteDataSource;
-import java.sql.*;
-
 public class ProjectController implements Initializable
 {
     @FXML
@@ -49,6 +44,15 @@ public class ProjectController implements Initializable
 
     @FXML
     private Button deleteButton;
+
+    @FXML
+    private Label labelCarbonCurrent;
+
+    @FXML
+    private Label labelCarbonNew;
+
+    @FXML
+    private Label labelCarbonDifference;
 
     @FXML
     void editList(ActionEvent event)
@@ -126,6 +130,8 @@ public class ProjectController implements Initializable
 
                     materialTable.getItems().remove(index);
 
+                    // Update Carbon Totals
+                    updateCarbonLabels( materialTable.getItems() );
                 }
                 else
                 {
@@ -214,4 +220,28 @@ public class ProjectController implements Initializable
         ClimateApp.goToScreen( "productsListView" ); // Change the Scene
     }
 
+    /**
+     * Update the carbon labels
+     *
+     * @param products Any type of List ie ObservableList
+     */
+    private void updateCarbonLabels( List<Product> products )
+    {
+        // Initialise local variables
+        double carbonCurrent = 0;
+        double carbonNew = 0;
+
+        // Loop over products in project
+        for ( Product product : products )
+        {
+            // Increment carbon totals
+            carbonCurrent += product.getTotalMinCarbonAmount();
+            carbonNew += product.getTotalMaxCarbonAmount();
+        }
+
+        // Update labels
+        labelCarbonCurrent.setText( Double.toString( carbonCurrent ) );
+        labelCarbonNew.setText( Double.toString( carbonNew ) );
+        labelCarbonDifference.setText( Double.toString( carbonNew - carbonCurrent ) );
+    }
 }
