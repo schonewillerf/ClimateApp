@@ -2,7 +2,6 @@ package hu.adsd;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -51,135 +50,138 @@ public class ProjectController implements Initializable
     @FXML
     private Label labelCarbonDifference;
 
-    @FXML
-    void editList(ActionEvent event)
+    public void editList()
     {
 
-        switch(editButton.getText())
+        switch ( editButton.getText() )
         {
-            case"Bewerken":
+            case "Bewerken":
 
-                if(!materialTable.getSelectionModel().getSelectedItems().isEmpty())
+                if ( !materialTable.getSelectionModel().getSelectedItems().isEmpty() )
                 {
-                    System.out.println("bewerk knop ingedrukt!"+materialTable.getSelectionModel().getSelectedItems());
+                    System.out.println(
+                            "bewerk knop ingedrukt! " +
+                            materialTable.getSelectionModel().getSelectedItems()
+                    );
 
-                    editField.setEditable(true);
+                    editField.setEditable( true );
 
-                    editButton.setText("Annuleren");
-                    deleteButton.setText("Opslaan");
+                    editButton.setText( "Annuleren" );
+                    deleteButton.setText( "Opslaan" );
                 }
                 else
                 {
-                    System.out.println("Selecteer eerst een rij voor u wilt bewerken!");
+                    System.out.println( "Selecteer eerst een rij voor u wilt bewerken!" );
                 }
 
                 break;
 
-            case"Annuleren":
-                System.out.println("annuleer knop ingedrukt!");
+            case "Annuleren":
+                System.out.println( "annuleer knop ingedrukt!" );
 
-                editField.setEditable(false);
-                editButton.setText("Bewerken");
-                deleteButton.setText("Verwijderen");
-                editField.setText("");
+                editField.setEditable( false );
+                editButton.setText( "Bewerken" );
+                deleteButton.setText( "Verwijderen" );
+                editField.setText( "" );
 
                 break;
         }
-
     }
 
-    @FXML
-    void deleteListItem(ActionEvent event) throws IOException
+    public void deleteListItem() throws IOException
     {
         int index = materialTable.getSelectionModel().getSelectedIndex();
 
-        switch(deleteButton.getText())
+        switch ( deleteButton.getText() )
         {
-            case"Opslaan":
-                int amount = Integer.parseInt(editField.getText());
+            case "Opslaan":
+                int amount = Integer.parseInt( editField.getText() );
 
-                System.out.println("\nopslaan knop ingedrukt! \nNieuw Quantity: ");
-                System.out.println(amount);
+                System.out.println( "\nopslaan knop ingedrukt! \nNieuw Quantity: " );
+                System.out.println( amount );
 
                 // opslaan functie
 
-                deleteButton.setText("Verwijderen");
-                editButton.setText("Bewerken");
-                editField.setText("");
-                editField.setEditable(false);
+                deleteButton.setText( "Verwijderen" );
+                editButton.setText( "Bewerken" );
+                editField.setText( "" );
+                editField.setEditable( false );
 
                 Product selectedProduct = materialTable.getSelectionModel().getSelectedItem();
-                selectedProduct.setQuantity(amount);
+                selectedProduct.setQuantity( amount );
 
-                new DatabaseHandler().updateProjectProduct(selectedProduct);
+                new DatabaseHandler().updateProjectProduct( selectedProduct );
 
                 ClimateApp.goToScreen( "projectView" );
 
                 break;
 
-            case"Verwijderen":
+            case "Verwijderen":
 
-                if(!materialTable.getSelectionModel().getSelectedItems().isEmpty())
+                if ( !materialTable.getSelectionModel().getSelectedItems().isEmpty() )
                 {
-                    System.out.println("verwijder knop ingedrukt!");
+                    System.out.println( "verwijder knop ingedrukt!" );
 
-                    new DatabaseHandler().removeProjectProduct(materialTable.getSelectionModel().getSelectedItem().getId());
+                    new DatabaseHandler()
+                            .removeProjectProduct( materialTable.getSelectionModel().getSelectedItem().getId() );
 
-                    materialTable.getItems().remove(index);
+                    materialTable.getItems().remove( index );
 
                     // Update Carbon Totals
                     updateCarbonLabels( materialTable.getItems() );
                 }
                 else
                 {
-                    System.out.println("Selecteer eerst een rij voor u wilt verwijderen!");
+                    System.out.println( "Selecteer eerst een rij voor u wilt verwijderen!" );
                 }
 
                 break;
         }
     }
 
-    private void mpSelectionChangeAction(int selected)
+    private void mpSelectionChangeAction( int selected )
     {
-        if (selected == -1) // Als er geen rij geselecteerd is in de tableview
+        if ( selected == -1 ) // Als er geen rij geselecteerd is in de tableview
         {
-            System.out.println("geen selected");
-            editButton.setDisable(true);
-            deleteButton.setDisable(true);
-        } else // Als er wel een rij geselecteerd is in de tableview
+            System.out.println( "geen selected" );
+            editButton.setDisable( true );
+            deleteButton.setDisable( true );
+        }
+        else // Als er wel een rij geselecteerd is in de tableview
         {
-            System.out.println("wel selected");
-            editButton.setDisable(false);
-            deleteButton.setDisable(false);
+            System.out.println( "wel selected" );
+            editButton.setDisable( false );
+            deleteButton.setDisable( false );
         }
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize( URL location, ResourceBundle resources )
     {
-        editField.setEditable(false);
-        editButton.setDisable(true);
-        deleteButton.setDisable(true);
+        editField.setEditable( false );
+        editButton.setDisable( true );
+        deleteButton.setDisable( true );
 
-        // stap 1 arraylist uit db ophalen
+        // Arraylist uit db ophalen
         DatabaseHandler db = new DatabaseHandler();
         List<Product> materialen = db.getProjectProductsList();
 
-        // stap 2 observable arraylist maken (javafx functie)
-        final ObservableList<Product> materiaal = FXCollections.observableArrayList( materialen);
+        // Observable arraylist maken (javafx functie)
+        final ObservableList<Product> materiaal = FXCollections.observableArrayList( materialen );
 
-        // stap 3 cell value properties
-        productColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        circulationColumn.setCellValueFactory(new PropertyValueFactory<>("circulationType"));
-        carbonMinColumn.setCellValueFactory(new PropertyValueFactory<>("minCarbonAmount"));
-        carbonMaxColumn.setCellValueFactory(new PropertyValueFactory<>("maxCarbonAmount"));
-        amountColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        // Cell value properties
+        productColumn.setCellValueFactory( new PropertyValueFactory<>( "name" ) );
+        circulationColumn.setCellValueFactory( new PropertyValueFactory<>( "circulationType" ) );
+        carbonMinColumn.setCellValueFactory( new PropertyValueFactory<>( "minCarbonAmount" ) );
+        carbonMaxColumn.setCellValueFactory( new PropertyValueFactory<>( "maxCarbonAmount" ) );
+        amountColumn.setCellValueFactory( new PropertyValueFactory<>( "quantity" ) );
 
-        // stap 4 set items van de tabel
-        materialTable.setItems(materiaal);
-        materialTable.getSelectionModel().selectedIndexProperty().addListener((o, oldVal, newVal) -> {
-            mpSelectionChangeAction(newVal.intValue());
-        });
+        // Set items van de tabel
+        materialTable.setItems( materiaal );
+
+        materialTable.getSelectionModel().selectedIndexProperty().addListener(
+                ( o, oldVal, newVal ) -> mpSelectionChangeAction( newVal.intValue() )
+        );
 
         updateCarbonLabels( materialTable.getItems() );
 
@@ -212,8 +214,8 @@ public class ProjectController implements Initializable
         }
 
         // Update labels
-        labelCarbonCurrent.setText( Double.toString( carbonCurrent ) );
-        labelCarbonNew.setText( Double.toString( carbonNew ) );
-        labelCarbonDifference.setText( Double.toString( carbonNew - carbonCurrent ) );
+        labelCarbonCurrent.setText( String.format( "%.2f", carbonCurrent ) );
+        labelCarbonNew.setText( String.format( "%.2f", carbonNew ) );
+        labelCarbonDifference.setText( String.format( "%.2f", carbonNew - carbonCurrent ) );
     }
 }

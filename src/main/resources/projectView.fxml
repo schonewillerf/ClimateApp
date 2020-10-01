@@ -14,21 +14,21 @@
   <children>
     <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
       <children>
-            <Text layoutX="33.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Configer" wrappingWidth="176.66015625">
+            <Text layoutX="33.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Configer" wrappingWidth="176.66015625" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Text>
-            <Text layoutX="33.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Artikelen (Materialen)" underline="true" wrappingWidth="258.6666615804037">
+            <Text layoutX="33.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Producten:" underline="true" wrappingWidth="258.6666615804037" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="65.0">
                <font>
-                  <Font size="21.0" />
+                  <Font size="18.0" />
                </font>
             </Text>
-            <TableView fx:id="materialTable" layoutX="29.0" layoutY="109.0" prefHeight="317.0" prefWidth="480.0" styleClass="table">
+            <TableView fx:id="materialTable" layoutX="29.0" layoutY="109.0" prefHeight="317.0" prefWidth="717.0" styleClass="table" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
               <columns>
-                <TableColumn fx:id="productColumn" editable="false" prefWidth="120.0" sortable="false" styleClass="tableColumn" text="Product" />
-                  <TableColumn fx:id="carbonMinColumn" prefWidth="75.0" text="CO2 Min" />
-                  <TableColumn fx:id="carbonMaxColumn" editable="false" prefWidth="120.0" styleClass="tableColumn" text="CO2 Max" />
+                <TableColumn fx:id="productColumn" editable="false" prefWidth="211.0" sortable="false" styleClass="tableColumn" text="Product" />
+                  <TableColumn fx:id="carbonMinColumn" prefWidth="213.0" text="CO2 Min" />
+                  <TableColumn fx:id="carbonMaxColumn" editable="false" prefWidth="90.0" styleClass="tableColumn" text="CO2 Max" />
                   <TableColumn fx:id="circulationColumn" editable="false" prefWidth="120.0" sortable="false" styleClass="tableColumn" text="Circulatie" />
                 <TableColumn fx:id="amountColumn" editable="false" prefWidth="120.0" sortable="false" styleClass="tableColumn" text="Aantal" />
               </columns>
@@ -41,21 +41,21 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Text>
-            <Button fx:id="editButton" layoutX="33.0" layoutY="458.0" mnemonicParsing="false" onAction="#editList" prefHeight="25.0" prefWidth="104.0" text="Bewerken" />
-            <TextField fx:id="editField" layoutX="151.0" layoutY="458.0" prefHeight="25.0" prefWidth="81.0" promptText="Aantal" />
-            <Button fx:id="deleteButton" layoutX="33.0" layoutY="487.0" mnemonicParsing="false" onAction="#deleteListItem" prefHeight="25.0" prefWidth="199.0" text="Verwijderen" />
-            <Button fx:id="AddProductButton" layoutX="599.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToProducts" prefHeight="32.0" prefWidth="177.0" text="Voeg Product Toe" />
-            <Text layoutX="29.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Energie Waardes" underline="true">
+            <Button fx:id="editButton" layoutX="20.0" layoutY="466.0" mnemonicParsing="false" onAction="#editList" prefHeight="25.0" prefWidth="104.0" text="Bewerken" AnchorPane.leftAnchor="20.0" />
+            <TextField fx:id="editField" layoutX="139.0" layoutY="466.0" prefHeight="28.0" prefWidth="94.0" promptText="Aantal" />
+            <Button fx:id="deleteButton" layoutX="20.0" layoutY="505.0" mnemonicParsing="false" onAction="#deleteListItem" prefHeight="28.0" prefWidth="214.0" text="Verwijderen" AnchorPane.leftAnchor="20.0" />
+            <Button fx:id="AddProductButton" layoutX="599.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToProducts" prefHeight="32.0" prefWidth="177.0" text="Voeg Product Toe" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+            <Text layoutX="16.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Energie Waardes" underline="true" AnchorPane.leftAnchor="16.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="29.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Huidig Concept:" />
-            <Text layoutX="29.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Nieuw Concept:" />
-            <Text layoutX="29.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verschil:" />
-            <Label fx:id="labelCarbonCurrent" layoutX="206.0" layoutY="551.0" text="0" />
-            <Label fx:id="labelCarbonNew" layoutX="206.0" layoutY="596.0" text="0" />
-            <Label fx:id="labelCarbonDifference" layoutX="206.0" layoutY="648.0" text="0" />
+            <Text layoutX="20.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Huidig Concept:" AnchorPane.leftAnchor="20.0" />
+            <Text layoutX="61.0" layoutY="649.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Nieuw Concept:" AnchorPane.leftAnchor="20.0" />
+            <Text layoutX="29.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verschil:" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
+            <Label fx:id="labelCarbonCurrent" layoutX="188.0" layoutY="605.0" text="0" />
+            <Label fx:id="labelCarbonNew" layoutX="188.0" layoutY="635.0" text="0" />
+            <Label fx:id="labelCarbonDifference" layoutX="188.0" layoutY="662.0" text="0" AnchorPane.bottomAnchor="20.0" />
       </children>
     </AnchorPane>
   </children>

@@ -9,7 +9,14 @@ public class Product
     private CirculationType circulationType;
     private int quantity;
 
-    public Product( int id, String name, double minCarbon, double maxCarbon, CirculationType circulationType, int quantity )
+    public Product(
+            int id,
+            String name,
+            double minCarbon,
+            double maxCarbon,
+            CirculationType circulationType,
+            int quantity
+    )
     {
         this.id = id;
         this.name = name;

@@ -8,21 +8,6 @@ import java.util.List;
 
 public class DatabaseHandler
 {
-    /*//Returns a list of all products in database
-    // Should be used in the productsListView
-    public ArrayList<Product> getMaterialList()
-    {
-        try
-        {
-            return parseDatabase();
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }*/
-
     /**
      * Returns a list of all products from database
      *
@@ -38,6 +23,7 @@ public class DatabaseHandler
         catch ( Exception e )
         {
             e.printStackTrace();
+
             return new ArrayList<>();
         }
     }
@@ -52,6 +38,7 @@ public class DatabaseHandler
         catch ( Exception e )
         {
             e.printStackTrace();
+
             return new ArrayList<>();
         }
     }
@@ -67,6 +54,7 @@ public class DatabaseHandler
         catch ( Exception e )
         {
             e.printStackTrace();
+
             return null;
         }
     }
@@ -105,10 +93,10 @@ public class DatabaseHandler
         // Update product based on id in projectproducts table
         try
         {
-            System.out.println("gelukt");
-            parseUpdateProjectProduct(product);
+            System.out.println( "gelukt" );
+            parseUpdateProjectProduct( product );
         }
-        catch (Exception e)
+        catch ( Exception e )
         {
             e.printStackTrace();
         }
@@ -120,9 +108,9 @@ public class DatabaseHandler
         // Remove product based on id in projectproducts table
         try
         {
-               parseRemoveProjectProduct( id );
+            parseRemoveProjectProduct( id );
         }
-        catch (Exception e)
+        catch ( Exception e )
         {
             e.printStackTrace();
         }
@@ -152,16 +140,21 @@ public class DatabaseHandler
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
-        String sqlOrderedByName = "SELECT * FROM products ORDER BY name;";
-        String sqlOrderedByCarbonAmount = "SELECT * FROM products ORDER BY co2_min;";
+        String sqlOrderedByName = "SELECT * FROM products " +
+                                  "ORDER BY name;";
+
+        String sqlOrderedByCarbonAmount = "SELECT * FROM products " +
+                                          "ORDER BY co2_min;";
 
         //Connection with database started, closes automatically at end of code block
         try ( Connection c = dataSource.getConnection() )
         {
             //Run SQL query and get the results, closes automatically at end of code block
             try
-                    ( Statement stmt = c.createStatement();
-                      ResultSet rs = stmt.executeQuery( ( sort.equals( ProductSort.NAME ) ) ? sqlOrderedByName : sqlOrderedByCarbonAmount)
+                    (
+                            Statement stmt = c.createStatement();
+                            ResultSet rs = stmt.executeQuery(
+                                    ( sort.equals( ProductSort.NAME ) ) ? sqlOrderedByName : sqlOrderedByCarbonAmount )
                     )
             {
                 //each item in database initialized as a Product and put into ArrayList
@@ -170,10 +163,17 @@ public class DatabaseHandler
                     int id = rs.getInt( "id" );
                     String name = rs.getString( "name" );
                     double minCarbon = rs.getDouble( "co2_min" );
-                    double maxCarbon = rs.getDouble("co2_max");
+                    double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
 
-                    Product product = new Product( id, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), 0 );
+                    Product product = new Product(
+                            id,
+                            name,
+                            minCarbon,
+                            maxCarbon,
+                            CirculationType.valueOf( circulationType ),
+                            0 );
+
                     productArrayList.add( product );
                 }
             }
@@ -191,13 +191,14 @@ public class DatabaseHandler
 
         try ( Connection c = dataSource.getConnection() )
         {
-            String sql = "SELECT products.*, project.units FROM project " +
-                    "INNER JOIN products ON project.productid = products.id";
+            String sql = "SELECT products.*, project.units " +
+                         "FROM project " +
+                         "INNER JOIN products ON project.productid = products.id";
 
             try
                     (
                             Statement stmt = c.createStatement();
-                            ResultSet rs = stmt.executeQuery(sql)
+                            ResultSet rs = stmt.executeQuery( sql )
                     )
             {
                 while ( rs.next() )
@@ -205,12 +206,20 @@ public class DatabaseHandler
                     int dataId = rs.getInt( "id" );
                     String name = rs.getString( "name" );
                     double minCarbon = rs.getDouble( "co2_min" );
-                    double maxCarbon = rs.getDouble("co2_max");
+                    double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
                     int quantity = rs.getInt( "units" );
 
 
-                    Product product = new Product( dataId, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), quantity );
+                    Product product = new Product(
+                            dataId,
+                            name,
+                            minCarbon,
+                            maxCarbon,
+                            CirculationType.valueOf( circulationType ),
+                            quantity
+                    );
+
                     productList.add( product );
                 }
             }
@@ -230,13 +239,15 @@ public class DatabaseHandler
         //Connection with database started, closes automatically at end of code block
         try ( Connection c = dataSource.getConnection() )
         {
-            String sql = "SELECT * FROM products WHERE id=" + id + ";";
+            String sql = "SELECT * " +
+                         "FROM products " +
+                         "WHERE id=" + id + ";";
 
             //Run SQL query and get the results, closes automatically at end of code block
             try
                     (
                             Statement stmt = c.createStatement();
-                            ResultSet rs = stmt.executeQuery(sql)
+                            ResultSet rs = stmt.executeQuery( sql )
                     )
             {
                 //Result is put into new Product
@@ -245,11 +256,18 @@ public class DatabaseHandler
                     int dataId = rs.getInt( "id" );
                     String name = rs.getString( "name" );
                     double minCarbon = rs.getDouble( "co2_min" );
-                    double maxCarbon = rs.getDouble("co2_max");
+                    double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
 
 
-                    product = new Product( dataId, name, minCarbon, maxCarbon, CirculationType.valueOf( circulationType ), 1 );
+                    product = new Product(
+                            dataId,
+                            name,
+                            minCarbon,
+                            maxCarbon,
+                            CirculationType.valueOf( circulationType ),
+                            1
+                    );
                 }
             }
         }
@@ -263,12 +281,14 @@ public class DatabaseHandler
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
-        String SQL = "UPDATE products SET units= ? WHERE id = ?";
+        String SQL = "UPDATE products " +
+                     "SET units= ? " +
+                     "WHERE id = ?";
 
         try
                 (
-                    Connection connection = dataSource.getConnection();
-                    PreparedStatement preparedStatement = connection.prepareStatement( SQL )
+                        Connection connection = dataSource.getConnection();
+                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
                 )
         {
             preparedStatement.setInt( 1, product.getQuantity() );
@@ -292,12 +312,13 @@ public class DatabaseHandler
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
-        String SQL = "DELETE from products WHERE id = ?";
+        String SQL = "DELETE FROM products " +
+                     "WHERE id = ?";
 
         try
                 (
-                    Connection connection = dataSource.getConnection();
-                    PreparedStatement preparedStatement = connection.prepareStatement( SQL )
+                        Connection connection = dataSource.getConnection();
+                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
                 )
         {
             preparedStatement.setInt( 1, id );
@@ -313,12 +334,14 @@ public class DatabaseHandler
         }
     }
 
-    private void parseUpdateProjectProduct(Product product) throws SQLException
+    private void parseUpdateProjectProduct( Product product ) throws SQLException
     {
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
-        String SQL = "UPDATE project SET units= ? WHERE productid = ?";
+        String SQL = "UPDATE project " +
+                     "SET units= ? " +
+                     "WHERE productid = ?";
 
         try
                 (
@@ -346,7 +369,8 @@ public class DatabaseHandler
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
-        String SQL = "DELETE from project WHERE productid = ?";
+        String SQL = "DELETE FROM project " +
+                     "WHERE productid = ?";
 
         try
                 (
@@ -372,7 +396,10 @@ public class DatabaseHandler
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
-        String SQL = "INSERT INTO project (productid, units) VALUES (?, 1) ON CONFLICT(productid) DO UPDATE SET units = units + 1;";
+        String SQL = "INSERT INTO project (productid, units) " +
+                     "VALUES (?, 1) " +
+                     "ON CONFLICT(productid) " +
+                     "DO UPDATE SET units = units + 1;";
 
         try
                 (

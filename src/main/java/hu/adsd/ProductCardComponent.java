@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 
 /**
  * A custom component class as both the root and controller of the FXML document
- *
+ * <p>
  * By extending VBox we get all the functionalities and by serving as the controller as well,
  * we have access to the Material from the constructor during initialization
  */
@@ -57,9 +57,6 @@ public class ProductCardComponent extends VBox implements Initializable
 
         // Adds lambda expression to addButton action
         // Add sql method
-        addButton.setOnAction( event -> {
-            System.out.println( "clicked product with id: " + product.getId() );
-            new DatabaseHandler().addProductToProjectById( product.getId() );
-        } );
+        addButton.setOnAction( event -> new DatabaseHandler().addProductToProjectById( product.getId() ) );
     }
 }

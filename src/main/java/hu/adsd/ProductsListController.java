@@ -30,9 +30,9 @@ public class ProductsListController implements Initializable
         // Set initial sorting state
         sortingBox.getSelectionModel().select( ProductSort.CARBON );
 
-        sortingBox.getSelectionModel().selectedItemProperty().addListener( (options, oldVal, newVal) -> {
-            setOrUpdateProducts( newVal );
-        });
+        sortingBox.getSelectionModel().selectedItemProperty().addListener(
+                ( options, oldVal, newVal ) -> setOrUpdateProducts( newVal )
+        );
 
         // Set products
         setOrUpdateProducts( ProductSort.CARBON );
