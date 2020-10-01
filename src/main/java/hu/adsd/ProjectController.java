@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
@@ -92,7 +89,7 @@ public class ProjectController implements Initializable
     }
 
     @FXML
-    void deleteListItem(ActionEvent event) throws SQLException, IOException
+    void deleteListItem(ActionEvent event) throws IOException
     {
         int index = materialTable.getSelectionModel().getSelectedIndex();
 
@@ -142,32 +139,6 @@ public class ProjectController implements Initializable
         }
     }
 
-    private void deleteProduct(int id) throws SQLException
-    {
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-        String SQL = "DELETE from products WHERE id = ?";
-
-        try
-                (
-                    Connection connection = dataSource.getConnection();
-                    PreparedStatement preparedStatement = connection.prepareStatement( SQL )
-                )
-        {
-            preparedStatement.setInt( 1, id );
-
-            int betrokkenRijen = preparedStatement.executeUpdate();
-
-            if ( betrokkenRijen != 1 )
-            {
-                throw new SQLException(
-                        String.format( "Verwijderen van product gefaald" )
-                );
-            }
-        }
-    }
-
     private void mpSelectionChangeAction(int selected)
     {
         if (selected == -1) // Als er geen rij geselecteerd is in de tableview
@@ -190,7 +161,6 @@ public class ProjectController implements Initializable
         editButton.setDisable(true);
         deleteButton.setDisable(true);
 
-
         // stap 1 arraylist uit db ophalen
         DatabaseHandler db = new DatabaseHandler();
         List<Product> materialen = db.getProjectProductsList();
@@ -210,6 +180,8 @@ public class ProjectController implements Initializable
         materialTable.getSelectionModel().selectedIndexProperty().addListener((o, oldVal, newVal) -> {
             mpSelectionChangeAction(newVal.intValue());
         });
+
+        updateCarbonLabels( materialTable.getItems() );
 
         // wanneer table leeg is, table weg en een label toevoegen
     }
