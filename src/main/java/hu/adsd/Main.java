@@ -10,3 +10,4 @@ public class Main
         Application.launch( ClimateApp.class, args );
     }
 }
+
