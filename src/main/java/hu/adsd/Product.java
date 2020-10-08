@@ -8,6 +8,7 @@ public class Product
     private double maxCarbonAmount;
     private CirculationType circulationType;
     private int quantity;
+    private String imagePath;
 
     public Product(
             int id,
@@ -84,6 +85,16 @@ public class Product
     public void setQuantity( int quantity )
     {
         this.quantity = quantity;
+    }
+
+    public String getImagePath()
+    {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath)
+    {
+        this.imagePath = imagePath;
     }
 
     @Override

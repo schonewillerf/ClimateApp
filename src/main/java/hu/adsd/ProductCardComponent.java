@@ -5,8 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,6 +30,9 @@ public class ProductCardComponent extends VBox implements Initializable
 
     @FXML
     private Button addButton;
+
+    @FXML
+    private ImageView productImage;
 
     public ProductCardComponent( Product product )
     {
@@ -54,6 +58,9 @@ public class ProductCardComponent extends VBox implements Initializable
     {
         productNameLabel.setText( product.getName() );
         carbonAmountLabel.setText( String.valueOf( product.getMinCarbonAmount() ) );
+        Image image = new Image(product.getImagePath());
+        productImage.setImage(image);
+
 
         // Adds lambda expression to addButton action
         // Add sql method
