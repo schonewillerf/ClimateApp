@@ -1,4 +1,6 @@
-package hu.adsd;
+package hu.adsd.buildingmaterials;
+
+import hu.adsd.buildingmaterials.CirculationType;
 
 public class Product
 {

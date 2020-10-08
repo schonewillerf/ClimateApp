@@ -1,5 +1,9 @@
-package hu.adsd;
+package hu.adsd.projects;
 
+import hu.adsd.ClimateApp;
+import hu.adsd.buildingmaterials.CirculationType;
+import hu.adsd.buildingmaterials.Product;
+import hu.adsd.dataservice.DatabaseHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,7 +16,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ProjectController implements Initializable
+public class ProjectControllerBackup implements Initializable
 {
     @FXML
     private TableView<Product> materialTable;

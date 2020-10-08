@@ -1,8 +1,11 @@
-package hu.adsd;
+package hu.adsd.buildingmaterials;
 
 public enum CirculationType
 {
     fossiele_energie,
     secundaire_grondstoffen,
-    REUSED
+    REUSED,
+    NEW,
+    LINEAR,
+    UNSET
 }

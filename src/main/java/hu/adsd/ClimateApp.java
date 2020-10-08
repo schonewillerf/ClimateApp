@@ -34,7 +34,7 @@ public class ClimateApp extends Application
      * <p>
      * Example usage:
      * <p>
-     * ClimateApp.goToScreen( "projectView" ); // This will load the projectView.fxml document from resources in the window
+     * ClimateApp.goToScreen( "projectView" ); // This will load the projectViewBackup.fxml document from resources in the window
      *
      * @param fxmlDocument a Sting value of the document in resources
      * @throws IOException

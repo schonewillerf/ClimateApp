@@ -1,5 +1,8 @@
-package hu.adsd;
+package hu.adsd.dataservice;
 
+import hu.adsd.buildingmaterials.CirculationType;
+import hu.adsd.buildingmaterials.Product;
+import hu.adsd.buildingmaterials.ProductSort;
 import org.sqlite.SQLiteDataSource;
 
 import java.sql.*;

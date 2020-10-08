@@ -1,5 +1,7 @@
-package hu.adsd;
+package hu.adsd.buildingmaterials;
 
+import hu.adsd.ClimateApp;
+import hu.adsd.dataservice.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;

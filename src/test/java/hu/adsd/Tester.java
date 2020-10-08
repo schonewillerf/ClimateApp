@@ -1,5 +1,9 @@
 package hu.adsd;
 
+import hu.adsd.buildingmaterials.Product;
+import hu.adsd.buildingmaterials.ProductSort;
+import hu.adsd.dataservice.DatabaseHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +25,7 @@ public class Tester
         DatabaseHandler databaseHandler = new DatabaseHandler();
         List<Product> productArrayList;
 
-        productArrayList = databaseHandler.getProductsList(ProductSort.NAME);
+        productArrayList = databaseHandler.getProductsList( ProductSort.NAME);
 
         /*Product product = productArrayList.get(3);
 

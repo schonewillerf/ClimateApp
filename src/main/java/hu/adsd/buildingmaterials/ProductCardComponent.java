@@ -1,5 +1,7 @@
-package hu.adsd;
+package hu.adsd.buildingmaterials;
 
+import hu.adsd.buildingmaterials.Product;
+import hu.adsd.dataservice.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,7 +37,7 @@ public class ProductCardComponent extends VBox implements Initializable
         this.product = product;
 
         // Loads a product VBox from FXML document and sets root and controller as this class.
-        FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../productCardView.fxml" ) );
+        FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../../productCardView.fxml" ) );
         fxmlLoader.setRoot( this );
         fxmlLoader.setController( this );
 
