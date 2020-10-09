@@ -73,7 +73,8 @@ public class ProductsListController implements Initializable
 
         for ( Product product : databaseHandler.getProductByRoom( "badkamer" ) )
         {
-            productsBox.getChildren().add( new ProductCardComponent( product ) );
+            ProductCardComponent productCardComponent = new ProductCardComponent(product);
+            productsBox.getChildren().add( productCardComponent );
         }
     }
 

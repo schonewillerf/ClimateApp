@@ -463,6 +463,7 @@ public class DatabaseHandler
                     double minCarbon = rs.getDouble( "co2_min" );
                     double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
+                    String imagePath = rs.getString("image");
 
 
                     Product product = new Product(
@@ -473,6 +474,8 @@ public class DatabaseHandler
                             CirculationType.valueOf( circulationType ),
                             1
                     );
+
+                    product.setImagePath(imagePath);
 
                     productList.add( product );
                 }
