@@ -39,10 +39,10 @@
             <Button layoutX="657.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="29.0" prefWidth="137.0" text="Terug naar project" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="20.0" />
             <ComboBox fx:id="sortingBox" layoutX="462.0" layoutY="21.0" prefWidth="150.0" AnchorPane.topAnchor="21.0" />
             <Label layoutX="362.0" layoutY="26.0" text="Sorteren op:" />
-            <Button layoutX="6.0" layoutY="110.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" text="Toilet" />
-            <Button layoutX="6.0" layoutY="139.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" text="Badkamer" />
-            <Button layoutX="6.0" layoutY="168.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" text="Keuken" />
-            <Button layoutX="6.0" layoutY="197.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" text="Dak" />
+            <Button fx:id="toiletButton" layoutX="6.0" layoutY="110.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" text="Toilet" />
+            <Button fx:id="bathroomButton" layoutX="6.0" layoutY="139.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" text="Badkamer" />
+            <Button fx:id="kitchenButton" layoutX="6.0" layoutY="168.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" text="Keuken" />
+            <Button fx:id="roofButton" layoutX="6.0" layoutY="197.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="76.0" text="Dak" />
       </children>
     </AnchorPane>
   </children>

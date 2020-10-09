@@ -2,6 +2,7 @@ package hu.adsd;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.TilePane;
 
@@ -17,6 +18,9 @@ public class ProductsListController implements Initializable
     // a layout component for stacking products in rows and columns
     @FXML
     private TilePane productsBox;
+
+    @FXML
+    private Button toiletButton,kitchenButton,bathroomButton,roofButton;
 
     @FXML
     private ComboBox<ProductSort> sortingBox;
