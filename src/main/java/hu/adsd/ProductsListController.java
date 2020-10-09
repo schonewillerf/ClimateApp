@@ -65,7 +65,51 @@ public class ProductsListController implements Initializable
         }
     }
 
-    private void selectBathroom(){
+    private void selectBathroom()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
 
-}
+        productsBox.getChildren().clear();
+
+        for ( Product product : databaseHandler.getProductByRoom( "badkamer" ) )
+        {
+            productsBox.getChildren().add( new ProductCardComponent( product ) );
+        }
+    }
+
+    private void selectToilet()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        productsBox.getChildren().clear();
+
+        for ( Product product : databaseHandler.getProductByRoom( "toilet" ) )
+        {
+            productsBox.getChildren().add( new ProductCardComponent( product ) );
+        }
+    }
+
+    private void selectKitchen()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        productsBox.getChildren().clear();
+
+        for ( Product product : databaseHandler.getProductByRoom( "keuken" ) )
+        {
+            productsBox.getChildren().add( new ProductCardComponent( product ) );
+        }
+    }
+
+    private void selectRoof()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        productsBox.getChildren().clear();
+
+        for ( Product product : databaseHandler.getProductByRoom( "dak" ) )
+        {
+            productsBox.getChildren().add( new ProductCardComponent( product ) );
+        }
+    }
 }
