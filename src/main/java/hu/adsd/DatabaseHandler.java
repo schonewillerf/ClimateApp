@@ -463,7 +463,6 @@ public class DatabaseHandler
                     double minCarbon = rs.getDouble( "co2_min" );
                     double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
-                    int quantity = rs.getInt( "units" );
 
 
                     Product product = new Product(
@@ -472,7 +471,7 @@ public class DatabaseHandler
                             minCarbon,
                             maxCarbon,
                             CirculationType.valueOf( circulationType ),
-                            quantity
+                            1
                     );
 
                     productList.add( product );

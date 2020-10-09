@@ -65,7 +65,7 @@ public class ProductsListController implements Initializable
         }
     }
 
-    private void selectBathroom()
+    public void selectBathroom()
     {
         DatabaseHandler databaseHandler = new DatabaseHandler();
 
@@ -77,7 +77,7 @@ public class ProductsListController implements Initializable
         }
     }
 
-    private void selectToilet()
+    public void selectToilet()
     {
         DatabaseHandler databaseHandler = new DatabaseHandler();
 
@@ -89,7 +89,7 @@ public class ProductsListController implements Initializable
         }
     }
 
-    private void selectKitchen()
+    public void selectKitchen()
     {
         DatabaseHandler databaseHandler = new DatabaseHandler();
 
@@ -101,7 +101,7 @@ public class ProductsListController implements Initializable
         }
     }
 
-    private void selectRoof()
+    public void selectRoof()
     {
         DatabaseHandler databaseHandler = new DatabaseHandler();
 
