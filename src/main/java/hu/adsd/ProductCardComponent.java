@@ -57,7 +57,7 @@ public class ProductCardComponent extends VBox implements Initializable
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
         productNameLabel.setText( product.getName() );
-        carbonAmountLabel.setText( String.valueOf( product.getMinCarbonAmount() ) );
+        //carbonAmountLabel.setText( String.valueOf( product.getMinCarbonAmount() ) );
         Image image = new Image(product.getImagePath());
         productImage.setImage(image);
 
