@@ -11,8 +11,8 @@
    </padding>
    <children>
       <Label fx:id="circulationTypeLabel" text="Label" />
-      <Label text="Embodied Carbon: " />
+      <Label text="Embodied Carbon: "/>
       <Label text="Embodied Energy: " />
-      <Button mnemonicParsing="false" onAction="#buttonTest" text="Button" />
+      <Button mnemonicParsing="false" text="Button" />
    </children>
 </fx:root>

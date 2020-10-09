@@ -45,4 +45,10 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
     {
         circulationTypeLabel.setText( this.circulationType.toString() );
     }
+
+    public void buttonTest()
+    {
+        System.out.println("test van knop");
+    }
+    
 }
