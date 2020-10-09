@@ -17,7 +17,7 @@ public class TotalsComponent extends VBox implements Initializable {
     @FXML
     private Label circulationTypeLabel;
 
-    public TotalsComponent( String title)
+    public TotalsComponent(String title)
     {
         this.title = title;
 

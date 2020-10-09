@@ -15,7 +15,7 @@
       <Button layoutX="635.0" layoutY="57.0" mnemonicParsing="false" onAction="#addConfiguration" text="Configuratie toevoegen" />
       <ScrollPane layoutX="37.0" layoutY="92.0" prefHeight="579.0" prefWidth="733.0">
          <content>
-            <VBox prefHeight="577.0" prefWidth="632.0">
+            <VBox prefHeight="577.0" prefWidth="731.0">
                <children>
                   <HBox fx:id="titleBox" prefHeight="52.0" prefWidth="612.0">
                      <padding>
@@ -24,7 +24,7 @@
                   </HBox>
                   <ScrollPane prefHeight="452.0" prefWidth="626.0">
                      <content>
-                        <VBox fx:id="buildingPartsBox" prefHeight="436.0" prefWidth="612.0" />
+                        <VBox fx:id="buildingPartsBox" prefHeight="436.0" prefWidth="612.0" spacing="12.0" />
                      </content>
                   </ScrollPane>
                   <HBox fx:id="totalsBox" prefHeight="86.0" prefWidth="632.0" />

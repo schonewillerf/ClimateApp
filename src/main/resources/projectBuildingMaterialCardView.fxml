@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: blue; -fx-background-color: pink;" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 2px; -fx-border-color: grey; -fx-background-color: #f4f4f4;" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>

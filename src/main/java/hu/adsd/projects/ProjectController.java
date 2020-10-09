@@ -42,6 +42,7 @@ public class ProjectController implements Initializable {
             buildingPartsBox.getChildren().add(new BuildingPartComponent(buildingPart));
         }
 
+        totalsBox.getChildren().add(new ProductsTotalComponent());
         // add totals below table
         for (String configurationTitle : project.getProjectConfigurations()) {
             totalsBox.getChildren().add(new TotalsComponent(configurationTitle));
@@ -51,7 +52,7 @@ public class ProjectController implements Initializable {
 
     public void goToBuildingMaterials() throws IOException
     {
-        ClimateApp.goToScreen("productListView");
+        ClimateApp.goToScreen("productsListView");
     }
 
     public void addConfiguration() throws IOException
