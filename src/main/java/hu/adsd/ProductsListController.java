@@ -64,4 +64,8 @@ public class ProductsListController implements Initializable
             productsBox.getChildren().add( new ProductCardComponent( product ) );
         }
     }
+
+    private void selectBathroom(){
+
+}
 }
