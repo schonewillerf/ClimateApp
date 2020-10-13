@@ -3,16 +3,34 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.adsd.projects.ProjectController">
    <children>
       <Label layoutX="50.0" layoutY="40.0" text="Project" />
-      <Button layoutX="503.0" layoutY="26.0" mnemonicParsing="false" onAction="#goToBuildingMaterials" text="Building Material Toevoegen" />
-      <VBox fx:id="buildingPartsBox" layoutX="61.0" layoutY="165.0" prefHeight="453.0" prefWidth="663.0" style="-fx-background-color: lightgrey;">
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding></VBox>
+      <Button layoutX="609.0" layoutY="28.0" mnemonicParsing="false" onAction="#goToBuildingMaterials" text="Building Material Toevoegen" />
+      <Button layoutX="635.0" layoutY="57.0" mnemonicParsing="false" onAction="#addConfiguration" text="Configuratie toevoegen" />
+      <ScrollPane layoutX="37.0" layoutY="92.0" prefHeight="579.0" prefWidth="733.0">
+         <content>
+            <VBox prefHeight="577.0" prefWidth="731.0">
+               <children>
+                  <HBox fx:id="titleBox" prefHeight="52.0" prefWidth="612.0">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+                  <ScrollPane prefHeight="452.0" prefWidth="626.0">
+                     <content>
+                        <VBox fx:id="buildingPartsBox" prefHeight="436.0" prefWidth="612.0" spacing="12.0" />
+                     </content>
+                  </ScrollPane>
+                  <HBox fx:id="totalsBox" prefHeight="86.0" prefWidth="632.0" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
