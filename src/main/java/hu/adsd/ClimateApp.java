@@ -1,5 +1,8 @@
 package hu.adsd;
 
+import hu.adsd.buildingmaterials.CirculationType;
+import hu.adsd.buildingmaterials.Product;
+import hu.adsd.projects.BuildingMaterialContainer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -56,21 +59,31 @@ public class ClimateApp extends Application
     {
         project = new Project();
 
-        // statische colommen en velden maken
-        List<BuildingPart> buildingParts = new ArrayList<>();
-        buildingParts.add(new BuildingPart("Toilet"));
-        buildingParts.add(new BuildingPart("Dak"));
-        buildingParts.add(new BuildingPart("Badkamer"));
+        // Add dummy data to Project
+        // ( Hint: create the child objects before the parents )
         //
-        List<String> configurationList = new ArrayList<>();
-        configurationList.add("Bouwmaterialen");
-        configurationList.add("Configuratie 1");
-        configurationList.add("Configuratie 2");
-        configurationList.add("Mijn dikke oma configuratie 3 ~Raymond");
-        configurationList.add("Jan je moet een nieuwe mac kopen");
-
-        project.setProjectBuildingParts(buildingParts);
-        project.setProjectConfigurations(configurationList);
+        // Create some Products
+        Product toilet = new Product( 1, "WC", 0, 0, CirculationType.LINEAR, 0 );
+        Product faucet = new Product( 2, "Kraan", 0, 0, CirculationType.LINEAR, 0 );
+        Product gutter = new Product( 3, "Dakgoot", 0, 0, CirculationType.LINEAR, 0 );
+        //
+        // Create some BuildingMaterialContainers, one for each product
+        BuildingMaterialContainer toiletContainer = new BuildingMaterialContainer( toilet );
+        BuildingMaterialContainer faucetContainer = new BuildingMaterialContainer( faucet );
+        BuildingMaterialContainer gutterContainer = new BuildingMaterialContainer( gutter );
+        //
+        // Create some BuildingParts
+        BuildingPart bathroom = new BuildingPart( "badkamer" );
+        BuildingPart roof = new BuildingPart( "dak" );
+        //
+        // Add Products to BuildingParts
+        bathroom.getBuildingMaterialContainers().add( toiletContainer );
+        bathroom.getBuildingMaterialContainers().add( faucetContainer );
+        roof.getBuildingMaterialContainers().add( gutterContainer );
+        //
+        // Add BuildingParts to Project
+        project.getProjectBuildingParts().add( bathroom );
+        project.getProjectBuildingParts().add( roof );
     }
 
     public static Project getProject()
@@ -81,6 +94,5 @@ public class ClimateApp extends Application
     public static void setProject(Project newProject)
     {
         project = newProject;
-        
     }
 }
