@@ -4,6 +4,7 @@ import hu.adsd.ClimateApp;
 import hu.adsd.dataservice.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.TilePane;
 
@@ -19,6 +20,9 @@ public class ProductsListController implements Initializable
     // a layout component for stacking products in rows and columns
     @FXML
     private TilePane productsBox;
+
+    @FXML
+    private Button toiletButton,kitchenButton,bathroomButton,roofButton;
 
     @FXML
     private ComboBox<ProductSort> sortingBox;
@@ -59,6 +63,59 @@ public class ProductsListController implements Initializable
         for ( Product product : db.getProductsList( sort ) )
         {
             // Add Custom ProductCard Components to TilePane.
+            productsBox.getChildren().add( new ProductCardComponent( product ) );
+        }
+    }
+
+    // Methode for button click selecting bathroom
+    public void selectBathroom()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        productsBox.getChildren().clear();
+
+        for ( Product product : databaseHandler.getProductByRoom( "badkamer" ) )
+        {
+            ProductCardComponent productCardComponent = new ProductCardComponent(product);
+            productsBox.getChildren().add( productCardComponent );
+        }
+    }
+
+    // Methode for button click selecting toilet
+    public void selectToilet()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        productsBox.getChildren().clear();
+
+        for ( Product product : databaseHandler.getProductByRoom( "toilet" ) )
+        {
+            productsBox.getChildren().add( new ProductCardComponent( product ) );
+        }
+    }
+
+    // Methode for button click selecting kitchen
+    public void selectKitchen()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        productsBox.getChildren().clear();
+
+        for ( Product product : databaseHandler.getProductByRoom( "keuken" ) )
+        {
+            productsBox.getChildren().add( new ProductCardComponent( product ) );
+        }
+    }
+
+    // Methode for button click selecting roof
+    public void selectRoof()
+    {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        productsBox.getChildren().clear();
+
+        for ( Product product : databaseHandler.getProductByRoom( "dak" ) )
+        {
             productsBox.getChildren().add( new ProductCardComponent( product ) );
         }
     }

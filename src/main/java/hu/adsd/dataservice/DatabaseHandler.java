@@ -135,6 +135,20 @@ public class DatabaseHandler
         }
     }
 
+    // Gets all products connected to specified room
+    public ArrayList<Product> getProductByRoom( String room )
+    {
+        try
+        {
+            return parseGetProductByRoom( room );
+        }
+        catch ( Exception e )
+        {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
     //Returns a list of all products in database
     private ArrayList<Product> parseDatabase( ProductSort sort ) throws SQLException
     {
@@ -168,6 +182,7 @@ public class DatabaseHandler
                     double minCarbon = rs.getDouble( "co2_min" );
                     double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
+                    String imagePath = rs.getString("image");
 
                     Product product = new Product(
                             id,
@@ -176,6 +191,8 @@ public class DatabaseHandler
                             maxCarbon,
                             CirculationType.valueOf( circulationType ),
                             0 );
+
+                    product.setImagePath(imagePath);
 
                     productArrayList.add( product );
                 }
@@ -421,5 +438,54 @@ public class DatabaseHandler
                 );
             }
         }
+    }
+
+    // Gets all products connected to specified room
+    private ArrayList<Product> parseGetProductByRoom( String room ) throws SQLException
+    {
+        ArrayList<Product> productList = new ArrayList<>();
+
+        SQLiteDataSource dataSource = new SQLiteDataSource();
+        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
+
+        String sql = "SELECT * FROM products WHERE room=?";
+
+        try
+                (
+                        Connection connection = dataSource.getConnection();
+                        PreparedStatement preparedStatement = connection.prepareStatement( sql )
+                )
+        {
+            preparedStatement.setString(1, room);
+
+            try ( ResultSet rs = preparedStatement.executeQuery())
+            {
+                while ( rs.next() )
+                {
+                    int dataId = rs.getInt( "id" );
+                    String name = rs.getString( "name" );
+                    double minCarbon = rs.getDouble( "co2_min" );
+                    double maxCarbon = rs.getDouble( "co2_max" );
+                    String circulationType = rs.getString( "materialtype" );
+                    String imagePath = rs.getString("image");
+
+
+                    Product product = new Product(
+                            dataId,
+                            name,
+                            minCarbon,
+                            maxCarbon,
+                            CirculationType.valueOf( circulationType ),
+                            1
+                    );
+
+                    product.setImagePath(imagePath);
+
+                    productList.add( product );
+                }
+            }
+        }
+
+        return productList;
     }
 }
