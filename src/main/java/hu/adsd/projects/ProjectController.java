@@ -1,9 +1,12 @@
 package hu.adsd.projects;
 
+import hu.adsd.ClimateApp;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +32,10 @@ public class ProjectController implements Initializable
             buildingPartsBox.getChildren().add( new BuildingPartComponent( buildingPart ) );
         }
 
+    }
+
+    public void goToBuildingMaterials() throws IOException
+    {
+        ClimateApp.goToScreen( "productsListView" );
     }
 }
