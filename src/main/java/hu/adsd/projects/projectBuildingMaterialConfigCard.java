@@ -2,9 +2,12 @@ package hu.adsd.projects;
 
 import hu.adsd.buildingmaterials.CirculationType;
 import hu.adsd.buildingmaterials.Product;
+import hu.adsd.buildingmaterials.ProductSort;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -12,13 +15,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class projectBuildingMaterialConfigCard extends VBox implements Initializable
 {
     private final CirculationType circulationType;
     private final Product product;
 
     @FXML
-    private Label circulationTypeLabel;
+    private ComboBox<String> circulationDropdown;
 
     @FXML
     private Label embodiedCarbonLabel;
@@ -44,25 +48,63 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
         {
             e.printStackTrace();
         }
+
+        circulationDropdown.getSelectionModel().selectedItemProperty().addListener(
+            ( options, oldVal, newVal ) -> updateDropdown()
+        );
     }
 
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
-        circulationTypeLabel.setText( this.circulationType.toString() );
+        // insert every circulationtype in dropdown
+        for(CirculationType type : CirculationType.values())
+        {
+            circulationDropdown.getItems().add(type.toString());
+        }
+
+        // select the right circulationtype per product
+        int i = 0;
+        for(CirculationType type : CirculationType.values())
+        {
+            if(product.getCirculationType().equals(type))
+            {
+                circulationDropdown.getSelectionModel().select(i);
+            } else 
+            {  
+                i++;
+            }
+        }
+
+        // set carbon and energy amounts
+        if(circulationDropdown.getSelectionModel().getSelectedIndex()==CirculationType.values().length-1)
+        {
+            System.out.println("unset");
+        }
+
+        // set label values
+        embodiedCarbonLabel.setText("Embodied Carbon: " + product.getMaxCarbonAmount());
+        embodiedEnergyLabel.setText("Embodied Energy: " + product.getMinCarbonAmount());
+
+        
 
         // carbon check changing color function
         changeColor();
     }
 
-    public void buttonTest()
+    public void updateDropdown() 
     {
-        System.out.println("test van knop");
+        for(CirculationType type : CirculationType.values())
+        {
+            if(circulationDropdown.getValue().toLowerCase().equals(type.toString().toLowerCase()))
+            {
+                product.setCirculationType(type);
+            }
+        }
     }
 
     private void changeColor()
     {
-        circulationTypeLabel.setStyle("-fx-text-fill: fff");
         embodiedCarbonLabel.setStyle("-fx-text-fill: fff");
         embodiedEnergyLabel.setStyle("-fx-text-fill: fff");
 

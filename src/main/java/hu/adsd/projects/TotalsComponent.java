@@ -38,7 +38,8 @@ public class TotalsComponent extends VBox implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        circulationTypeLabel.setText("Totaal " + title + ":");
+        // commented because of dropdown in the same fxml, raymond will make seperate fxml later
+        // circulationTypeLabel.setText("Totaal " + title + ":");
 
     }
 

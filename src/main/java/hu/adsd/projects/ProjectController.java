@@ -2,6 +2,7 @@ package hu.adsd.projects;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -22,6 +23,9 @@ public class ProjectController implements Initializable {
 
     @FXML
     private HBox totalsBox;
+
+    @FXML
+    private Button addConfigButton;
 
     private List<String> configurationList;
 
@@ -57,7 +61,13 @@ public class ProjectController implements Initializable {
 
     public void addConfiguration() throws IOException
     {
-        project.getProjectConfigurations().add("Mijn nieuwe configuratie");
+        if(project.getProjectConfigurations().size()<5)
+        {
+            project.getProjectConfigurations().add("Mijn nieuwe configuratie");
+        }else
+        {
+            // button disabled maken met andere refresh functie
+        }
 
         // temporarily reload screen
         ClimateApp.goToScreen("projectView");

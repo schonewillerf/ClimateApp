@@ -22,8 +22,8 @@ public class BuildingPart
                         new Product(
                                 1,
                                 "Raymond is awesome",
-                                3,
-                                3,
+                                0.5,
+                                0.9,
                                 CirculationType.fossiele_energie,
                                 1
                         ),
@@ -36,9 +36,9 @@ public class BuildingPart
                         new Product(
                                 1,
                                 "and handsome",
-                                3,
-                                3,
-                                CirculationType.fossiele_energie,
+                                0.7,
+                                0.3,
+                                CirculationType.REUSED,
                                 1
                         ),
                         4
