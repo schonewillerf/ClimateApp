@@ -437,6 +437,7 @@ public class DatabaseHandler
         }
     }
 
+    // Gets all products connected to specified room
     private ArrayList<Product> parseGetProductByRoom( String room ) throws SQLException
     {
         ArrayList<Product> productList = new ArrayList<>();

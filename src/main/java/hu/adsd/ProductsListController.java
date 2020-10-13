@@ -65,6 +65,7 @@ public class ProductsListController implements Initializable
         }
     }
 
+    // Methode for button click selecting bathroom
     public void selectBathroom()
     {
         DatabaseHandler databaseHandler = new DatabaseHandler();
@@ -78,6 +79,7 @@ public class ProductsListController implements Initializable
         }
     }
 
+    // Methode for button click selecting toilet
     public void selectToilet()
     {
         DatabaseHandler databaseHandler = new DatabaseHandler();
@@ -90,6 +92,7 @@ public class ProductsListController implements Initializable
         }
     }
 
+    // Methode for button click selecting kitchen
     public void selectKitchen()
     {
         DatabaseHandler databaseHandler = new DatabaseHandler();
@@ -102,6 +105,7 @@ public class ProductsListController implements Initializable
         }
     }
 
+    // Methode for button click selecting roof
     public void selectRoof()
     {
         DatabaseHandler databaseHandler = new DatabaseHandler();
