@@ -10,13 +10,13 @@ public class BuildingMaterialContainer
 {
     // Class properties
     private Product product;
-    private List<CirculationType> circulationTypes;
+    private List<CirculationConfiguration> circulationConfigurations;
 
     // Default constructor
     public BuildingMaterialContainer( Product product )
     {
         this.product = product;
-        this.circulationTypes = new ArrayList<>();
+        this.circulationConfigurations = new ArrayList<>();
     }
 
     // Standard getters and setters
@@ -30,13 +30,18 @@ public class BuildingMaterialContainer
         this.product = product;
     }
 
-    public List<CirculationType> getCirculationTypes()
+    public List<CirculationConfiguration> getCirculationConfigurations()
     {
-        return circulationTypes;
+        return circulationConfigurations;
     }
 
-    public void setCirculationTypes( List<CirculationType> circulationTypes )
+    public void setCirculationConfigurations( List<CirculationConfiguration> circulationConfigurations )
     {
-        this.circulationTypes = circulationTypes;
+        this.circulationConfigurations = circulationConfigurations;
+    }
+
+    public void addCirculationConfiguration()
+    {
+        this.getCirculationConfigurations().add( new CirculationConfiguration( CirculationType.UNSET ) );
     }
 }

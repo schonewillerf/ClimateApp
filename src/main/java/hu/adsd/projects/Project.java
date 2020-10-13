@@ -54,7 +54,7 @@ public class Project
                 for ( BuildingMaterialContainer bMC : bP.getBuildingMaterialContainers() )
                 {
                     // Add a new CirculationType of 'UNSET' to the list
-                    bMC.getCirculationTypes().add( CirculationType.UNSET );
+                    bMC.addCirculationConfiguration();
                 }
             }
         }
@@ -91,7 +91,7 @@ public class Project
             for ( BuildingMaterialContainer bMC : bP.getBuildingMaterialContainers() )
             {
                 // Add a new CirculationType of 'UNSET' to the list
-                bMC.getCirculationTypes().remove( configIndex );
+                bMC.getCirculationConfigurations().remove( configIndex );
             }
         }
         

@@ -41,9 +41,9 @@ public class BuildingMaterialContainerComponent extends HBox implements Initiali
         this.getChildren().add( new projectBuildingMaterialCard( product ) );
 
         // Create the configuration cards
-        for ( CirculationType circulationType : buildingMaterialContainer.getCirculationTypes() )
+        for ( CirculationConfiguration c : buildingMaterialContainer.getCirculationConfigurations() )
         {
-            this.getChildren().add( new projectBuildingMaterialConfigCard( circulationType, product ) );
+            this.getChildren().add( new projectBuildingMaterialConfigCard( c, product ) );
         }
 
     }
