@@ -16,7 +16,7 @@ public class BuildingPart
         this.name = name;
         this.buildingMaterialContainers = new ArrayList<>();
 
-        // Add some dummy products
+        /*// Add some dummy products
         this.buildingMaterialContainers.add(
                 new BuildingMaterialContainer(
                         new Product(
@@ -43,7 +43,7 @@ public class BuildingPart
                         ),
                         4
                 )
-        );
+        );*/
 
     }
 

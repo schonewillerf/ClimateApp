@@ -13,16 +13,10 @@ public class BuildingMaterialContainer
     private List<CirculationType> circulationTypes;
 
     // Default constructor
-    public BuildingMaterialContainer( Product product, int numberOfConfigurations )
+    public BuildingMaterialContainer( Product product )
     {
         this.product = product;
-
         this.circulationTypes = new ArrayList<>();
-
-        for( int i = 0; i < numberOfConfigurations; i++)
-        {
-            circulationTypes.add( CirculationType.UNSET );
-        }
     }
 
     // Standard getters and setters

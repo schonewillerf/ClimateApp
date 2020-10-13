@@ -1,20 +1,18 @@
 package hu.adsd.projects;
 
+import hu.adsd.ClimateApp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import hu.adsd.ClimateApp;
-
-public class ProjectController implements Initializable {
+public class ProjectController implements Initializable
+{
     @FXML
     private VBox buildingPartsBox;
 
@@ -24,52 +22,67 @@ public class ProjectController implements Initializable {
     @FXML
     private HBox totalsBox;
 
-    @FXML
-    private Button addConfigButton;
-
-    private List<String> configurationList;
-
     private Project project;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+    public void initialize( URL url, ResourceBundle resourceBundle )
+    {
+
         this.project = ClimateApp.getProject();
 
-        // add titles to hbox
-        for (String configurationTitle : project.getProjectConfigurations()) {
-            titleBox.getChildren().add(new ConfigurationTitleComponent(configurationTitle));
-        }
+        createTitleBar();
 
-        // add content to table
-        for (BuildingPart buildingPart : project.getProjectBuildingParts()) {
-            buildingPartsBox.getChildren().add(new BuildingPartComponent(buildingPart));
-        }
+        createTableContent();
 
-        totalsBox.getChildren().add(new ProductsTotalComponent());
-        // add totals below table
-        for (String configurationTitle : project.getProjectConfigurations()) {
-            totalsBox.getChildren().add(new TotalsComponent(configurationTitle));
+        createTotalsBar();
+    }
+
+    private void createTitleBar()
+    {
+        // Create Title for BuildingPart & BuildingMaterials Column
+        titleBox.getChildren().add( new ProductsTitleComponent() );
+
+        // Create Title for Each ProjectConfiguration in Project
+        for ( String configurationTitle : project.getProjectConfigurations() )
+        {
+            titleBox.getChildren().add( new ConfigurationTitleComponent( configurationTitle ) );
+        }
+    }
+
+    private void createTableContent()
+    {
+        // Create BuildingParts with inner BuildingMaterials
+        for ( BuildingPart buildingPart : project.getProjectBuildingParts() )
+        {
+            buildingPartsBox.getChildren().add( new BuildingPartComponent( buildingPart ) );
+        }
+    }
+
+    private void createTotalsBar()
+    {
+        // Create Total for BuildingPart & BuildingMaterials Column
+        totalsBox.getChildren().add( new ProductsTotalComponent() );
+
+        // Add Totals for Each ProjectConfiguration in Project
+        for ( String configurationTitle : project.getProjectConfigurations() )
+        {
+            totalsBox.getChildren().add( new TotalsComponent( configurationTitle ) );
         }
 
     }
 
+    // onAction method for goToBuildingMaterialsButton
     public void goToBuildingMaterials() throws IOException
     {
-        ClimateApp.goToScreen("productsListView");
+        ClimateApp.goToScreen( "productsListView" );
     }
 
+    // onAction method for addConfigurationButton
     public void addConfiguration() throws IOException
     {
-        if(project.getProjectConfigurations().size()<5)
-        {
-            project.getProjectConfigurations().add("Mijn nieuwe configuratie");
-        }else
-        {
-            // button disabled maken met andere refresh functie
-        }
+        project.addConfiguration();
 
         // temporarily reload screen
-        ClimateApp.goToScreen("projectView");
+        ClimateApp.goToScreen( "projectView" );
     }
 }
