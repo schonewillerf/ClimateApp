@@ -63,9 +63,9 @@ public class ClimateApp extends Application
         // ( Hint: create the child objects before the parents )
         //
         // Create some Products
-        Product toilet = new Product( 1, "WC", 0, 0, CirculationType.LINEAR, 0 );
-        Product faucet = new Product( 2, "Kraan", 0, 0, CirculationType.LINEAR, 0 );
-        Product gutter = new Product( 3, "Dakgoot", 0, 0, CirculationType.LINEAR, 0 );
+        Product toilet = new Product( 1, "WC", 1, 1, CirculationType.REUSED, 2 );
+        Product faucet = new Product( 2, "Kraan", 1, 1, CirculationType.NEW, 4 );
+        Product gutter = new Product( 3, "Dakgoot", 1, 1, CirculationType.LINEAR, 2 );
         //
         // Create some BuildingMaterialContainers, one for each product
         BuildingMaterialContainer toiletContainer = new BuildingMaterialContainer( toilet );

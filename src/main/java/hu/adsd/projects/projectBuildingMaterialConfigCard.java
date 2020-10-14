@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class projectBuildingMaterialConfigCard extends VBox implements Initializable
@@ -92,16 +94,18 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
         }*/
 
         // set label values
-        /*embodiedCarbonLabel.setText("Embodied Carbon: " + product.getMaxCarbonAmount());
-        embodiedEnergyLabel.setText("Embodied Energy: " + product.getMinCarbonAmount());*/
-        //
-        // This way our code is more reusable
-        //
-        // Set initial values to labels
-        setOrUpdateLabels();
-
+        if(circulationDropdown.getSelectionModel().getSelectedItem() == CirculationType.UNSET)
+        {
+            embodiedCarbonLabel.setText("Embodied Carbon: 0");
+            embodiedEnergyLabel.setText("Embodied Energy: 0");
+            changeColor(0);
+        }
+        else
+        {
+            setOrUpdateLabels(circulationDropdown.getSelectionModel().getSelectedItem());
+        }
         // carbon check changing color function
-        changeColor();
+
     }
 
     // Accepting the new value as parameter prevents us having to check it again
@@ -127,10 +131,7 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
         this.circulationConfiguration.setCirculationType( selectedCirculationType );
 
         // Update Labels
-        setOrUpdateLabels();
-
-        // Update Color
-        changeColor();
+        setOrUpdateLabels(selectedCirculationType);
     }
 
     /**
@@ -145,10 +146,52 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
      *
      * Please try to improve this implementation so the numbers can change during Sprint Review
      */
-    private void setOrUpdateLabels()
+    private void setOrUpdateLabels(CirculationType selectedCirculationType)
     {
-        embodiedCarbonLabel.setText("Embodied Carbon: " + product.getMaxCarbonAmount());
-        embodiedEnergyLabel.setText("Embodied Energy: " + product.getMinCarbonAmount());
+        if (selectedCirculationType != CirculationType.UNSET)
+        {
+            // Madeup values per CirculationType
+            double circType_linear = 0.7;
+            double circType_reused = 0.1;
+            double circType_fossiele_energie = 0.9;
+            double circType_secundaire_grondstoffen = 0.4;
+            double circType_new = 1.0;
+
+            double value = 0;
+
+            switch(selectedCirculationType.toString().toLowerCase()) 
+            {
+                case"linear":
+                    value = circType_linear;
+                    break;
+
+                case"reused":
+                    value = circType_reused;
+                    break;
+
+                case"fossiele_energie":
+                    value = circType_fossiele_energie;
+                    break;
+
+                case"secundaire_grondstoffen":
+                    value = circType_secundaire_grondstoffen;
+                    break;
+
+                case"new":
+                    value = circType_new;
+                    break;
+            }
+
+            embodiedCarbonLabel.setText("Embodied Energy: " + product.getMaxCarbonAmount() * value);
+            embodiedEnergyLabel.setText("Embodied Energy: " + product.getMinCarbonAmount() * value);
+            changeColor(value);
+        }
+        else
+        {
+            embodiedCarbonLabel.setText("Embodied Carbon: 0");
+            embodiedEnergyLabel.setText("Embodied Energy: 0"); 
+            changeColor(0);
+        }
     }
 
     /**
@@ -159,24 +202,24 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
      *
      * Also try to further implement this method so colors will change during Sprint Review
      */
-    private void changeColor()
+    private void changeColor(double value)
     {
         embodiedCarbonLabel.setStyle("-fx-text-fill: fff");
         embodiedEnergyLabel.setStyle("-fx-text-fill: fff");
 
-        if(product.getMinCarbonAmount()==0)
+        if(product.getMinCarbonAmount() * value==0)
         {
             this.setStyle("-fx-background-color: #1287A8");
         }
-        else if(product.getMinCarbonAmount()<=0.25)
+        else if(product.getMinCarbonAmount() * value<=0.25)
         {
             this.setStyle("-fx-background-color: #93A661; -fx-text-fill: fff");
         }
-        else if(product.getMinCarbonAmount()<=0.5)
+        else if(product.getMinCarbonAmount() * value<=0.5)
         {
-            this.setStyle("-fx-background-color: #EBC944; -fx-text-fill: fff");
+            this.setStyle("-fx-background-color: #DAA82F; -fx-text-fill: fff");
         }
-        else if(product.getMinCarbonAmount()<=0.75)
+        else if(product.getMinCarbonAmount() * value<=0.75)
         {
             this.setStyle("-fx-background-color: #F26D21; -fx-text-fill: fff");
         }
