@@ -1,6 +1,5 @@
 package hu.adsd.buildingmaterials;
 
-import hu.adsd.buildingmaterials.Product;
 import hu.adsd.dataservice.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -60,9 +61,10 @@ public class ProductCardComponent extends VBox implements Initializable
     {
         productNameLabel.setText( product.getName() );
 
-        // Adds image to productCardComponent
-        Image image = new Image(product.getImagePath());
-        productImage.setImage(image);
+        // Add image to productCardComponent
+        InputStream inputStream = getClass().getResourceAsStream( product.getImagePath() );
+        Image image = new Image( inputStream );
+        productImage.setImage( image );
 
 
         // Adds lambda expression to addButton action

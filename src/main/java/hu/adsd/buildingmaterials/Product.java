@@ -91,7 +91,7 @@ public class Product
 
     public String getImagePath()
     {
-        return imagePath;
+        return String.format( "../../../images/%s.jpg", this.id );
     }
 
     public void setImagePath(String imagePath)
