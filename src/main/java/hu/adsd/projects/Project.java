@@ -14,6 +14,9 @@ public class Project
     {
         this.projectBuildingParts = new ArrayList<>();
         this.projectConfigurations = new ArrayList<>();
+
+        // Initialise a new Project with at least one Configuration
+        this.projectConfigurations.add( "Mijn eerste configuratie" );
     }
 
     // getters and setters
@@ -61,6 +64,12 @@ public class Project
 
     public void removeConfiguration( String configuration )
     {
+        // Check if Project has at least one Configuration
+        if ( this.projectConfigurations.size() < 2 )
+        {
+            return;
+        }
+
         // Initialise an int for storing the index
         int configIndex = 0;
 
