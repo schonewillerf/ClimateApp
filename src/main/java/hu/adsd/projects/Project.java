@@ -1,6 +1,6 @@
 package hu.adsd.projects;
 
-import hu.adsd.buildingmaterials.CirculationType;
+import hu.adsd.buildingmaterials.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import java.util.List;
 public class Project
 {
     private List<BuildingPart> projectBuildingParts;
-
     private List<String> projectConfigurations;
 
     public Project()
@@ -95,5 +94,28 @@ public class Project
             }
         }
         
+    }
+
+    public void addProductToProject( Product product, String buildingPartName )
+    {
+        BuildingMaterialContainer buildingMaterialContainer = new BuildingMaterialContainer(
+                product,
+                this.projectConfigurations.size()
+        );
+
+        for ( BuildingPart buildingPart : this.projectBuildingParts )
+        {
+            if ( buildingPart.getName().equals( buildingPartName ) )
+            {
+                buildingPart.getBuildingMaterialContainers().add( buildingMaterialContainer );
+                return;
+            }
+        }
+
+        BuildingPart buildingPart = new BuildingPart( buildingPartName );
+
+        buildingPart.getBuildingMaterialContainers().add( buildingMaterialContainer );
+
+        this.projectBuildingParts.add( buildingPart );
     }
 }
