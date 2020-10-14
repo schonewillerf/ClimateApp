@@ -96,7 +96,7 @@ public class Project
         
     }
 
-    public void addProductToProject( Product product, String buildingPartName )
+    public void addProductToProject( Product product )
     {
         BuildingMaterialContainer buildingMaterialContainer = new BuildingMaterialContainer(
                 product,
@@ -105,14 +105,14 @@ public class Project
 
         for ( BuildingPart buildingPart : this.projectBuildingParts )
         {
-            if ( buildingPart.getName().equals( buildingPartName ) )
+            if ( buildingPart.getName().equals( product.getBuildingPart() ) )
             {
                 buildingPart.getBuildingMaterialContainers().add( buildingMaterialContainer );
                 return;
             }
         }
 
-        BuildingPart buildingPart = new BuildingPart( buildingPartName );
+        BuildingPart buildingPart = new BuildingPart( product.getBuildingPart() );
 
         buildingPart.getBuildingMaterialContainers().add( buildingMaterialContainer );
 

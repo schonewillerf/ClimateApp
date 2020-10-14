@@ -11,6 +11,7 @@ public class Product
     private CirculationType circulationType;
     private int quantity;
     private String imagePath;
+    private String buildingPart;
 
     public Product(
             int id,
@@ -18,7 +19,8 @@ public class Product
             double minCarbon,
             double maxCarbon,
             CirculationType circulationType,
-            int quantity
+            int quantity,
+            String buildingPart
     )
     {
         this.id = id;
@@ -27,6 +29,7 @@ public class Product
         this.maxCarbonAmount = maxCarbon;
         this.circulationType = circulationType;
         this.quantity = quantity;
+        this.buildingPart = buildingPart;
     }
 
     public int getId()
@@ -97,6 +100,16 @@ public class Product
     public void setImagePath(String imagePath)
     {
         this.imagePath = imagePath;
+    }
+
+    public String getBuildingPart()
+    {
+        return buildingPart;
+    }
+
+    public void setBuildingPart( String buildingPart )
+    {
+        this.buildingPart = buildingPart;
     }
 
     @Override

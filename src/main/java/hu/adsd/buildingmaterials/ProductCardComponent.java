@@ -70,6 +70,6 @@ public class ProductCardComponent extends VBox implements Initializable
 
         // Adds lambda expression to addButton action
         // Add sql method
-        addButton.setOnAction( event -> ClimateApp.getProject().addProductToProject( this.product, "dak" ) );
+        addButton.setOnAction( event -> ClimateApp.getProject().addProductToProject( this.product ) );
     }
 }

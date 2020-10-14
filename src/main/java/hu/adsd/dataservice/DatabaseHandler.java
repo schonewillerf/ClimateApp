@@ -183,6 +183,7 @@ public class DatabaseHandler
                     double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
                     String imagePath = rs.getString("image");
+                    String buildingPart = rs.getString("room");
 
                     Product product = new Product(
                             id,
@@ -190,7 +191,8 @@ public class DatabaseHandler
                             minCarbon,
                             maxCarbon,
                             CirculationType.valueOf( circulationType ),
-                            0 );
+                            0,
+                            buildingPart);
 
                     product.setImagePath(imagePath);
 
@@ -228,7 +230,7 @@ public class DatabaseHandler
                     double minCarbon = rs.getDouble( "co2_min" );
                     double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
-                    int quantity = rs.getInt( "units" );
+                    String buildingPart = rs.getString( "room" );
 
 
                     Product product = new Product(
@@ -237,7 +239,8 @@ public class DatabaseHandler
                             minCarbon,
                             maxCarbon,
                             CirculationType.valueOf( circulationType ),
-                            quantity
+                            1,
+                            buildingPart
                     );
 
                     productList.add( product );
@@ -278,6 +281,7 @@ public class DatabaseHandler
                     double minCarbon = rs.getDouble( "co2_min" );
                     double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
+                    String buildingPart = rs.getString( "room" );
 
 
                     product = new Product(
@@ -286,7 +290,8 @@ public class DatabaseHandler
                             minCarbon,
                             maxCarbon,
                             CirculationType.valueOf( circulationType ),
-                            1
+                            1,
+                            buildingPart
                     );
                 }
             }
@@ -468,6 +473,7 @@ public class DatabaseHandler
                     double maxCarbon = rs.getDouble( "co2_max" );
                     String circulationType = rs.getString( "materialtype" );
                     String imagePath = rs.getString("image");
+                    String buildingPart = rs.getString( "room" );
 
 
                     Product product = new Product(
@@ -476,7 +482,8 @@ public class DatabaseHandler
                             minCarbon,
                             maxCarbon,
                             CirculationType.valueOf( circulationType ),
-                            1
+                            1,
+                            buildingPart
                     );
 
                     product.setImagePath(imagePath);
