@@ -58,32 +58,6 @@ public class ClimateApp extends Application
     public ClimateApp()
     {
         project = new Project();
-
-        // Add dummy data to Project
-        // ( Hint: create the child objects before the parents )
-        //
-        // Create some Products
-        Product toilet = new Product( 1, "WC", 0, 0, CirculationType.LINEAR, 0 );
-        Product faucet = new Product( 2, "Kraan", 0, 0, CirculationType.LINEAR, 0 );
-        Product gutter = new Product( 3, "Dakgoot", 0, 0, CirculationType.LINEAR, 0 );
-        //
-        // Create some BuildingMaterialContainers, one for each product
-        BuildingMaterialContainer toiletContainer = new BuildingMaterialContainer( toilet );
-        BuildingMaterialContainer faucetContainer = new BuildingMaterialContainer( faucet );
-        BuildingMaterialContainer gutterContainer = new BuildingMaterialContainer( gutter );
-        //
-        // Create some BuildingParts
-        BuildingPart bathroom = new BuildingPart( "badkamer" );
-        BuildingPart roof = new BuildingPart( "dak" );
-        //
-        // Add Products to BuildingParts
-        bathroom.getBuildingMaterialContainers().add( toiletContainer );
-        bathroom.getBuildingMaterialContainers().add( faucetContainer );
-        roof.getBuildingMaterialContainers().add( gutterContainer );
-        //
-        // Add BuildingParts to Project
-        project.getProjectBuildingParts().add( bathroom );
-        project.getProjectBuildingParts().add( roof );
     }
 
     public static Project getProject()

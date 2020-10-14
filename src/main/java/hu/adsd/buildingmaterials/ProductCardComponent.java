@@ -1,5 +1,6 @@
 package hu.adsd.buildingmaterials;
 
+import hu.adsd.ClimateApp;
 import hu.adsd.dataservice.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,6 +70,6 @@ public class ProductCardComponent extends VBox implements Initializable
 
         // Adds lambda expression to addButton action
         // Add sql method
-        addButton.setOnAction( event -> new DatabaseHandler().addProductToProjectById( product.getId() ) );
+        addButton.setOnAction( event -> ClimateApp.getProject().addProductToProject( this.product, "dak" ) );
     }
 }
