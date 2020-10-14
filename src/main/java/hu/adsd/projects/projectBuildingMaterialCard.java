@@ -1,5 +1,6 @@
 package hu.adsd.projects;
 
+import hu.adsd.ClimateApp;
 import hu.adsd.buildingmaterials.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -91,13 +92,16 @@ public class projectBuildingMaterialCard extends VBox implements Initializable
         {
             System.out.println("save quantity");
 
-            quantityField.setEditable( false );
-            editOrSaveButton.setText( "Aanpassen" );
-            cancelButton.setDisable( true );
-
             this.product.setQuantity( Integer.parseInt( quantityField.getText() ) );
 
-            editQuantity = false;
+            try
+            {
+                ClimateApp.goToScreen( "projectView" );
+            }
+            catch ( IOException e )
+            {
+                e.printStackTrace();
+            }
         }
     }
 

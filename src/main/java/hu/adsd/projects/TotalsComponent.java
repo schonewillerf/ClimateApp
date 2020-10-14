@@ -12,15 +12,19 @@ import java.util.ResourceBundle;
 
 public class TotalsComponent extends VBox implements Initializable
 {
-
-    private String title;
+    @FXML
+    private Label embodiedCarbonLabel;
 
     @FXML
-    private Label circulationTypeLabel;
+    private Label embodiedEnergyLabel;
 
-    public TotalsComponent( String title )
+    private final double totalCarbon;
+    private final double totalEnergy;
+
+    public TotalsComponent( double totalCarbon, double totalEnergy )
     {
-        this.title = title;
+        this.totalCarbon = totalCarbon;
+        this.totalEnergy = totalEnergy;
 
         FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../../projectConfigTotal.fxml" ) );
         fxmlLoader.setRoot( this );
@@ -39,6 +43,7 @@ public class TotalsComponent extends VBox implements Initializable
     @Override
     public void initialize( URL location, ResourceBundle resources )
     {
-
+        embodiedCarbonLabel.setText( String.format( "Embodied carbon: %s", this.totalCarbon ) );
+        embodiedEnergyLabel.setText( String.format( "Embodied energy: %s", this.totalEnergy ) );
     }
 }

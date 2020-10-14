@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ProjectController implements Initializable
@@ -64,9 +63,18 @@ public class ProjectController implements Initializable
         totalsBox.getChildren().add( new ProductsTotalComponent() );
 
         // Add Totals for Each ProjectConfiguration in Project
-        for ( String configurationTitle : project.getProjectConfigurations() )
+        /*for ( String configurationTitle : project.getProjectConfigurations() )
         {
-            totalsBox.getChildren().add( new TotalsComponent( configurationTitle ) );
+            totalsBox.getChildren().add( new TotalsComponent( 1 ) );
+        }*/
+
+        for ( int i = 0; i < project.getProjectConfigurations().size(); i++ )
+        {
+            totalsBox.getChildren().add(
+                    new TotalsComponent(
+                            project.getProjectConfigurationTotalCarbon( i ),
+                            project.getProjectConfigurationTotalEnergy( i )
+                    ) );
         }
 
     }

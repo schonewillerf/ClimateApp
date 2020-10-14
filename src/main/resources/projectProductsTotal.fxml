@@ -11,7 +11,7 @@
    </padding>
    <children>
       <Label fx:id="circulationTypeLabel" text="Totaal minst circulaire oplossing:" />
-      <Label fx:id="embodiedCarbonLabel" text="Embodied Carbon: " />
+      <Label fx:id="embodiedCarbonLabel" text="Embodied Casdrbon: " />
       <Label fx:id="embodiedEnergyLabel" text="Embodied Energy: " />
       <Button mnemonicParsing="false" onAction="#buttonTest" text="Button" />
    </children>

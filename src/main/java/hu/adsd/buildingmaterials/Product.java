@@ -1,7 +1,5 @@
 package hu.adsd.buildingmaterials;
 
-import hu.adsd.buildingmaterials.CirculationType;
-
 public class Product
 {
     private int id;
@@ -137,5 +135,15 @@ public class Product
     public double getTotalMaxCarbonAmount()
     {
         return this.maxCarbonAmount * this.quantity;
+    }
+
+    public double getTotalEmbodiedCarbon( double factor)
+    {
+        return this.minCarbonAmount * this.quantity * factor;
+    }
+
+    public double getTotalEmbodiedEnergy( double factor )
+    {
+        return this.maxCarbonAmount * this.quantity * factor;
     }
 }

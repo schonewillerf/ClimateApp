@@ -107,6 +107,10 @@ public class Project
 
     public void addProductToProject( Product product )
     {
+        // Set product quantity to 1
+        // As a double check
+        product.setQuantity( 1 );
+
         BuildingMaterialContainer buildingMaterialContainer = new BuildingMaterialContainer(
                 product,
                 this.projectConfigurations.size()
@@ -126,5 +130,53 @@ public class Project
         buildingPart.getBuildingMaterialContainers().add( buildingMaterialContainer );
 
         this.projectBuildingParts.add( buildingPart );
+    }
+
+    public double getProjectConfigurationTotalCarbon( int index )
+    {
+        double carbonTotal = 0;
+
+        // Outer loop of BuildingParts
+        for ( BuildingPart bP : this.projectBuildingParts )
+        {
+            // Inner loop of BuildingMaterialContainers
+            for ( BuildingMaterialContainer bMC : bP.getBuildingMaterialContainers() )
+            {
+                //
+                carbonTotal += bMC
+                        .getProduct()
+                        .getTotalEmbodiedCarbon( bMC
+                                                         .getCirculationConfigurations()
+                                                         .get( index )
+                                                         .getCirculationType()
+                                                         .getFactor() );
+            }
+        }
+
+        return carbonTotal;
+    }
+
+    public double getProjectConfigurationTotalEnergy( int index )
+    {
+        double energyTotal = 0;
+
+        // Outer loop of BuildingParts
+        for ( BuildingPart bP : this.projectBuildingParts )
+        {
+            // Inner loop of BuildingMaterialContainers
+            for ( BuildingMaterialContainer bMC : bP.getBuildingMaterialContainers() )
+            {
+                //
+                energyTotal += bMC
+                        .getProduct()
+                        .getTotalEmbodiedEnergy( bMC
+                                                         .getCirculationConfigurations()
+                                                         .get( index )
+                                                         .getCirculationType()
+                                                         .getFactor() );
+            }
+        }
+
+        return energyTotal;
     }
 }
