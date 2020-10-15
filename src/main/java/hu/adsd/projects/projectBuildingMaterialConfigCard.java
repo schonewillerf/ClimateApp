@@ -92,8 +92,10 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
         );
 
         embodiedEnergyLabel.setText(
-                "Embodied Energy: " +
-                product.getTotalEmbodiedEnergy( this.circulationConfiguration.getCirculationType().getFactor() )
+                String.format(
+                        "Embodied Energy: %.2f",
+                        product.getTotalEmbodiedEnergy( this.circulationConfiguration.getCirculationType().getFactor() )
+                )
         );
     }
 

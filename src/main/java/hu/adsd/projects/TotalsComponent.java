@@ -43,7 +43,7 @@ public class TotalsComponent extends VBox implements Initializable
     @Override
     public void initialize( URL location, ResourceBundle resources )
     {
-        embodiedCarbonLabel.setText( String.format( "Embodied carbon: %s", this.totalCarbon ) );
-        embodiedEnergyLabel.setText( String.format( "Embodied energy: %s", this.totalEnergy ) );
+        embodiedCarbonLabel.setText( String.format( "Embodied carbon: %.2f", this.totalCarbon ) );
+        embodiedEnergyLabel.setText( String.format( "Embodied energy: %.2f", this.totalEnergy ) );
     }
 }
