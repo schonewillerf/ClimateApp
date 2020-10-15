@@ -85,8 +85,10 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
     private void setOrUpdateLabels()
     {
         embodiedCarbonLabel.setText(
-                "Embodied Carbon: " +
-                product.getTotalEmbodiedCarbon( this.circulationConfiguration.getCirculationType().getFactor() )
+                String.format(
+                        "Embodied Carbon: %.2f",
+                        product.getTotalEmbodiedCarbon( this.circulationConfiguration.getCirculationType().getFactor() )
+                )
         );
 
         embodiedEnergyLabel.setText(

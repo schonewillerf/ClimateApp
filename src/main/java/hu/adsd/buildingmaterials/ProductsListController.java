@@ -24,13 +24,13 @@ public class ProductsListController implements Initializable
     @FXML
     private Button toiletButton,kitchenButton,bathroomButton,roofButton;
 
-    @FXML
-    private ComboBox<ProductSort> sortingBox;
+    /*@FXML
+    private ComboBox<ProductSort> sortingBox;*/
 
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
-        // Populate Sorting Box
+        /*// Populate Sorting Box
         sortingBox.getItems().setAll( ProductSort.values() );
 
         // Set initial sorting state
@@ -42,7 +42,9 @@ public class ProductsListController implements Initializable
         );
 
         // Set products
-        setOrUpdateProducts( ProductSort.CARBON );
+        setOrUpdateProducts( ProductSort.CARBON );*/
+
+        selectToilet();
     }
 
     // Method for handling button click to go to other screen
@@ -51,7 +53,7 @@ public class ProductsListController implements Initializable
         ClimateApp.goToScreen( "projectView" ); // Change the Scene
     }
 
-    private void setOrUpdateProducts( ProductSort sort )
+    /*private void setOrUpdateProducts( ProductSort sort )
     {
         // Remove all items from ProductCard
         productsBox.getChildren().clear();
@@ -66,7 +68,7 @@ public class ProductsListController implements Initializable
             // Add Custom ProductCard Components to TilePane.
             productsBox.getChildren().add( new ProductCardComponent( product ) );
         }
-    }
+    }*/
 
     // Methode for button click selecting bathroom
     public void selectBathroom()

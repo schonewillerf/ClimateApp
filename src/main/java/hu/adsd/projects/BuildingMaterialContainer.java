@@ -21,7 +21,7 @@ public class BuildingMaterialContainer
 
         for ( int i = 0; i < projectConfigurations; i++ )
         {
-            this.getCirculationConfigurations().add( new CirculationConfiguration( CirculationType.UNSET ) );
+            this.getCirculationConfigurations().add( new CirculationConfiguration( CirculationType.REUSED ) );
         }
     }
 
@@ -48,6 +48,6 @@ public class BuildingMaterialContainer
 
     public void addCirculationConfiguration()
     {
-        this.getCirculationConfigurations().add( new CirculationConfiguration( CirculationType.UNSET ) );
+        this.getCirculationConfigurations().add( new CirculationConfiguration( CirculationType.REUSED ) );
     }
 }

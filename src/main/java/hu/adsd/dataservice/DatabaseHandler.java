@@ -190,7 +190,7 @@ public class DatabaseHandler
                             name,
                             minCarbon,
                             maxCarbon,
-                            CirculationType.valueOf( circulationType ),
+                            // CirculationType.valueOf( circulationType ),
                             0,
                             buildingPart);
 
@@ -238,7 +238,7 @@ public class DatabaseHandler
                             name,
                             minCarbon,
                             maxCarbon,
-                            CirculationType.valueOf( circulationType ),
+                            // CirculationType.valueOf( circulationType ),
                             1,
                             buildingPart
                     );
@@ -289,7 +289,7 @@ public class DatabaseHandler
                             name,
                             minCarbon,
                             maxCarbon,
-                            CirculationType.valueOf( circulationType ),
+                            // CirculationType.valueOf( circulationType ),
                             1,
                             buildingPart
                     );
@@ -481,7 +481,7 @@ public class DatabaseHandler
                             name,
                             minCarbon,
                             maxCarbon,
-                            CirculationType.valueOf( circulationType ),
+                            // CirculationType.valueOf( circulationType ),
                             1,
                             buildingPart
                     );

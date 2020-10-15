@@ -6,7 +6,7 @@ public class Product
     private String name;
     private double minCarbonAmount;
     private double maxCarbonAmount;
-    private CirculationType circulationType;
+    // private CirculationType circulationType;
     private int quantity;
     private String imagePath;
     private String buildingPart;
@@ -16,7 +16,7 @@ public class Product
             String name,
             double minCarbon,
             double maxCarbon,
-            CirculationType circulationType,
+            // CirculationType circulationType,
             int quantity,
             String buildingPart
     )
@@ -25,7 +25,7 @@ public class Product
         this.name = name;
         this.minCarbonAmount = minCarbon;
         this.maxCarbonAmount = maxCarbon;
-        this.circulationType = circulationType;
+        // this.circulationType = circulationType;
         this.quantity = quantity;
         this.buildingPart = buildingPart;
     }
@@ -70,7 +70,7 @@ public class Product
         this.maxCarbonAmount = maxCarbonAmount;
     }
 
-    public CirculationType getCirculationType()
+    /*public CirculationType getCirculationType()
     {
         return circulationType;
     }
@@ -78,7 +78,7 @@ public class Product
     public void setCirculationType( CirculationType circulationType )
     {
         this.circulationType = circulationType;
-    }
+    }*/
 
     public int getQuantity()
     {
@@ -117,12 +117,12 @@ public class Product
                 "Id: %s, Naam: %s, " +
                         "Minimale hoeveelheid koolstof: %s, " +
                         "Maximale hoeveelheid koolstof: %s, " +
-                        "Circulatietype: %s, Kwantiteit: %s,",
+                        "Kwantiteit: %s,",
                 this.id,
                 this.name,
                 this.minCarbonAmount,
                 this.maxCarbonAmount,
-                this.circulationType,
+                // this.circulationType,
                 this.quantity
         );
     }

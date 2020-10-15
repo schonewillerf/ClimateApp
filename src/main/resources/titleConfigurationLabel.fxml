@@ -11,6 +11,6 @@
    </padding>
    <children>
       <Label fx:id="configurationTitle" text="Label" />
-      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#removeThisConfig" text="Button" />
+      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#removeThisConfig" text="Verwijderen" />
    </children>
 </fx:root>
