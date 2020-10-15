@@ -17,7 +17,7 @@
       <ImageView fx:id="productImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="quantityField" editable="false" prefHeight="28.0" prefWidth="126.0">
+            <TextField fx:id="quantityField" editable="false" prefHeight="28.0" prefWidth="126.0" styleClass="AddQuantityTextfield" stylesheets="@Style.css">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -27,12 +27,12 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="editOrSaveButton" mnemonicParsing="false" text="Aanpassen">
+            <Button fx:id="editOrSaveButton" mnemonicParsing="false" styleClass="AddQuantityButton" stylesheets="@Style.css" text="Aanpassen">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" text="Cancel" />
+            <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" styleClass="AddQuantityButton" stylesheets="@Style.css" text="Cancel" />
          </children>
          <VBox.margin>
             <Insets top="10.0" />
