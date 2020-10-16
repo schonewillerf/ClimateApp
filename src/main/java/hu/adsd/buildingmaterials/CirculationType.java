@@ -2,6 +2,7 @@ package hu.adsd.buildingmaterials;
 
 public enum CirculationType
 {
+    UNSET( "Niet gebruikt", 0, "#2e9ab3"),
     LOCALREUSE("Locaal hergebruik", 0.01, "#66CD00"),
     REUSED( "Hergebruikt", 0.05, "#28993b" ),
     REPAIRED( "Gerepareerd", 0.10, "#fbb117" ), // Beer color
