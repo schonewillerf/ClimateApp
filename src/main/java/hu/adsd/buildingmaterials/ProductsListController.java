@@ -50,7 +50,11 @@ public class ProductsListController implements Initializable
     // Method for handling button click to go to other screen
     public void goToProject() throws IOException
     {
+        System.out.println("starting change from products");
+        long time1 = System.currentTimeMillis();
         ClimateApp.goToScreen( "projectView" ); // Change the Scene
+        long time2 = System.currentTimeMillis();
+        System.out.println(String.format( "change screen from products: %s", time2 - time1 ));
     }
 
     /*private void setOrUpdateProducts( ProductSort sort )
