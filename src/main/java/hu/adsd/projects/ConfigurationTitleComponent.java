@@ -12,7 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class ConfigurationTitleComponent extends VBox implements Initializable {
+public class ConfigurationTitleComponent extends VBox implements Initializable
+{
 
     private String title;
 
@@ -22,7 +23,7 @@ public class ConfigurationTitleComponent extends VBox implements Initializable {
     @FXML
     private Button deleteButton;
 
-    public ConfigurationTitleComponent(String title)
+    public ConfigurationTitleComponent( String title )
     {
         this.title = title;
 
@@ -42,11 +43,9 @@ public class ConfigurationTitleComponent extends VBox implements Initializable {
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-        configurationTitle.setText(this.title);
-
-        //deleteButton.setOnAction( event -> removeThisConfig() );
+    public void initialize( URL location, ResourceBundle resources )
+    {
+        configurationTitle.setText( this.title );
     }
 
     public void removeThisConfig()
@@ -56,7 +55,7 @@ public class ConfigurationTitleComponent extends VBox implements Initializable {
         // temporarily reload screen
         try
         {
-            ClimateApp.goToScreen("projectView");
+            ClimateApp.goToScreen( "projectView" );
         }
         catch ( IOException e )
         {
