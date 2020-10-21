@@ -84,7 +84,7 @@ public class ProductsListController implements Initializable
     // Methode for button click selecting bathroom
     public void selectBathroom()
     {
-        setOrUpdateProductsBox( "bathroom" );
+        setOrUpdateProductsBox( "badkamer" );
     }
 
     // Methode for button click selecting toilet
