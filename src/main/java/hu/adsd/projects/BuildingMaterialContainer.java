@@ -41,11 +41,6 @@ public class BuildingMaterialContainer
         return circulationConfigurations;
     }
 
-    /*public void setCirculationConfigurations( List<CirculationConfiguration> circulationConfigurations )
-    {
-        this.circulationConfigurations = circulationConfigurations;
-    }*/
-
     public void addCirculationConfiguration()
     {
         this.getCirculationConfigurations().add( new CirculationConfiguration( CirculationType.REUSED ) );
