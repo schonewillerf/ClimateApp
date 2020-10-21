@@ -1,3 +1,4 @@
+/*Just admit you copied this styling ;)*/
 .username-box{
     -fx-background-color: transparent;
     -fx-border-color: #DEDEE4;
@@ -21,6 +22,16 @@
     -fx-text-fill: white;
 }
 .AddBuildingMaterialButton{
+    -fx-background-color: #9a9a9a;
+    -fx-background-radius: 10px;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-text-fill: white smoke;
+}
+
+/*Style all buttons at once*/
+Button {
     -fx-background-color: #9a9a9a;
     -fx-background-radius: 10px;
     -fx-border-color: black;

@@ -26,6 +26,8 @@ public class ClimateApp extends Application
         // Now the scene is initialised
         scene = new Scene( root );
 
+        scene.getStylesheets().add( ClimateApp.class.getResource( "../../Style.css" ).toExternalForm() );
+
         stage.setScene( scene );
         stage.setTitle( "Klimaat App" );
         stage.show();
