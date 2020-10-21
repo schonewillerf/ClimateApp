@@ -33,7 +33,9 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
         this.product = product;
 
         // load the project buildingmaterialconfig card FXML VBOX
-        FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../../projectBuildingMaterialConfigCardView.fxml" ) );
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                getClass().getResource( "../../../projectBuildingMaterialConfigCardView.fxml" )
+        );
         fxmlLoader.setRoot( this );
         fxmlLoader.setController( this );
 
@@ -66,8 +68,8 @@ public class projectBuildingMaterialConfigCard extends VBox implements Initializ
         changeColor();
 
         // This should better be done from FXML or CSS
-        embodiedCarbonLabel.setStyle("-fx-text-fill: fff");
-        embodiedEnergyLabel.setStyle("-fx-text-fill: fff");
+        embodiedCarbonLabel.setStyle("-fx-text-fill: #fff");
+        embodiedEnergyLabel.setStyle("-fx-text-fill: #fff");
     }
 
     private void updateCirculationConfiguration( CirculationType selectedCirculationType )

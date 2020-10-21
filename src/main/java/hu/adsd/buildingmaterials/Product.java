@@ -3,20 +3,17 @@ package hu.adsd.buildingmaterials;
 public class Product
 {
     private int id;
-    private String name;
-    private double minCarbonAmount;
-    private double maxCarbonAmount;
-    // private CirculationType circulationType;
+    private final String name;
+    private final double minCarbonAmount;
+    private final double maxCarbonAmount;
     private int quantity;
-    private String imagePath;
-    private String buildingPart;
+    private final String buildingPart;
 
     public Product(
             int id,
             String name,
             double minCarbon,
             double maxCarbon,
-            // CirculationType circulationType,
             int quantity,
             String buildingPart
     )
@@ -25,7 +22,6 @@ public class Product
         this.name = name;
         this.minCarbonAmount = minCarbon;
         this.maxCarbonAmount = maxCarbon;
-        // this.circulationType = circulationType;
         this.quantity = quantity;
         this.buildingPart = buildingPart;
     }
@@ -45,40 +41,15 @@ public class Product
         return name;
     }
 
-    public void setName( String name )
-    {
-        this.name = name;
-    }
-
     public double getMinCarbonAmount()
     {
         return minCarbonAmount;
-    }
-
-    public void setMinCarbonAmount( double minCarbonAmount )
-    {
-        this.minCarbonAmount = minCarbonAmount;
     }
 
     public double getMaxCarbonAmount()
     {
         return maxCarbonAmount;
     }
-
-    public void setMaxCarbonAmount( double maxCarbonAmount )
-    {
-        this.maxCarbonAmount = maxCarbonAmount;
-    }
-
-    /*public CirculationType getCirculationType()
-    {
-        return circulationType;
-    }
-
-    public void setCirculationType( CirculationType circulationType )
-    {
-        this.circulationType = circulationType;
-    }*/
 
     public int getQuantity()
     {
@@ -95,19 +66,14 @@ public class Product
         return String.format( "../../../images/%s.jpg", this.id );
     }
 
-    public void setImagePath(String imagePath)
+    public void setImagePath()
     {
-        this.imagePath = imagePath;
+        // This is an empty method
     }
 
     public String getBuildingPart()
     {
         return buildingPart;
-    }
-
-    public void setBuildingPart( String buildingPart )
-    {
-        this.buildingPart = buildingPart;
     }
 
     @Override
@@ -122,7 +88,6 @@ public class Product
                 this.name,
                 this.minCarbonAmount,
                 this.maxCarbonAmount,
-                // this.circulationType,
                 this.quantity
         );
     }

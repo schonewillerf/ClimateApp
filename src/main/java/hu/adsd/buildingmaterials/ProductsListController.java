@@ -5,7 +5,6 @@ import hu.adsd.dataservice.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.TilePane;
 
 import java.io.IOException;

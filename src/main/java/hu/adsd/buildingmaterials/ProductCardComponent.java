@@ -1,7 +1,6 @@
 package hu.adsd.buildingmaterials;
 
 import hu.adsd.ClimateApp;
-import hu.adsd.dataservice.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

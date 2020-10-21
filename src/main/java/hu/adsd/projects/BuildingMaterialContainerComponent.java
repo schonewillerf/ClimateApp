@@ -1,6 +1,5 @@
 package hu.adsd.projects;
 
-import hu.adsd.buildingmaterials.CirculationType;
 import hu.adsd.buildingmaterials.Product;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,6 +44,5 @@ public class BuildingMaterialContainerComponent extends HBox implements Initiali
         {
             this.getChildren().add( new projectBuildingMaterialConfigCard( c, product ) );
         }
-
     }
 }

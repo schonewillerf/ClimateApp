@@ -5,8 +5,8 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 
-public class ProductsTotalComponent extends VBox {
-
+public class ProductsTotalComponent extends VBox
+{
     public ProductsTotalComponent()
     {
         FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../../projectProductsTotal.fxml" ) );
@@ -25,7 +25,6 @@ public class ProductsTotalComponent extends VBox {
 
     public void buttonTest()
     {
-        System.out.println("test van knop");
+        System.out.println( "test van knop" );
     }
-    
 }

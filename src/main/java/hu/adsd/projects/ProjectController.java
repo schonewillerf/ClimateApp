@@ -62,12 +62,6 @@ public class ProjectController implements Initializable
         // Create Total for BuildingPart & BuildingMaterials Column
         totalsBox.getChildren().add( new ProductsTotalComponent() );
 
-        // Add Totals for Each ProjectConfiguration in Project
-        /*for ( String configurationTitle : project.getProjectConfigurations() )
-        {
-            totalsBox.getChildren().add( new TotalsComponent( 1 ) );
-        }*/
-
         for ( int i = 0; i < project.getProjectConfigurations().size(); i++ )
         {
             totalsBox.getChildren().add(

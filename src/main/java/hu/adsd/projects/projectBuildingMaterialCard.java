@@ -45,7 +45,9 @@ public class projectBuildingMaterialCard extends VBox implements Initializable
         this.product = product;
 
         // load the project buildingmaterial card FXML VBOX
-        FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../../projectBuildingMaterialCardView.fxml" ) );
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                getClass().getResource( "../../../projectBuildingMaterialCardView.fxml" )
+        );
         fxmlLoader.setRoot( this );
         fxmlLoader.setController( this );
 

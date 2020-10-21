@@ -63,5 +63,4 @@ public class ConfigurationTitleComponent extends VBox implements Initializable {
             e.printStackTrace();
         }
     }
-    
 }

@@ -1,8 +1,6 @@
 package hu.adsd;
 
-import hu.adsd.buildingmaterials.CirculationType;
-import hu.adsd.buildingmaterials.Product;
-import hu.adsd.projects.BuildingMaterialContainer;
+import hu.adsd.projects.Project;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,11 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import hu.adsd.projects.BuildingPart;
-import hu.adsd.projects.Project;
 
 public class ClimateApp extends Application
 {
@@ -47,7 +40,7 @@ public class ClimateApp extends Application
      * ClimateApp.goToScreen( "projectView" ); // This will load the projectViewBackup.fxml document from resources in the window
      *
      * @param fxmlDocument a Sting value of the document in resources
-     * @throws IOException
+     * @throws IOException FXML Document is an external file
      */
     public static void goToScreen( String fxmlDocument ) throws IOException
     {

@@ -10,7 +10,7 @@ public class BuildingMaterialContainer
 {
     // Class properties
     private Product product;
-    private List<CirculationConfiguration> circulationConfigurations;
+    private final List<CirculationConfiguration> circulationConfigurations;
 
     // Default constructor
     public BuildingMaterialContainer( Product product, int projectConfigurations )
@@ -41,10 +41,10 @@ public class BuildingMaterialContainer
         return circulationConfigurations;
     }
 
-    public void setCirculationConfigurations( List<CirculationConfiguration> circulationConfigurations )
+    /*public void setCirculationConfigurations( List<CirculationConfiguration> circulationConfigurations )
     {
         this.circulationConfigurations = circulationConfigurations;
-    }
+    }*/
 
     public void addCirculationConfiguration()
     {

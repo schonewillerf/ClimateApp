@@ -1,6 +1,5 @@
 package hu.adsd.dataservice;
 
-import hu.adsd.buildingmaterials.CirculationType;
 import hu.adsd.buildingmaterials.Product;
 import hu.adsd.buildingmaterials.ProductSort;
 import org.sqlite.SQLiteDataSource;
@@ -194,7 +193,7 @@ public class DatabaseHandler
                             0,
                             buildingPart);
 
-                    product.setImagePath(imagePath);
+                    product.setImagePath();
 
                     productArrayList.add( product );
                 }
@@ -486,7 +485,7 @@ public class DatabaseHandler
                             buildingPart
                     );
 
-                    product.setImagePath(imagePath);
+                    product.setImagePath();
 
                     productList.add( product );
                 }

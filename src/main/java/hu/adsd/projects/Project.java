@@ -8,7 +8,7 @@ import java.util.List;
 public class Project
 {
     private List<BuildingPart> projectBuildingParts;
-    private List<String> projectConfigurations;
+    private final List<String> projectConfigurations;
 
     public Project()
     {
@@ -33,11 +33,6 @@ public class Project
     public void setProjectBuildingParts(List<BuildingPart> buildingParts)
     {
         this.projectBuildingParts = buildingParts;
-    }
-
-    public void setProjectConfigurations(List<String> configurations)
-    {
-        this.projectConfigurations = configurations;
     }
 
     public void addConfiguration()

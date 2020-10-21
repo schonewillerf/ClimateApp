@@ -47,6 +47,5 @@ public class BuildingPartComponent extends VBox implements Initializable
         {
             buildingMaterialContainerBox.getChildren().add( new BuildingMaterialContainerComponent( buildingMaterialContainer ) );
         }
-
     }
 }
