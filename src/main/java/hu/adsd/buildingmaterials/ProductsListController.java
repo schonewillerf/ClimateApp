@@ -3,126 +3,105 @@ package hu.adsd.buildingmaterials;
 import hu.adsd.ClimateApp;
 import hu.adsd.dataservice.DatabaseHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A class for displaying available products
  */
 public class ProductsListController implements Initializable
 {
+    // Instantiate a logger for showing information about scene transition
+    Logger logger = Logger.getLogger( ProductsListController.class.getName() );
+
     // a layout component for stacking products in rows and columns
     @FXML
     private TilePane productsBox;
 
-    @FXML
-    private Button toiletButton,kitchenButton,bathroomButton,roofButton;
-
-    /*@FXML
-    private ComboBox<ProductSort> sortingBox;*/
-
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
-        /*// Populate Sorting Box
-        sortingBox.getItems().setAll( ProductSort.values() );
-
-        // Set initial sorting state
-        sortingBox.getSelectionModel().select( ProductSort.CARBON );
-
-        // Add selection listener
-        sortingBox.getSelectionModel().selectedItemProperty().addListener(
-                ( options, oldVal, newVal ) -> setOrUpdateProducts( newVal )
-        );
-
-        // Set products
-        setOrUpdateProducts( ProductSort.CARBON );*/
-
-        selectToilet();
+        // Initialise with scene with toilet products
+        setOrUpdateProductsBox( "toilet" );
     }
 
     // Method for handling button click to go to other screen
     public void goToProject() throws IOException
     {
-        System.out.println("starting change from products");
-        long time1 = System.currentTimeMillis();
-        ClimateApp.goToScreen( "projectView" ); // Change the Scene
-        long time2 = System.currentTimeMillis();
-        System.out.println(String.format( "change screen from products: %s", time2 - time1 ));
+        long startTime = System.currentTimeMillis();
+
+        // Change the Scene
+        ClimateApp.goToScreen( "projectView" );
+
+        long finishTime = System.currentTimeMillis();
+
+        // Create transition message
+        String transitionMessage = String.format(
+                "Transition from productsList duration is %s ms",
+                finishTime - startTime
+        );
+
+        // Log transition duration
+        logger.log( Level.INFO, transitionMessage );
     }
 
-    /*private void setOrUpdateProducts( ProductSort sort )
+    // Set or Update productsBox TilePane content with ProductCards
+    private void setOrUpdateProductsBox( String room )
     {
-        // Remove all items from ProductCard
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        // Clear old products from TilePane
         productsBox.getChildren().clear();
 
-        // Create a connection with the database.
-        // Could be replaced with future API class.
-        DatabaseHandler db = new DatabaseHandler();
-
-        // Loops over products from the database.
-        for ( Product product : db.getProductsList( sort ) )
+        // Loop over products retrieved from DB using Room parameter
+        for ( Product product : databaseHandler.getProductByRoom( room ) )
         {
-            // Add Custom ProductCard Components to TilePane.
-            productsBox.getChildren().add( new ProductCardComponent( product ) );
+            // Create loader for loading productCardView VBOX
+            FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../../productCardView.fxml" ) );
+
+            // Use the ProductCardController Constructor with the current Product from the Loop
+            fxmlLoader.setControllerFactory( controller -> new ProductCardController( product ) );
+
+            // Load the VBox into the productsBox
+            try
+            {
+                productsBox.getChildren().add( fxmlLoader.load() );
+            }
+            catch ( IOException e )
+            {
+                e.printStackTrace();
+            }
         }
-    }*/
+    }
 
     // Methode for button click selecting bathroom
     public void selectBathroom()
     {
-        DatabaseHandler databaseHandler = new DatabaseHandler();
-
-        productsBox.getChildren().clear();
-
-        for ( Product product : databaseHandler.getProductByRoom( "badkamer" ) )
-        {
-            ProductCardComponent productCardComponent = new ProductCardComponent(product);
-            productsBox.getChildren().add( productCardComponent );
-        }
+        setOrUpdateProductsBox( "bathroom" );
     }
 
     // Methode for button click selecting toilet
     public void selectToilet()
     {
-        DatabaseHandler databaseHandler = new DatabaseHandler();
-
-        productsBox.getChildren().clear();
-
-        for ( Product product : databaseHandler.getProductByRoom( "toilet" ) )
-        {
-            productsBox.getChildren().add( new ProductCardComponent( product ) );
-        }
+        setOrUpdateProductsBox( "toilet" );
     }
 
     // Methode for button click selecting kitchen
     public void selectKitchen()
     {
-        DatabaseHandler databaseHandler = new DatabaseHandler();
-
-        productsBox.getChildren().clear();
-
-        for ( Product product : databaseHandler.getProductByRoom( "keuken" ) )
-        {
-            productsBox.getChildren().add( new ProductCardComponent( product ) );
-        }
+        setOrUpdateProductsBox( "keuken" );
     }
 
     // Methode for button click selecting roof
     public void selectRoof()
     {
-        DatabaseHandler databaseHandler = new DatabaseHandler();
-
-        productsBox.getChildren().clear();
-
-        for ( Product product : databaseHandler.getProductByRoom( "dak" ) )
-        {
-            productsBox.getChildren().add( new ProductCardComponent( product ) );
-        }
+        setOrUpdateProductsBox( "dak" );
     }
 }

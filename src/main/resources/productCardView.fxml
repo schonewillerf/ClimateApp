@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root prefHeight="232.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black;" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<javafx.scene.layout.VBox prefHeight="232.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.adsd.buildingmaterials.ProductCardController">
    <Label fx:id="productNameLabel" text="ProductNamePlaceholder">
       <VBox.margin>
          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -26,4 +26,4 @@
          <Insets bottom="10.0" left="27.0" right="10.0" top="10.0" />
       </VBox.margin>
    </Button>
-</fx:root>
+</javafx.scene.layout.VBox>
