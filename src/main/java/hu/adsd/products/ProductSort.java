@@ -1,4 +1,4 @@
-package hu.adsd.buildingmaterials;
+package hu.adsd.products;
 
 public enum ProductSort
 {

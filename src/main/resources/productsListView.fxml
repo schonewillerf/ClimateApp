@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Text?>
 
 <VBox prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="hu.adsd.buildingmaterials.ProductsListController">
+      fx:controller="hu.adsd.products.ProductsListController">
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                 prefHeight="800.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
         <Text layoutX="29.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Configer"

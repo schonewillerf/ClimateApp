@@ -1,7 +1,7 @@
 package hu.adsd.projects;
 
-import hu.adsd.buildingmaterials.CirculationType;
-import hu.adsd.buildingmaterials.Product;
+import hu.adsd.products.CirculationType;
+import hu.adsd.products.Product;
 
 import java.util.ArrayList;
 import java.util.List;

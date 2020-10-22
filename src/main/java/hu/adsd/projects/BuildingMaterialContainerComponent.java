@@ -1,6 +1,6 @@
 package hu.adsd.projects;
 
-import hu.adsd.buildingmaterials.Product;
+import hu.adsd.products.Product;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;

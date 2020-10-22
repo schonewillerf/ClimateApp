@@ -1,6 +1,6 @@
 package hu.adsd.projects;
 
-import hu.adsd.buildingmaterials.Product;
+import hu.adsd.products.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class Project
         return projectConfigurations;
     }
 
-    public void setProjectBuildingParts(List<BuildingPart> buildingParts)
+    public void setProjectBuildingParts( List<BuildingPart> buildingParts )
     {
         this.projectBuildingParts = buildingParts;
     }
@@ -76,8 +76,8 @@ public class Project
                 // This confirms the hypotheses that sometimes configs with the same name
                 // Are mistaken with the same index
                 // During Sprint Review only remove the most right columns!!
-                System.out.println("index of config: " + i);
-                
+                System.out.println( "index of config: " + i );
+
                 configIndex = i;
             }
         }
@@ -97,7 +97,7 @@ public class Project
                 bMC.getCirculationConfigurations().remove( configIndex );
             }
         }
-        
+
     }
 
     public void addProductToProject( Product product )
@@ -141,10 +141,10 @@ public class Project
                 carbonTotal += bMC
                         .getProduct()
                         .getTotalEmbodiedCarbon( bMC
-                                                         .getCirculationConfigurations()
-                                                         .get( index )
-                                                         .getCirculationType()
-                                                         .getFactor() );
+                                .getCirculationConfigurations()
+                                .get( index )
+                                .getCirculationType()
+                                .getFactor() );
             }
         }
 
@@ -165,10 +165,10 @@ public class Project
                 energyTotal += bMC
                         .getProduct()
                         .getTotalEmbodiedEnergy( bMC
-                                                         .getCirculationConfigurations()
-                                                         .get( index )
-                                                         .getCirculationType()
-                                                         .getFactor() );
+                                .getCirculationConfigurations()
+                                .get( index )
+                                .getCirculationType()
+                                .getFactor() );
             }
         }
 

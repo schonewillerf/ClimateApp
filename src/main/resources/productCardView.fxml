@@ -10,7 +10,7 @@
 <javafx.scene.layout.VBox alignment="TOP_CENTER" prefHeight="232.0" prefWidth="200.0"
                           style="-fx-background-color: white; -fx-border-color: black;"
                           xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-                          fx:controller="hu.adsd.buildingmaterials.ProductCardController">
+                          fx:controller="hu.adsd.products.ProductCardController">
     <Label fx:id="productNameLabel" text="ProductNamePlaceholder">
         <font>
             <Font size="16.0"/>

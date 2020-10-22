@@ -1,7 +1,31 @@
-package hu.adsd.buildingmaterials;
+package hu.adsd.products;
 
 public class Product
 {
+    /*Class fields
+    private int id;
+    private String name;
+    private double carbon;
+    private double energy;
+    private double refCarbon; // Dit is de hoeveelheid van een nieuw product
+    private double refEnergy; // idem
+    private CirculationType circulationType
+    private int quantity;
+    private String buildingPart;
+
+
+    getImage()
+    {
+    return "id" + ".jpg" // zoiets ongeveer
+    }
+
+
+    getEmbodiedEnergy()
+    {
+    return "( 88 mg / 300 kJ )"
+    }
+    */
+
     private int id;
     private final String name;
     private final double minCarbonAmount;

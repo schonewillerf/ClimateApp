@@ -1,4 +1,4 @@
-package hu.adsd.buildingmaterials;
+package hu.adsd.products;
 
 import hu.adsd.ClimateApp;
 import javafx.fxml.FXML;

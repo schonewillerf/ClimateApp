@@ -1,7 +1,7 @@
 package hu.adsd;
 
-import hu.adsd.buildingmaterials.Product;
-import hu.adsd.buildingmaterials.ProductSort;
+import hu.adsd.products.Product;
+import hu.adsd.products.ProductSort;
 import hu.adsd.dataservice.DatabaseHandler;
 
 import java.util.ArrayList;

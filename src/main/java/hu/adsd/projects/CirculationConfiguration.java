@@ -1,6 +1,6 @@
 package hu.adsd.projects;
 
-import hu.adsd.buildingmaterials.CirculationType;
+import hu.adsd.products.CirculationType;
 
 public class CirculationConfiguration
 {
