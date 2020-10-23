@@ -45,4 +45,9 @@ public class ProjectController implements Initializable
     {
         ClimateApp.goToScreen( "projectProductsConfigurationView" );
     }
+
+    public void goToProductsConfigurationCompare() throws IOException
+    {
+        ClimateApp.goToScreen( "projectProductsConfigurationCompareView" );
+    }
 }

@@ -39,7 +39,7 @@ public class ProductsListController implements Initializable
         long startTime = System.currentTimeMillis();
 
         // Change the Scene
-        ClimateApp.goToScreen( "projectView" );
+        ClimateApp.goToScreen( "projectProductsConfigurationView" );
 
         long finishTime = System.currentTimeMillis();
 

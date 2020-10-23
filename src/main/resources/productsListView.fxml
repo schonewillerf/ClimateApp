@@ -11,50 +11,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="hu.adsd.products.ProductsListController">
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                prefHeight="800.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
-        <Text layoutX="29.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Configer"
-              wrappingWidth="176.66015625" AnchorPane.leftAnchor="20.0"
-              AnchorPane.topAnchor="20.48200035095215">
+<VBox prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.adsd.products.ProductsListController">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+        <Text layoutX="29.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Configer" wrappingWidth="176.66015625" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.48200035095215">
             <font>
-                <Font name="System Bold" size="22.0"/>
+                <Font name="System Bold" size="22.0" />
             </font>
         </Text>
-        <Text layoutX="29.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="Beschikbare bouwonderdelen:" underline="true" wrappingWidth="315.09765625"
-              AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="65.0">
+        <Text layoutX="29.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beschikbare bouwonderdelen:" underline="true" wrappingWidth="315.09765625" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="65.0">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Text>
-        <ScrollPane layoutX="118.0" layoutY="113.0" prefHeight="670.0" prefWidth="862.0"
-                    AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="20.0"
-                    AnchorPane.topAnchor="110.0">
+        <ScrollPane layoutX="118.0" layoutY="113.0" prefHeight="670.0" prefWidth="862.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
             <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
-            <TilePane fx:id="productsBox" alignment="TOP_CENTER" hgap="10.0" prefColumns="3" prefRows="6"
-                      tileAlignment="TOP_LEFT" vgap="10.0">
+            <TilePane fx:id="productsBox" alignment="TOP_CENTER" hgap="10.0" prefColumns="3" prefRows="6" tileAlignment="TOP_LEFT" vgap="10.0">
                 <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
             </TilePane>
         </ScrollPane>
-        <Button layoutX="657.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="29.0"
-                prefWidth="137.0" text="Terug naar project" AnchorPane.rightAnchor="27.0"
-                AnchorPane.topAnchor="20.0"/>
-        <ComboBox layoutX="462.0" layoutY="21.0" prefWidth="150.0" visible="false"
-                  AnchorPane.topAnchor="21.0"/>
-        <Label layoutX="362.0" layoutY="26.0" text="Sorteren op:" visible="false"/>
-        <Button layoutX="6.0" layoutY="110.0" mnemonicParsing="false"
-                onAction="#selectToilet" prefHeight="29.0" prefWidth="101.0" text="Toilet"/>
-        <Button layoutX="6.0" layoutY="139.0" mnemonicParsing="false"
-                onAction="#selectBathroom" prefHeight="29.0" prefWidth="101.0" text="Badkamer"/>
-        <Button layoutX="6.0" layoutY="168.0" mnemonicParsing="false"
-                onAction="#selectKitchen" prefHeight="29.0" prefWidth="101.0" text="Keuken"/>
-        <Button layoutX="6.0" layoutY="197.0" mnemonicParsing="false" onAction="#selectRoof"
-                prefHeight="29.0" prefWidth="101.0" text="Dak"/>
+        <Button layoutX="657.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="29.0" prefWidth="137.0" text="Terug naar variant" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="20.0" />
+        <ComboBox layoutX="462.0" layoutY="21.0" prefWidth="150.0" visible="false" AnchorPane.topAnchor="21.0" />
+        <Label layoutX="362.0" layoutY="26.0" text="Sorteren op:" visible="false" />
+        <Button layoutX="6.0" layoutY="110.0" mnemonicParsing="false" onAction="#selectToilet" prefHeight="29.0" prefWidth="101.0" text="Toilet" />
+        <Button layoutX="6.0" layoutY="139.0" mnemonicParsing="false" onAction="#selectBathroom" prefHeight="29.0" prefWidth="101.0" text="Badkamer" />
+        <Button layoutX="6.0" layoutY="168.0" mnemonicParsing="false" onAction="#selectKitchen" prefHeight="29.0" prefWidth="101.0" text="Keuken" />
+        <Button layoutX="6.0" layoutY="197.0" mnemonicParsing="false" onAction="#selectRoof" prefHeight="29.0" prefWidth="101.0" text="Dak" />
     </AnchorPane>
 </VBox>
