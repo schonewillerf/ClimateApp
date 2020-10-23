@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -22,8 +24,21 @@
                 <Font size="18.0"/>
             </font>
         </Text>
-        <Button layoutX="400.0" layoutY="386.0" mnemonicParsing="false" onAction="#toProductConfiguration"
-                text="Klik om naar variant 1 te gaan"/>
-        <Button layoutX="470.0" layoutY="575.0" mnemonicParsing="false" text="Vergelijk varianten"/>
+        <Button fx:id="openConfigurationButton" layoutX="413.0" layoutY="400.0" mnemonicParsing="false"
+                onAction="#goToConfiguration" text="Deze variant bekijken"/>
+        <TableView fx:id="productsConfigurationTable" layoutX="20.0" layoutY="162.0" prefHeight="200.0"
+                   prefWidth="919.0">
+            <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="432.0" text="Variantnaam"/>
+                <TableColumn fx:id="embodiedColumn" prefWidth="182.0" text="Embodied Energy"/>
+                <TableColumn fx:id="productsColumn" prefWidth="300.0" text="Aantal Producten"/>
+            </columns>
+        </TableView>
+        <Text layoutX="20.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varianten:" underline="true"
+              wrappingWidth="315.09765625">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
     </AnchorPane>
 </VBox>

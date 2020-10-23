@@ -65,5 +65,10 @@ public class ClimateApp extends Application
         project.getConfigurations().get( 0 ).getBuildingParts().add(myBuildingPart);
     }
 
+    public static Project getProject()
+    {
+        return project;
+    }
+
 
 }
