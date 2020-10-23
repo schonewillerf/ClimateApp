@@ -3,5 +3,12 @@ package hu.adsd.products;
 public enum ProductSort
 {
     NAME,
-    CARBON
+    CARBON,
+    ENERGY;
+
+    @Override
+    public String toString()
+    {
+        return name().toLowerCase();
+    }
 }

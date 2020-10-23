@@ -1,7 +1,7 @@
 package hu.adsd.products;
 
 import hu.adsd.ClimateApp;
-import hu.adsd.dataservice.DatabaseHandler;
+import hu.adsd.dataservice.DataServiceImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -55,13 +55,13 @@ public class ProductsListController implements Initializable
     // Set or Update productsBox TilePane content with ProductCards
     private void setOrUpdateProductsBox( String room )
     {
-        DatabaseHandler databaseHandler = new DatabaseHandler();
+        DataServiceImpl dataService = new DataServiceImpl();
 
         // Clear old products from TilePane
         productsBox.getChildren().clear();
 
         // Loop over products retrieved from DB using Room parameter
-        for ( Product product : databaseHandler.getProductByRoom( room ) )
+        for ( Product product : dataService.getProductsFilteredSortedAndByRoom( "", ProductSort.NAME, room ) )
         {
             // Create loader for loading productCardView VBOX
             FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../../productCardView.fxml" ) );

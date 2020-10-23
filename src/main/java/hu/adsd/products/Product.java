@@ -2,51 +2,39 @@ package hu.adsd.products;
 
 public class Product
 {
-    /*Class fields
-    private int id;
-    private String name;
-    private double carbon;
-    private double energy;
-    private double refCarbon; // Dit is de hoeveelheid van een nieuw product
-    private double refEnergy; // idem
-    private CirculationType circulationType
-    private int quantity;
-    private String buildingPart;
-
-
-    getImage()
-    {
-    return "id" + ".jpg" // zoiets ongeveer
-    }
-
-
-    getEmbodiedEnergy()
-    {
-    return "( 88 mg / 300 kJ )"
-    }
-    */
-
     private int id;
     private final String name;
-    private final double minCarbonAmount;
-    private final double maxCarbonAmount;
     private int quantity;
+    private final CirculationType circulationType;
+    private final double carbon;
+    private final double energy;
+
+    // These values are similar for many products
+    // Hint, there is a possibility for data normalisation
+    private final double refCarbon;
+    private final double refEnergy;
     private final String buildingPart;
 
     public Product(
             int id,
             String name,
-            double minCarbon,
-            double maxCarbon,
             int quantity,
+            CirculationType circulationType,
+            double carbon,
+            double energy,
+            double refCarbon,
+            double refEnergy,
             String buildingPart
     )
     {
         this.id = id;
         this.name = name;
-        this.minCarbonAmount = minCarbon;
-        this.maxCarbonAmount = maxCarbon;
         this.quantity = quantity;
+        this.circulationType = circulationType;
+        this.carbon = carbon;
+        this.energy = energy;
+        this.refCarbon = refCarbon;
+        this.refEnergy = refEnergy;
         this.buildingPart = buildingPart;
     }
 
@@ -65,14 +53,19 @@ public class Product
         return name;
     }
 
-    public double getMinCarbonAmount()
+    public double getCarbon()
     {
-        return minCarbonAmount;
+        return carbon;
     }
 
-    public double getMaxCarbonAmount()
+    public double getEnergy()
     {
-        return maxCarbonAmount;
+        return energy;
+    }
+
+    public String getEmbodiedCandE()
+    {
+        return String.format( "%.2f mg / %.2f kJ", this.carbon, this.energy );
     }
 
     public int getQuantity()
@@ -90,11 +83,6 @@ public class Product
         return String.format( "../../../images/%s.jpg", this.id );
     }
 
-    public void setImagePath()
-    {
-        // This is an empty method
-    }
-
     public String getBuildingPart()
     {
         return buildingPart;
@@ -110,29 +98,19 @@ public class Product
                         "Kwantiteit: %s,",
                 this.id,
                 this.name,
-                this.minCarbonAmount,
-                this.maxCarbonAmount,
+                this.carbon,
+                this.energy,
                 this.quantity
         );
     }
 
-    public double getTotalMinCarbonAmount()
-    {
-        return this.minCarbonAmount * this.quantity;
-    }
-
-    public double getTotalMaxCarbonAmount()
-    {
-        return this.maxCarbonAmount * this.quantity;
-    }
-
     public double getTotalEmbodiedCarbon( double factor)
     {
-        return this.minCarbonAmount * this.quantity * factor;
+        return this.carbon * this.quantity * factor;
     }
 
     public double getTotalEmbodiedEnergy( double factor )
     {
-        return this.maxCarbonAmount * this.quantity * factor;
+        return this.energy * this.quantity * factor;
     }
 }

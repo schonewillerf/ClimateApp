@@ -1,497 +1,68 @@
 package hu.adsd.dataservice;
 
+import hu.adsd.products.CirculationType;
 import hu.adsd.products.Product;
 import hu.adsd.products.ProductSort;
 import org.sqlite.SQLiteDataSource;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHandler
+/**
+ * Removed all unused code from this class in accordance with clean code guidelines
+ *
+ * In order to review old code checkout the tag v0.3.0
+ *
+ * Lastly this class is package private,meaning only classes from within this package should use it
+ * In order to use any methods use DataServiceImpl from within other classes
+ */
+class DatabaseHandler
 {
-    /**
-     * Returns a list of all products from database
-     *
-     * @param sort sorts on property
-     * @return List<Product>
-     */
-    public List<Product> getProductsList( ProductSort sort )
+    public List<Product> getProductsFilteredSortedAndByRoom( String filter, ProductSort productsort, String room )
     {
-        try
-        {
-            return parseDatabase( sort );
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-
-            return new ArrayList<>();
-        }
-    }
-
-    public ArrayList<Product> getProjectProductsList()
-    {
-        // Should fetch product from prejectproduct table with quantity
-        try
-        {
-            return parseGetProjectProductsList();
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-
-            return new ArrayList<>();
-        }
-    }
-
-    //Returns product with given id from database
-    // Maybe applicable later for product-detail view
-    public Product getProductById( int id )
-    {
-        try
-        {
-            return parseGetProductById( id );
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-
-            return null;
-        }
-    }
-
-    //Updates quantity of given product in database
-    // Future Admin method
-    public void updateProduct( Product product )
-    {
-        try
-        {
-            parseUpdateProduct( product );
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-        }
-    }
-
-    //Removes product with given id from database
-    // Future admin task
-    public void removeProductById( int id )
-    {
-        try
-        {
-            parseRemoveProductById( id );
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-        }
-    }
-
-    // Should be executed from projectView Edit -> Save Button
-    public void updateProjectProduct( Product product )
-    {
-        // Update product based on id in projectproducts table
-        try
-        {
-            System.out.println( "gelukt" );
-            parseUpdateProjectProduct( product );
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-        }
-    }
-
-    // Should be executed from projectView Delete Button
-    public void removeProjectProduct( int id )
-    {
-        // Remove product based on id in projectproducts table
-        try
-        {
-            parseRemoveProjectProduct( id );
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-        }
-
-    }
-
-    // Should be executed from productCard add Button
-    public void addProductToProjectById( int id )
-    {
-        // Add product by id to projectproducts table
-        // Default quantity is 1??
-        try
-        {
-            parseAddProductToProjectById( id );
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-        }
-    }
-
-    // Gets all products connected to specified room
-    public ArrayList<Product> getProductByRoom( String room )
-    {
-        try
-        {
-            return parseGetProductByRoom( room );
-        }
-        catch ( Exception e )
-        {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
-
-    //Returns a list of all products in database
-    private ArrayList<Product> parseDatabase( ProductSort sort ) throws SQLException
-    {
-        ArrayList<Product> productArrayList = new ArrayList<>();
+        List<Product> productsList = new ArrayList<>();
 
         SQLiteDataSource dataSource = new SQLiteDataSource();
         dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
 
-        String sqlOrderedByName = "SELECT * FROM products " +
-                                  "ORDER BY name;";
+        // Placeholder ? can only be replaced by values but not column and sort order
+        // So we have to do String.format
+        String SQL = String.format( "SELECT * FROM products WHERE name LIKE ? AND room = ? ORDER BY %S", productsort );
 
-        String sqlOrderedByCarbonAmount = "SELECT * FROM products " +
-                                          "ORDER BY co2_min;";
-
-        //Connection with database started, closes automatically at end of code block
-        try ( Connection c = dataSource.getConnection() )
+        try ( Connection connection = dataSource.getConnection();
+              PreparedStatement preparedStatement = connection.prepareStatement( SQL ) )
         {
-            //Run SQL query and get the results, closes automatically at end of code block
-            try
-                    (
-                            Statement stmt = c.createStatement();
-                            ResultSet rs = stmt.executeQuery(
-                                    ( sort.equals( ProductSort.NAME ) ) ? sqlOrderedByName : sqlOrderedByCarbonAmount )
-                    )
+            // The % sign before and after filter term will match any name containing the criteria
+            preparedStatement.setString( 1, "%" + filter + "%" );
+            preparedStatement.setString( 2, room );
+
+            try ( ResultSet resultSet = preparedStatement.executeQuery() )
             {
-                //each item in database initialized as a Product and put into ArrayList
-                while ( rs.next() )
+                while ( resultSet.next() )
                 {
-                    int id = rs.getInt( "id" );
-                    String name = rs.getString( "name" );
-                    double minCarbon = rs.getDouble( "co2_min" );
-                    double maxCarbon = rs.getDouble( "co2_max" );
-                    String circulationType = rs.getString( "materialtype" );
-                    String imagePath = rs.getString("image");
-                    String buildingPart = rs.getString("room");
-
-                    Product product = new Product(
-                            id,
-                            name,
-                            minCarbon,
-                            maxCarbon,
-                            // CirculationType.valueOf( circulationType ),
-                            0,
-                            buildingPart);
-
-                    product.setImagePath();
-
-                    productArrayList.add( product );
+                    productsList.add( new Product(
+                            resultSet.getInt( "id" ),
+                            resultSet.getString( "name" ),
+                            100,
+                            CirculationType.LINEAR,
+                            resultSet.getDouble( "carbon" ),
+                            resultSet.getDouble( "energy" ),
+                            resultSet.getDouble( "refCarbon" ),
+                            resultSet.getDouble( "refEnergy" ),
+                            resultSet.getString( "room" )
+                    ) );
                 }
             }
         }
-
-        return productArrayList;
-    }
-
-    private ArrayList<Product> parseGetProjectProductsList() throws SQLException
-    {
-        ArrayList<Product> productList = new ArrayList<>();
-
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-        try ( Connection c = dataSource.getConnection() )
+        catch ( SQLException throwables )
         {
-            String sql = "SELECT products.*, project.units " +
-                         "FROM project " +
-                         "INNER JOIN products ON project.productid = products.id";
-
-            try
-                    (
-                            Statement stmt = c.createStatement();
-                            ResultSet rs = stmt.executeQuery( sql )
-                    )
-            {
-                while ( rs.next() )
-                {
-                    int dataId = rs.getInt( "id" );
-                    String name = rs.getString( "name" );
-                    double minCarbon = rs.getDouble( "co2_min" );
-                    double maxCarbon = rs.getDouble( "co2_max" );
-                    String circulationType = rs.getString( "materialtype" );
-                    String buildingPart = rs.getString( "room" );
-
-
-                    Product product = new Product(
-                            dataId,
-                            name,
-                            minCarbon,
-                            maxCarbon,
-                            // CirculationType.valueOf( circulationType ),
-                            1,
-                            buildingPart
-                    );
-
-                    productList.add( product );
-                }
-            }
+            throwables.printStackTrace();
         }
 
-        return productList;
-    }
-
-    //Returns product with given id from database
-    private Product parseGetProductById( int id ) throws SQLException
-    {
-        Product product = null;
-
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-        //Connection with database started, closes automatically at end of code block
-        try ( Connection c = dataSource.getConnection() )
-        {
-            String sql = "SELECT * " +
-                         "FROM products " +
-                         "WHERE id=" + id + ";";
-
-            //Run SQL query and get the results, closes automatically at end of code block
-            try
-                    (
-                            Statement stmt = c.createStatement();
-                            ResultSet rs = stmt.executeQuery( sql )
-                    )
-            {
-                //Result is put into new Product
-                while ( rs.next() )
-                {
-                    int dataId = rs.getInt( "id" );
-                    String name = rs.getString( "name" );
-                    double minCarbon = rs.getDouble( "co2_min" );
-                    double maxCarbon = rs.getDouble( "co2_max" );
-                    String circulationType = rs.getString( "materialtype" );
-                    String buildingPart = rs.getString( "room" );
-
-
-                    product = new Product(
-                            dataId,
-                            name,
-                            minCarbon,
-                            maxCarbon,
-                            // CirculationType.valueOf( circulationType ),
-                            1,
-                            buildingPart
-                    );
-                }
-            }
-        }
-
-        return product;
-    }
-
-    //Updates quantity of given product in database
-    private void parseUpdateProduct( Product product ) throws SQLException
-    {
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-        String SQL = "UPDATE products " +
-                     "SET units= ? " +
-                     "WHERE id = ?";
-
-        try
-                (
-                        Connection connection = dataSource.getConnection();
-                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
-                )
-        {
-            preparedStatement.setInt( 1, product.getQuantity() );
-            preparedStatement.setInt( 2, product.getId() );
-
-
-            int betrokkenRijen = preparedStatement.executeUpdate();
-
-            if ( betrokkenRijen != 1 )
-            {
-                throw new SQLException(
-                        String.format( "Updaten van Product gefaald." )
-                );
-            }
-        }
-    }
-
-    //Removes product with given id from database
-    private void parseRemoveProductById( int id ) throws SQLException
-    {
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-        String SQL = "DELETE FROM products " +
-                     "WHERE id = ?";
-
-        try
-                (
-                        Connection connection = dataSource.getConnection();
-                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
-                )
-        {
-            preparedStatement.setInt( 1, id );
-
-            int betrokkenRijen = preparedStatement.executeUpdate();
-
-            if ( betrokkenRijen != 1 )
-            {
-                throw new SQLException(
-                        String.format( "Verwijderen van product gefaald" )
-                );
-            }
-        }
-    }
-
-    private void parseUpdateProjectProduct( Product product ) throws SQLException
-    {
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-        String SQL = "UPDATE project " +
-                     "SET units= ? " +
-                     "WHERE productid = ?";
-
-        try
-                (
-                        Connection connection = dataSource.getConnection();
-                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
-                )
-        {
-            preparedStatement.setInt( 1, product.getQuantity() );
-            preparedStatement.setInt( 2, product.getId() );
-
-
-            int betrokkenRijen = preparedStatement.executeUpdate();
-
-            if ( betrokkenRijen != 1 )
-            {
-                throw new SQLException(
-                        String.format( "Updaten van Product gefaald." )
-                );
-            }
-        }
-    }
-
-    private void parseRemoveProjectProduct( int id ) throws SQLException
-    {
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-        String SQL = "DELETE FROM project " +
-                     "WHERE productid = ?";
-
-        try
-                (
-                        Connection connection = dataSource.getConnection();
-                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
-                )
-        {
-            preparedStatement.setInt( 1, id );
-
-            int betrokkenRijen = preparedStatement.executeUpdate();
-
-            if ( betrokkenRijen != 1 )
-            {
-                throw new SQLException(
-                        String.format( "Verwijderen van product gefaald" )
-                );
-            }
-        }
-    }
-
-    private void parseAddProductToProjectById( int id ) throws SQLException
-    {
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-        String SQL = "INSERT INTO project (productid, units) " +
-                     "VALUES (?, 1) " +
-                     "ON CONFLICT(productid) " +
-                     "DO UPDATE SET units = units + 1;";
-
-        try
-                (
-                        Connection connection = dataSource.getConnection();
-                        PreparedStatement preparedStatement = connection.prepareStatement( SQL )
-                )
-        {
-            preparedStatement.setInt( 1, id );
-
-            int betrokkenRijen = preparedStatement.executeUpdate();
-
-            if ( betrokkenRijen != 1 )
-            {
-                throw new SQLException(
-                        String.format( "Toevoegen van Product gefaald." )
-                );
-            }
-        }
-    }
-
-    // Gets all products connected to specified room
-    private ArrayList<Product> parseGetProductByRoom( String room ) throws SQLException
-    {
-        ArrayList<Product> productList = new ArrayList<>();
-
-        SQLiteDataSource dataSource = new SQLiteDataSource();
-        dataSource.setUrl( "jdbc:sqlite:src/main/resources/database_sqlite.db" );
-
-        String sql = "SELECT * FROM products WHERE room=?";
-
-        try
-                (
-                        Connection connection = dataSource.getConnection();
-                        PreparedStatement preparedStatement = connection.prepareStatement( sql )
-                )
-        {
-            preparedStatement.setString(1, room);
-
-            try ( ResultSet rs = preparedStatement.executeQuery())
-            {
-                while ( rs.next() )
-                {
-                    int dataId = rs.getInt( "id" );
-                    String name = rs.getString( "name" );
-                    double minCarbon = rs.getDouble( "co2_min" );
-                    double maxCarbon = rs.getDouble( "co2_max" );
-                    String circulationType = rs.getString( "materialtype" );
-                    String imagePath = rs.getString("image");
-                    String buildingPart = rs.getString( "room" );
-
-
-                    Product product = new Product(
-                            dataId,
-                            name,
-                            minCarbon,
-                            maxCarbon,
-                            // CirculationType.valueOf( circulationType ),
-                            1,
-                            buildingPart
-                    );
-
-                    product.setImagePath();
-
-                    productList.add( product );
-                }
-            }
-        }
-
-        return productList;
+        return productsList;
     }
 }
