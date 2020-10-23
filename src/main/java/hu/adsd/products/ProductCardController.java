@@ -42,6 +42,6 @@ public class ProductCardController implements Initializable
 
 
         // Use lambda expression to addButton action
-        addButton.setOnAction( event -> ClimateApp.getProject().addProductToProject( this.product ) );
+         addButton.setOnAction( event -> ClimateApp.addProductToProject( this.product ) );
     }
 }

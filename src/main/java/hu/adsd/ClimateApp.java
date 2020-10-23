@@ -1,5 +1,7 @@
 package hu.adsd;
 
+import hu.adsd.products.Product;
+import hu.adsd.projects.BuildingPart;
 import hu.adsd.projects.Project;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,11 @@ public class ClimateApp extends Application
     private static Scene scene;
 
     private static Project project;
+
+    public ClimateApp()
+    {
+        project = new Project();
+    }
 
     // Start the JavaFX Application
     @Override
@@ -50,18 +57,13 @@ public class ClimateApp extends Application
         scene.setRoot( root );
     }
 
-    public ClimateApp()
+    public static void addProductToProject( Product product )
     {
-        project = new Project();
+        // This should be improved upon
+        BuildingPart myBuildingPart = new BuildingPart("ruimtenaam");
+        myBuildingPart.getProducts().add( product );
+        project.getConfigurations().get( 0 ).getBuildingParts().add(myBuildingPart);
     }
 
-    public static Project getProject()
-    {
-        return project;
-    }
 
-    public static void setProject(Project newProject)
-    {
-        project = newProject;
-    }
 }

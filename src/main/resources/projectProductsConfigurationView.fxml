@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 <VBox prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="hu.adsd.projects.ProjectController">
+      fx:controller="hu.adsd.projects.ProductsConfigurationController">
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
                 prefWidth="1000.0" VBox.vgrow="ALWAYS">
         <Text layoutX="29.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Configer"
@@ -16,14 +16,15 @@
                 <Font name="System Bold" size="22.0"/>
             </font>
         </Text>
-        <Text layoutX="29.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project:" underline="true"
+        <Text layoutX="29.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Variantnaam:" underline="true"
               wrappingWidth="315.09765625" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="65.0">
             <font>
                 <Font size="18.0"/>
             </font>
         </Text>
-        <Button layoutX="400.0" layoutY="386.0" mnemonicParsing="false" onAction="#toProductConfiguration"
-                text="Klik om naar variant 1 te gaan"/>
-        <Button layoutX="470.0" layoutY="575.0" mnemonicParsing="false" text="Vergelijk varianten"/>
+        <Button layoutX="713.0" layoutY="64.0" mnemonicParsing="false" onAction="#goToProject"
+                text="Klik om terug te gaan naar Project"/>
+        <Button layoutX="470.0" layoutY="575.0" mnemonicParsing="false" onAction="#goToAvailableMaterials"
+                text="Naar materialen toevoegen"/>
     </AnchorPane>
 </VBox>
