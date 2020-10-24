@@ -20,7 +20,7 @@ public class DataServiceImpl implements DataService
     @Override
     public List<Product> getProductsFilteredSortedAndByRoom( String filter, ProductSort productsort, String room )
     {
-        return new DatabaseHandler().getProductsFilteredSortedAndByRoomFromAPI( filter, productsort, room );
+        return new ApiHandler().getProductsFilteredSortedAndByRoomFromAPI( filter, productsort, room );
     }
 
     @Override
