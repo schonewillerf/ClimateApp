@@ -1,6 +1,7 @@
 package hu.adsd.projects;
 
 import hu.adsd.ClimateApp;
+import hu.adsd.csvgenerator.CSVGenerator;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -140,5 +141,12 @@ public class ProjectController implements Initializable
     private int getSelectedIndex()
     {
         return productsConfigurationTable.getSelectionModel().getSelectedIndex();
+    }
+
+    public void exportConfiguration() throws IOException
+    {
+        ProductsConfiguration productsConfiguration = project.getConfigurations().get( getSelectedIndex() );
+
+        new CSVGenerator().exportConfiguration( productsConfiguration );
     }
 }

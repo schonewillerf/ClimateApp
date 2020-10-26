@@ -64,6 +64,7 @@
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin></Button>
+            <Button layoutX="10.0" layoutY="147.0" mnemonicParsing="false" onAction="#exportConfiguration" prefHeight="28.0" prefWidth="183.0" text="Export BOM" />
          </children>
       </VBox>
     </AnchorPane>
