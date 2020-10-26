@@ -22,7 +22,8 @@ public class ProductsConfigurationController implements Initializable
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
-
+        System.out.println( "The following ProductConfigurations was generously provided by your SM");
+        System.out.println( "ProductConfiguration " + productsConfiguration.getName() );
     }
 
     public void goToProject() throws IOException

@@ -36,21 +36,8 @@ public class ProductsListController implements Initializable
     // Method for handling button click to go to other screen
     public void goToProject() throws IOException
     {
-        long startTime = System.currentTimeMillis();
-
         // Change the Scene
-        ClimateApp.goToScreen( "projectProductsConfigurationView" );
-
-        long finishTime = System.currentTimeMillis();
-
-        // Create transition message
-        String transitionMessage = String.format(
-                "Transition from productsList duration is %s ms",
-                finishTime - startTime
-        );
-
-        // Log transition duration
-        logger.log( Level.INFO, transitionMessage );
+        ClimateApp.goToScreen( "projectView" );
     }
 
     // Set or Update productsBox TilePane content with ProductCards

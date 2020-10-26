@@ -23,7 +23,6 @@
                 <Font size="18.0" />
             </font>
         </Text>
-        <Button fx:id="openConfigurationButton" layoutX="413.0" layoutY="400.0" mnemonicParsing="false" onAction="#goToConfiguration" text="Deze variant bekijken" />
         <TableView fx:id="productsConfigurationTable" layoutX="20.0" layoutY="162.0" prefHeight="200.0" prefWidth="737.0" AnchorPane.leftAnchor="20.0">
             <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="332.0" text="Variantnaam" />
