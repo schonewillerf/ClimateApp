@@ -2,6 +2,7 @@ package hu.adsd;
 
 import hu.adsd.products.Product;
 import hu.adsd.projects.BuildingPart;
+import hu.adsd.projects.ProductsConfigurationCompareController;
 import hu.adsd.projects.ProductsConfigurationController;
 import hu.adsd.projects.Project;
 import javafx.application.Application;
@@ -62,6 +63,14 @@ public class ClimateApp extends Application
     {
         FXMLLoader fxmlLoader = new FXMLLoader( ClimateApp.class.getResource( "../../" + fxmlDocument + ".fxml" ) );
         fxmlLoader.setControllerFactory( controller -> new ProductsConfigurationController( selectedIndex ) );
+        Parent root = fxmlLoader.load();
+        scene.setRoot( root );
+    }
+
+    public static void goToScreen( String fxmlDocument, int selected1, int selected2 ) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader( ClimateApp.class.getResource( "../../" + fxmlDocument + ".fxml" ) );
+        fxmlLoader.setControllerFactory( controller -> new ProductsConfigurationCompareController( selected1, selected2) );
         Parent root = fxmlLoader.load();
         scene.setRoot( root );
     }

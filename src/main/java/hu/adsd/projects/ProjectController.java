@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +33,15 @@ public class ProjectController implements Initializable
     @FXML
     private TableColumn<ProductsConfiguration, Integer> productsColumn;
 
+    @FXML
+    private ChoiceBox<String> selectConfiguration1;
+
+    @FXML
+    private ChoiceBox<String> selectConfiguration2;
+
+    @FXML
+    private Button compaireButton;
+
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
@@ -43,8 +54,24 @@ public class ProjectController implements Initializable
         ObservableList<ProductsConfiguration> configurations = FXCollections.observableArrayList(project.getConfigurations());
 
         productsConfigurationTable.setItems( configurations );
-
         productsConfigurationTable.getSelectionModel().select( 0 );
+
+        setOrUpdateConfigurationChoiceBoxes();
+    }
+
+    private void setOrUpdateConfigurationChoiceBoxes()
+    {
+        selectConfiguration1.getItems().clear();
+        selectConfiguration2.getItems().clear();
+
+        for ( ProductsConfiguration productsConfiguration : project.getConfigurations())
+        {
+            selectConfiguration1.getItems().add( productsConfiguration.getName() );
+            selectConfiguration2.getItems().add( productsConfiguration.getName() );
+        }
+
+        selectConfiguration1.getSelectionModel().selectFirst();
+        selectConfiguration2.getSelectionModel().selectLast();
     }
 
     public void goToConfiguration() throws IOException
@@ -54,7 +81,18 @@ public class ProjectController implements Initializable
 
     public void goToProductsConfigurationCompare() throws IOException
     {
-        ClimateApp.goToScreen( "projectProductsConfigurationCompareView" );
+        int select1 = selectConfiguration1.getSelectionModel().getSelectedIndex();
+        int select2 = selectConfiguration2.getSelectionModel().getSelectedIndex();
+
+        if ( select1 != select2 )
+        {
+            ClimateApp.goToScreen( "projectProductsConfigurationCompareView", select1, select2 );
+        }
+        else
+        {
+            // Show error message
+            System.out.println("compaire different configs");
+        }
     }
 
     public void addConfiguration()
@@ -66,6 +104,8 @@ public class ProjectController implements Initializable
         project.getConfigurations().add( productsConfiguration );
 
         productsConfigurationTable.getItems().add( productsConfiguration );
+
+        setOrUpdateConfigurationChoiceBoxes();
     }
 
     public void copyConfiguration()
@@ -77,6 +117,8 @@ public class ProjectController implements Initializable
         project.getConfigurations().add( productsConfiguration );
 
         productsConfigurationTable.getItems().add( productsConfiguration );
+
+        setOrUpdateConfigurationChoiceBoxes();
     }
 
     public void editConfiguration() throws IOException
@@ -91,6 +133,8 @@ public class ProjectController implements Initializable
         project.getConfigurations().remove( selectedIndex );
 
         productsConfigurationTable.getItems().remove( selectedIndex );
+
+        setOrUpdateConfigurationChoiceBoxes();
     }
 
     private int getSelectedIndex()

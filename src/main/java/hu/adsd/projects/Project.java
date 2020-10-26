@@ -13,6 +13,7 @@ public class Project
 
         // Project should have at least one configuration
         this.configurations.add( new ProductsConfiguration( "Mijn eerste configuratie" ) );
+        this.configurations.add( new ProductsConfiguration( "Een bonus configuratie" ) );
     }
 
     public List<ProductsConfiguration> getConfigurations()
