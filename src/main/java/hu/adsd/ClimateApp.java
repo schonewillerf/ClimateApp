@@ -2,6 +2,7 @@ package hu.adsd;
 
 import hu.adsd.products.Product;
 import hu.adsd.projects.BuildingPart;
+import hu.adsd.projects.ProductsConfigurationController;
 import hu.adsd.projects.Project;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +58,14 @@ public class ClimateApp extends Application
         scene.setRoot( root );
     }
 
+    public static void goToScreen( String fxmlDocument, int selectedIndex ) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader( ClimateApp.class.getResource( "../../" + fxmlDocument + ".fxml" ) );
+        fxmlLoader.setControllerFactory( controller -> new ProductsConfigurationController( selectedIndex ) );
+        Parent root = fxmlLoader.load();
+        scene.setRoot( root );
+    }
+
     public static void addProductToProject( Product product )
     {
         // This should be improved upon
@@ -69,6 +78,4 @@ public class ClimateApp extends Application
     {
         return project;
     }
-
-
 }

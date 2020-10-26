@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,41 +11,61 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="hu.adsd.projects.ProjectController">
-    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-                prefWidth="1000.0" VBox.vgrow="ALWAYS">
-        <Text layoutX="29.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Configer"
-              wrappingWidth="176.66015625" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.48200035095215">
+<VBox prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.adsd.projects.ProjectController">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+        <Text layoutX="29.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CO2 Configer" wrappingWidth="176.66015625" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.48200035095215">
             <font>
-                <Font name="System Bold" size="22.0"/>
+                <Font name="System Bold" size="22.0" />
             </font>
         </Text>
-        <Text layoutX="29.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project:" underline="true"
-              wrappingWidth="315.09765625" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="65.0">
+        <Text layoutX="29.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project:" underline="true" wrappingWidth="315.09765625" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="65.0">
             <font>
-                <Font size="18.0"/>
+                <Font size="18.0" />
             </font>
         </Text>
-        <Button fx:id="openConfigurationButton" layoutX="413.0" layoutY="400.0" mnemonicParsing="false"
-                onAction="#goToConfiguration" text="Deze variant bekijken"/>
-        <TableView fx:id="productsConfigurationTable" layoutX="20.0" layoutY="162.0" prefHeight="200.0"
-                   prefWidth="919.0">
+        <Button fx:id="openConfigurationButton" layoutX="413.0" layoutY="400.0" mnemonicParsing="false" onAction="#goToConfiguration" text="Deze variant bekijken" />
+        <TableView fx:id="productsConfigurationTable" layoutX="20.0" layoutY="162.0" prefHeight="200.0" prefWidth="737.0" AnchorPane.leftAnchor="20.0">
             <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="432.0" text="Variantnaam"/>
-                <TableColumn fx:id="embodiedColumn" prefWidth="182.0" text="Embodied Energy"/>
-                <TableColumn fx:id="productsColumn" prefWidth="300.0" text="Aantal Producten"/>
+                <TableColumn fx:id="nameColumn" prefWidth="332.0" text="Variantnaam" />
+                <TableColumn fx:id="embodiedColumn" prefWidth="170.0" text="Embodied Energy" />
+                <TableColumn fx:id="productsColumn" prefWidth="224.0" text="Aantal Producten" />
             </columns>
         </TableView>
-        <Text layoutX="20.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varianten:" underline="true"
-              wrappingWidth="315.09765625">
+        <Text layoutX="20.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varianten:" underline="true" wrappingWidth="315.09765625">
             <font>
-                <Font size="14.0"/>
+                <Font size="14.0" />
             </font>
         </Text>
-        <ChoiceBox layoutX="33.0" layoutY="513.0" prefHeight="28.0" prefWidth="269.0"/>
-        <ChoiceBox layoutX="323.0" layoutY="513.0" prefHeight="28.0" prefWidth="269.0"/>
-        <Button fx:id="compareButton" layoutX="620.0" layoutY="513.0" mnemonicParsing="false"
-                onAction="#goToProductsConfigurationCompare" text="Deze varianten vergelijken"/>
+        <ChoiceBox layoutX="33.0" layoutY="513.0" prefHeight="28.0" prefWidth="269.0" />
+        <ChoiceBox layoutX="323.0" layoutY="513.0" prefHeight="28.0" prefWidth="269.0" />
+        <Button fx:id="compareButton" layoutX="620.0" layoutY="513.0" mnemonicParsing="false" onAction="#goToProductsConfigurationCompare" text="Deze varianten vergelijken" />
+      <VBox layoutX="770.0" layoutY="162.0" prefHeight="200.0" prefWidth="205.0" AnchorPane.rightAnchor="25.0">
+         <children>
+            <Button layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#addConfiguration" prefHeight="28.0" prefWidth="183.0" text="Nieuw Configuratie">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Button>
+            <Label text="Geselecteerde Configuratie:">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#editConfiguration" prefHeight="0.0" prefWidth="183.0" text="Bewerken">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#copyConfiguration" prefHeight="28.0" prefWidth="183.0" text="Kopieren">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="10.0" layoutY="38.0" mnemonicParsing="false" onAction="#deleteConfiguration" prefHeight="28.0" prefWidth="183.0" text="Verwijderen">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
     </AnchorPane>
 </VBox>
