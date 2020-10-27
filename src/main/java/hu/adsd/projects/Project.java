@@ -5,15 +5,18 @@ import java.util.List;
 
 public class Project
 {
+    private String projectName;
     private List<ProductsConfiguration> configurations;
 
-    public Project()
+    // Project Constructor
+    public Project( String projectName, String configurationName )
     {
-        this.configurations = new ArrayList<>();
+        // Set the projectName
+        this.projectName = projectName;
 
-        // Project should have at least one configuration
-        this.configurations.add( new ProductsConfiguration( "Mijn eerste configuratie" ) );
-        this.configurations.add( new ProductsConfiguration( "Een bonus configuratie" ) );
+        // Create an empty list and ad one configuration with name
+        this.configurations = new ArrayList<>();
+        this.configurations.add( new ProductsConfiguration( configurationName ) );
     }
 
     public List<ProductsConfiguration> getConfigurations()
@@ -21,8 +24,4 @@ public class Project
         return configurations;
     }
 
-    public void setConfigurations( List<ProductsConfiguration> configurations )
-    {
-        this.configurations = configurations;
-    }
 }

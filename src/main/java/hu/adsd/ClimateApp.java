@@ -21,16 +21,16 @@ public class ClimateApp extends Application
 
     private static Project project;
 
-    public ClimateApp()
+    /*public ClimateApp()
     {
         project = new Project();
-    }
+    }*/
 
     // Start the JavaFX Application
     @Override
     public void start( Stage stage ) throws Exception
     {
-        Parent root = FXMLLoader.load( getClass().getResource( "../../projectView.fxml" ) );
+        Parent root = FXMLLoader.load( getClass().getResource( "../../startScreen.fxml" ) );
 
         // Now the scene is initialised
         scene = new Scene( root );
@@ -86,5 +86,10 @@ public class ClimateApp extends Application
     public static Project getProject()
     {
         return project;
+    }
+
+    public static void setProject( Project startProject )
+    {
+        project = startProject;
     }
 }

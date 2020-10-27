@@ -40,8 +40,8 @@ public class ProjectController implements Initializable
     @FXML
     private ChoiceBox<String> selectConfiguration2;
 
-    @FXML
-    private Button compaireButton;
+    /*@FXML
+    private Button compaireButton;*/
 
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
@@ -75,10 +75,10 @@ public class ProjectController implements Initializable
         selectConfiguration2.getSelectionModel().selectLast();
     }
 
-    public void goToConfiguration() throws IOException
+    /*public void goToConfiguration() throws IOException
     {
         ClimateApp.goToScreen( "projectProductsConfigurationView" );
-    }
+    }*/
 
     public void goToProductsConfigurationCompare() throws IOException
     {
