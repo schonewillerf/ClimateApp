@@ -8,7 +8,7 @@ import java.util.List;
 public class Project
 {
     private List<BuildingPart> projectBuildingParts;
-    public final List<String> projectConfigurations;
+    private final List<String> projectConfigurations;
 
     public Project()
     {
@@ -25,7 +25,7 @@ public class Project
         return projectBuildingParts;
     }
 
-    public List<String> getProjectConfigurations(int i)
+    public List<String> getProjectConfigurations()
     {
         return projectConfigurations;
     }
