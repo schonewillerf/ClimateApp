@@ -42,7 +42,7 @@ public class ProjectController implements Initializable
         titleBox.getChildren().add( new ProductsTitleComponent() );
 
         // Create Title for Each ProjectConfiguration in Project
-        for ( String configurationTitle : project.getProjectConfigurations() )
+        for ( String configurationTitle : project.getProjectConfigurations(1) )
         {
             titleBox.getChildren().add( new ConfigurationTitleComponent( configurationTitle ) );
         }
@@ -62,7 +62,7 @@ public class ProjectController implements Initializable
         // Create Total for BuildingPart & BuildingMaterials Column
         totalsBox.getChildren().add( new ProductsTotalComponent() );
 
-        for ( int i = 0; i < project.getProjectConfigurations().size(); i++ )
+        for (int i = 0; i < project.getProjectConfigurations(1).size(); i++ )
         {
             totalsBox.getChildren().add(
                     new TotalsComponent(
