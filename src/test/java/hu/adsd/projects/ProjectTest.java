@@ -1,10 +1,12 @@
 package hu.adsd.projects;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.Assert.assertEquals;
 
 class ProjectTest
 {
-    @org.junit.jupiter.api.Test
+    @Test
     void testProjectConfigurations()
     {
         Project project = new Project();
