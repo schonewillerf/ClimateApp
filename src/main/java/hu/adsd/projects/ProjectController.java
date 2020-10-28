@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -37,8 +38,8 @@ public class ProjectController implements Initializable
     @FXML
     private ChoiceBox<String> selectConfiguration2;
 
-    /*@FXML
-    private Button compaireButton;*/
+    @FXML
+    private Label errorText;
 
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
@@ -84,7 +85,7 @@ public class ProjectController implements Initializable
         else
         {
             // Show error message
-            System.out.println("compaire different configs");
+            errorText.setVisible( true );
         }
     }
 
@@ -103,8 +104,11 @@ public class ProjectController implements Initializable
 
     public void copyConfiguration()
     {
+        ProductsConfiguration originalConfiguration = project.getConfigurations().get( getSelectedIndex() );
+
         ProductsConfiguration productsConfiguration = new ProductsConfiguration(
-                "Kopie van " + project.getConfigurations().get( getSelectedIndex() ).getName()
+                "Kopie van " + originalConfiguration.getName(),
+                originalConfiguration.getBuildingParts()
         );
 
         project.getConfigurations().add( productsConfiguration );

@@ -20,9 +20,14 @@
             </font>
         </Text>
         <Button layoutX="713.0" layoutY="64.0" mnemonicParsing="false" onAction="#goToProject" text="Klik om terug te gaan naar Project" />
-      <ScrollPane layoutX="9.0" layoutY="120.0" prefHeight="675.0" prefWidth="991.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <ScrollPane layoutX="9.0" layoutY="120.0" prefHeight="558.0" prefWidth="490.0" AnchorPane.bottomAnchor="137.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="520.0">
          <content>
-            <VBox fx:id="contentBox" prefHeight="632.0" prefWidth="950.0" style="-fx-background-color: red;" />
+            <VBox fx:id="content1Box" prefHeight="655.0" prefWidth="400.0" />
+         </content>
+      </ScrollPane>
+      <ScrollPane layoutX="601.0" layoutY="92.0" prefHeight="558.0" prefWidth="490.0" AnchorPane.bottomAnchor="137.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="20.0">
+         <content>
+            <VBox fx:id="content2Box" prefHeight="655.0" prefWidth="400.0" />
          </content>
       </ScrollPane>
     </AnchorPane>

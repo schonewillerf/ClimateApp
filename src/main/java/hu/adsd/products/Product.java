@@ -104,13 +104,13 @@ public class Product
         );
     }
 
-    public double getTotalEmbodiedCarbon( double factor)
+    public double getTotalEmbodiedCarbon()
     {
-        return this.carbon * this.quantity * factor;
+        return this.carbon * this.quantity;
     }
 
-    public double getTotalEmbodiedEnergy( double factor )
+    public double getTotalEmbodiedJoule()
     {
-        return this.energy * this.quantity * factor;
+        return this.energy * this.quantity;
     }
 }

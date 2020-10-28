@@ -67,5 +67,6 @@
             <Button layoutX="10.0" layoutY="147.0" mnemonicParsing="false" onAction="#exportConfiguration" prefHeight="28.0" prefWidth="183.0" text="Export BOM" />
          </children>
       </VBox>
+      <Label fx:id="errorText" layoutX="620.0" layoutY="560.0" text="Vergelijk verschillende varianten" textFill="#f23b3b" visible="false" />
     </AnchorPane>
 </VBox>

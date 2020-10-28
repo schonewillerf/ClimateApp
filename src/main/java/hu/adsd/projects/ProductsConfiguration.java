@@ -2,23 +2,36 @@ package hu.adsd.projects;
 
 import hu.adsd.products.Product;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ProductsConfiguration
 {
     private String name;
     private String embodiedEnergy;
     private int numberOfProducts;
-    private List<BuildingPart> buildingParts;
+    private Set<BuildingPart> buildingParts;
 
+    // Constructor with overloading
+    //
+    // Constructor without BuildingParts parameter
     public ProductsConfiguration( String name )
     {
+        this( name, new HashSet<>() );
+    }
+    //
+    //  Constructor with BuildingParts parameter
+    public ProductsConfiguration( String name, Set<BuildingPart> buildingParts )
+    {
         this.name = name;
+        this.buildingParts = new HashSet<>();
 
-        this.embodiedEnergy = "0 mg / 0 kJ";
-        this.numberOfProducts = 0;
-        this.buildingParts = new ArrayList<>();
+        for ( BuildingPart buildingPart : buildingParts )
+        {
+            this.buildingParts.add( buildingPart );
+        }
+
+        updateProductsAndEnergy();
     }
 
     public String getName()
@@ -51,41 +64,68 @@ public class ProductsConfiguration
         this.numberOfProducts = numberOfProducts;
     }
 
-    public List<BuildingPart> getBuildingParts()
+    public Set<BuildingPart> getBuildingParts()
     {
         return buildingParts;
     }
 
-    public void setBuildingParts( List<BuildingPart> buildingParts )
+    public void setBuildingParts( Set<BuildingPart> buildingParts )
     {
         this.buildingParts = buildingParts;
     }
 
+
     public void addProduct( Product product )
     {
-        // Increment number of products
-        this.numberOfProducts += product.getQuantity();
+        // Get existing or new BuildingPart
+        BuildingPart buildingPart = getExistingOrNewBuildingPart( product.getBuildingPart() );
 
-        // Loop over existing BuildingParts
-        for ( BuildingPart buildingPart : buildingParts )
+        // Add product to BuildingPart
+        buildingPart.getProducts().add( product );
+
+        // Update products and energy
+        updateProductsAndEnergy();
+    }
+
+    private BuildingPart getExistingOrNewBuildingPart( String buildingPartName )
+    {
+        BuildingPart buildingPart = new BuildingPart( buildingPartName );
+
+        if ( !buildingParts.contains( buildingPart ) )
         {
-            // Check if building part matches product building part
-            if ( buildingPart.getName().equals( product.getBuildingPart() ))
+            buildingParts.add( buildingPart );
+        }
+        else
+        {
+            for ( BuildingPart existingBuildingPart : buildingParts )
             {
-                // Add product to building part if there is a match
-                buildingPart.getProducts().add( product );
-                // Also exit the method after product was added
-                return;
+                if ( existingBuildingPart.getName().equals( buildingPartName ) )
+                {
+                    buildingPart = existingBuildingPart;
+                }
             }
         }
 
-        // Will only execute if product is not added yet
-        //
-        // Add product to new building part
-        BuildingPart buildingPart = new BuildingPart( product.getBuildingPart() );
-        buildingPart.getProducts().add( product );
-        //
-        // Add building part to configuration
-        buildingParts.add( buildingPart );
+        return buildingPart;
+    }
+
+    private void updateProductsAndEnergy()
+    {
+        int numberOfProductsCount = 0;
+        double totalCarbon = 0;
+        double totalJoule = 0;
+
+        for ( BuildingPart buildingPart : buildingParts )
+        {
+            for ( Product product : buildingPart.getProducts() )
+            {
+                numberOfProductsCount += product.getQuantity();
+                totalCarbon += product.getTotalEmbodiedCarbon();
+                totalJoule += product.getTotalEmbodiedJoule();
+            }
+        }
+
+        this.numberOfProducts = numberOfProductsCount;
+        this.embodiedEnergy = String.format( "%s mg / %s kJ", totalCarbon, totalJoule );
     }
 }
