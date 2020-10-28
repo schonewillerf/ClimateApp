@@ -8,24 +8,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.adsd.projects.ProjectProductController">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageComponent" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </ImageView>
          </children>
       </VBox>
-      <VBox prefHeight="200.0" prefWidth="200.0">
+      <VBox prefHeight="200.0" prefWidth="400.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="Naam: " />
-                  <Label text="Label" />
+                  <Label fx:id="nameLabel" text="Label" />
                </children>
                <VBox.margin>
                   <Insets top="25.0" />
@@ -34,19 +33,19 @@
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="Circulatietype: " />
-                  <Label text="Label" />
+                  <Label fx:id="circulationLabel" text="Label" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="Embodied energy: " />
-                  <Label text="Label" />
+                  <Label fx:id="energyLabel" text="Label" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0" prefWidth="400.0">
                <children>
                   <Label text="Oorsprong: " />
-                  <Label text="Label" />
+                  <Label fx:id="originLabel" text="Label" />
                </children>
             </HBox>
          </children>
@@ -60,17 +59,17 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="00">
+                  <Label fx:id="quantityLabel" text="00">
                      <HBox.margin>
                         <Insets right="10.0" top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" text="+">
+                  <Button fx:id="quantityAddButton" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" text="+">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" text="-">
+                  <Button fx:id="quantitySubButton" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" text="-">
                      <HBox.margin>
                         <Insets right="1.0" />
                      </HBox.margin>
@@ -83,12 +82,12 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" text="Product Wijzigen">
+            <Button fx:id="modifyButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" text="Product Wijzigen">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" text="Product Verwijderen">
+            <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="135.0" text="Product Verwijderen">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

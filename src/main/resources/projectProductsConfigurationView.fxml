@@ -20,9 +20,9 @@
             </font>
         </Text>
         <Button layoutX="713.0" layoutY="64.0" mnemonicParsing="false" onAction="#goToProject" text="Klik om terug te gaan naar Project" />
-      <ScrollPane layoutX="43.0" layoutY="124.0" prefHeight="401.0" prefWidth="839.0">
+      <ScrollPane layoutX="43.0" layoutY="124.0" prefHeight="600.0" prefWidth="865.0">
          <content>
-            <VBox fx:id="buildingPartsBox" prefHeight="390.0" prefWidth="827.0" />
+            <VBox fx:id="buildingPartsBox" prefHeight="580.0" prefWidth="845.0" />
          </content>
       </ScrollPane>
     </AnchorPane>
