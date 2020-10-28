@@ -1,35 +1,38 @@
 package hu.adsd.projects;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import hu.adsd.products.Product;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class ProductsConfiguration
 {
     private String name;
     private String embodiedEnergy;
     private int numberOfProducts;
-    private Set<BuildingPart> buildingParts;
+    private List<BuildingPart> buildingParts;
 
     // Constructor with overloading
     //
     // Constructor without BuildingParts parameter
     public ProductsConfiguration( String name )
     {
-        this( name, new HashSet<>() );
+        this( name, new ArrayList<>() );
     }
     //
     //  Constructor with BuildingParts parameter
-    public ProductsConfiguration( String name, Set<BuildingPart> buildingParts )
+    public ProductsConfiguration( String name, List<BuildingPart> buildingParts )
     {
         this.name = name;
-        this.buildingParts = new HashSet<>();
 
-        for ( BuildingPart buildingPart : buildingParts )
-        {
-            this.buildingParts.add( buildingPart );
-        }
+        // Create deep copy from config with gson library
+        Gson gson = new Gson();
+        Type setType = new TypeToken<ArrayList<BuildingPart>>(){}.getType();
+        this.buildingParts = gson.fromJson( gson.toJson( buildingParts ), setType );
 
         updateProductsAndEnergy();
     }
@@ -64,12 +67,12 @@ public class ProductsConfiguration
         this.numberOfProducts = numberOfProducts;
     }
 
-    public Set<BuildingPart> getBuildingParts()
+    public List<BuildingPart> getBuildingParts()
     {
         return buildingParts;
     }
 
-    public void setBuildingParts( Set<BuildingPart> buildingParts )
+    public void setBuildingParts( List<BuildingPart> buildingParts )
     {
         this.buildingParts = buildingParts;
     }
@@ -81,7 +84,7 @@ public class ProductsConfiguration
         BuildingPart buildingPart = getExistingOrNewBuildingPart( product.getBuildingPart() );
 
         // Add product to BuildingPart
-        buildingPart.getProducts().add( product );
+        buildingPart.addProduct( product );
 
         // Update products and energy
         updateProductsAndEnergy();
@@ -91,19 +94,18 @@ public class ProductsConfiguration
     {
         BuildingPart buildingPart = new BuildingPart( buildingPartName );
 
-        if ( !buildingParts.contains( buildingPart ) )
+        // Check if BuildingPart is already in Configuration
+        //
+        // Returns true if names are same
+        if ( buildingParts.contains( buildingPart ) )
         {
-            buildingParts.add( buildingPart );
+            // Make buildingPart reference the BuildingPart from list
+            buildingPart = buildingParts.get( buildingParts.indexOf( buildingPart ) );
         }
         else
         {
-            for ( BuildingPart existingBuildingPart : buildingParts )
-            {
-                if ( existingBuildingPart.getName().equals( buildingPartName ) )
-                {
-                    buildingPart = existingBuildingPart;
-                }
-            }
+            // Add the new BuildingPart to Configuration
+            buildingParts.add( buildingPart );
         }
 
         return buildingPart;

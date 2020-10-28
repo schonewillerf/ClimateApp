@@ -1,20 +1,19 @@
 package hu.adsd.products;
 
-public class Product
+public class Product implements Cloneable
 {
+    // Attributes
     private int id;
     private final String name;
     private int quantity;
     private final CirculationType circulationType;
     private final double carbon;
     private final double energy;
-
-    // These values are similar for many products
-    // Hint, there is a possibility for data normalisation
     private final double refCarbon;
     private final double refEnergy;
     private final String buildingPart;
 
+    // Constructor
     public Product(
             int id,
             String name,
@@ -38,6 +37,44 @@ public class Product
         this.buildingPart = buildingPart;
     }
 
+    // Override Methods
+    //
+    // Check if products match based on id
+    @Override
+    public boolean equals( Object object )
+    {
+        if ( object == this ) return true;
+        if ( !(object instanceof Product) ) return false;
+
+        return this.id == ( (Product) object ).getId();
+    }
+    //
+    // Should override hashCode if equals is overridden
+    @Override
+    public int hashCode()
+    {
+        return id;
+    }
+    //
+    // Might be used for writing Bil of Material
+    @Override
+    public String toString()
+    {
+        return String.format(
+                "Id: %s, Naam: %s, " +
+                        "Minimale hoeveelheid koolstof: %s, " +
+                        "Maximale hoeveelheid koolstof: %s, " +
+                        "Kwantiteit: %s,",
+                this.id,
+                this.name,
+                this.carbon,
+                this.energy,
+                this.quantity
+        );
+    }
+
+    // Getters and Setters
+    //
     public int getId()
     {
         return id;
@@ -86,22 +123,6 @@ public class Product
     public String getBuildingPart()
     {
         return buildingPart;
-    }
-
-    @Override
-    public String toString()
-    {
-        return String.format(
-                "Id: %s, Naam: %s, " +
-                        "Minimale hoeveelheid koolstof: %s, " +
-                        "Maximale hoeveelheid koolstof: %s, " +
-                        "Kwantiteit: %s,",
-                this.id,
-                this.name,
-                this.carbon,
-                this.energy,
-                this.quantity
-        );
     }
 
     public double getTotalEmbodiedCarbon()

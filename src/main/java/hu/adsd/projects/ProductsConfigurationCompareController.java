@@ -2,19 +2,16 @@ package hu.adsd.projects;
 
 import hu.adsd.ClimateApp;
 import hu.adsd.products.Product;
-import hu.adsd.products.ProductCardController;
-import hu.adsd.products.ProductCompaireCardController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class ProductsConfigurationCompareController implements Initializable
 {
@@ -22,10 +19,7 @@ public class ProductsConfigurationCompareController implements Initializable
     ProductsConfiguration productsConfiguration2;
 
     @FXML
-    private VBox content1Box;
-
-    @FXML
-    private VBox content2Box;
+    private VBox contentBox;
 
     public ProductsConfigurationCompareController( int selected1, int selected2 )
     {
@@ -36,38 +30,70 @@ public class ProductsConfigurationCompareController implements Initializable
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
-        System.out.println( "The following ProductConfigurations were generously provided by your SM" );
-        System.out.println( "ProductConfiguration 1. " + productsConfiguration1.getName() );
-        System.out.println( "ProductConfiguration 2. " + productsConfiguration2.getName() );
+        addContent();
 
-        addContent( productsConfiguration1.getBuildingParts(), content1Box );
-        addContent( productsConfiguration2.getBuildingParts(), content2Box );
+        addTotals();
     }
 
-    private void addContent( Set<BuildingPart> buildingParts, VBox contentBox )
+    private void addContent()
     {
-        for ( BuildingPart buildingPart : buildingParts )
+        // Loop over the BuildingParts from productsConfiguration1
+        for ( BuildingPart buildingPart : productsConfiguration1.getBuildingParts() )
         {
-            for ( Product product : buildingPart.getProducts() )
+            // Check if the other productsConfiguration has the same BuildingPart or create an empty BuildingPart
+            BuildingPart otherBuildingPart = new BuildingPart( buildingPart.getName() );
+            //
+            // Returns true if productsConfiguration2 has a building part with the same name
+            if ( productsConfiguration2.getBuildingParts().contains( otherBuildingPart ) )
             {
-                // Create loader for loading productCardView VBOX
-                FXMLLoader fxmlLoader =
-                        new FXMLLoader( getClass().getResource( "../../../productCompaireCardView.fxml" ) );
-
-                // Use the ProductCardController Constructor with the current Product from the Loop
-                fxmlLoader.setControllerFactory( controller -> new ProductCompaireCardController( product ) );
-
-                // Load the VBox into the productsBox
-                try
-                {
-                    contentBox.getChildren().add( fxmlLoader.load() );
-                }
-                catch ( IOException e )
-                {
-                    e.printStackTrace();
-                }
+                // Assign the otherConfigBuildingPart to the BuildingPart from the list
+                otherBuildingPart = productsConfiguration2
+                        .getBuildingParts()
+                        .get( productsConfiguration2.getBuildingParts().indexOf( otherBuildingPart ) );
             }
+
+            addBuildingPartsToContent( buildingPart, otherBuildingPart );
         }
+
+        // Loop over building parts that are in the other productsConfiguration only
+        //
+        // Create a shallow copy from the list first in order to remove non unique building parts non destructive
+        List<BuildingPart> uniqueToOtherConfig = new ArrayList<>(productsConfiguration2.getBuildingParts());
+        //
+        // Remove all non unique building parts from the copied list
+        uniqueToOtherConfig.removeAll( productsConfiguration1.getBuildingParts() );
+        //
+        // Loop over non unique list
+        for ( BuildingPart buildingPart : uniqueToOtherConfig )
+        {
+            addBuildingPartsToContent( new BuildingPart( buildingPart.getName() ), buildingPart );
+        }
+    }
+
+    private void addBuildingPartsToContent( BuildingPart buildingPart, BuildingPart otherBuildingPart )
+    {
+        // Create loader for loading productCardView VBOX
+        FXMLLoader fxmlLoader =
+                new FXMLLoader( getClass().getResource( "../../../productCompaireBuildingPartView.fxml" ) );
+
+        // Use the ProductCardController Constructor with the current Product from the Loop
+        fxmlLoader.setControllerFactory( controller -> new ProductCompaireBuildingPartController( buildingPart,
+                otherBuildingPart ) );
+
+        // Load the VBox into the productsBox
+        try
+        {
+            contentBox.getChildren().add( fxmlLoader.load() );
+        }
+        catch ( IOException e )
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void addTotals()
+    {
+        // Add beautiful totals
     }
 
     public void goToProject() throws IOException
