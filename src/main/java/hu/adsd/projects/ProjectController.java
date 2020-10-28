@@ -2,13 +2,10 @@ package hu.adsd.projects;
 
 import hu.adsd.ClimateApp;
 import hu.adsd.csvgenerator.CSVGenerator;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -74,11 +71,6 @@ public class ProjectController implements Initializable
         selectConfiguration1.getSelectionModel().selectFirst();
         selectConfiguration2.getSelectionModel().selectLast();
     }
-
-    /*public void goToConfiguration() throws IOException
-    {
-        ClimateApp.goToScreen( "projectProductsConfigurationView" );
-    }*/
 
     public void goToProductsConfigurationCompare() throws IOException
     {
