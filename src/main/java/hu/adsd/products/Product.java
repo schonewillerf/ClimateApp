@@ -115,6 +115,11 @@ public class Product implements Cloneable
         this.quantity = quantity;
     }
 
+    public String getCirculationType()
+    {
+        return String.valueOf( circulationType );
+    }
+
     public String getImagePath()
     {
         return String.format( "../../../images/%s.jpg", this.id );
