@@ -3,6 +3,7 @@ package hu.adsd.projects;
 import hu.adsd.ClimateApp;
 import hu.adsd.products.Product;
 import hu.adsd.products.ProductCardController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -67,6 +68,11 @@ public class ProductsConfigurationController implements Initializable
     }
 
     public void goToAvailableMaterials() throws IOException
+    {
+        ClimateApp.goToScreen( "productsListView" );
+    }
+
+    public void addProduct() throws IOException
     {
         ClimateApp.goToScreen( "productsListView" );
     }

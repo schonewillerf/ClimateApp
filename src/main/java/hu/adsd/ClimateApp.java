@@ -1,7 +1,6 @@
 package hu.adsd;
 
 import hu.adsd.products.Product;
-import hu.adsd.projects.BuildingPart;
 import hu.adsd.projects.ProductsConfigurationCompareController;
 import hu.adsd.projects.ProductsConfigurationController;
 import hu.adsd.projects.Project;
@@ -21,11 +20,6 @@ public class ClimateApp extends Application
 
     private static Project project;
 
-    /*public ClimateApp()
-    {
-        project = new Project();
-    }*/
-
     // Start the JavaFX Application
     @Override
     public void start( Stage stage ) throws Exception
@@ -35,7 +29,7 @@ public class ClimateApp extends Application
         // Now the scene is initialised
         scene = new Scene( root );
 
-        scene.getStylesheets().add( ClimateApp.class.getResource( "../../Style.css" ).toExternalForm() );
+        // scene.getStylesheets().add( ClimateApp.class.getResource( "../../Style.css" ).toExternalForm() );
 
         stage.setScene( scene );
         stage.setTitle( "Klimaat App" );
@@ -78,9 +72,7 @@ public class ClimateApp extends Application
     public static void addProductToProject( Product product )
     {
         // This should be improved upon
-        BuildingPart myBuildingPart = new BuildingPart("ruimtenaam");
-        myBuildingPart.getProducts().add( product );
-        project.getConfigurations().get( 0 ).getBuildingParts().add(myBuildingPart);
+        project.getConfigurations().get( 0 ).addProduct( product );
     }
 
     public static Project getProject()
