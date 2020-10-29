@@ -32,13 +32,14 @@ public class ApiHandler
 
                 Long id = (Long) producObject.get( "id" );
                 String name = (String) producObject.get( "name" );
+                String circulation = (String) producObject.get( "circulation" );
                 double carbon = (Double) producObject.get( "carbon" );
                 double energy = (Double) producObject.get( "energy" );
                 double refCarbon = (Double) producObject.get( "refCarbon" );
                 double refEnergy = (Double) producObject.get( "refEnergy" );
                 String roomAPI = (String) producObject.get( "room" );
 
-                Product product = new Product( id.intValue(), name, 100, CirculationType.LINEAR, carbon, energy, refCarbon, refEnergy, roomAPI );
+                Product product = new Product( id.intValue(), name, 100, CirculationType.valueOf( circulation ), carbon, energy, refCarbon, refEnergy, roomAPI );
 
                 if ( product.getBuildingPart().equals(room) )
                 {

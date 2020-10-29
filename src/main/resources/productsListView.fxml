@@ -36,9 +36,34 @@
         <Button layoutX="657.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="29.0" prefWidth="137.0" stylesheets="@Style.css" text="Terug naar variant" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="20.0" />
         <ComboBox layoutX="462.0" layoutY="21.0" prefWidth="150.0" visible="false" AnchorPane.topAnchor="21.0" />
         <Label layoutX="362.0" layoutY="26.0" text="Sorteren op:" visible="false" />
-        <Button layoutX="6.0" layoutY="110.0" mnemonicParsing="false" onAction="#selectToilet" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Toilet" />
-        <Button layoutX="6.0" layoutY="139.0" mnemonicParsing="false" onAction="#selectBathroom" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Badkamer" />
-        <Button layoutX="6.0" layoutY="168.0" mnemonicParsing="false" onAction="#selectKitchen" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Keuken" />
-        <Button layoutX="6.0" layoutY="197.0" mnemonicParsing="false" onAction="#selectRoof" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Dak" />
+      <VBox layoutX="14.0" layoutY="110.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+              <Button mnemonicParsing="false" onAction="#selectToilet" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Toilet">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+              <Button mnemonicParsing="false" onAction="#selectBathroom" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Badkamer">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+              <Button mnemonicParsing="false" onAction="#selectKitchen" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Keuken">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+              <Button mnemonicParsing="false" onAction="#selectRoof" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Dak">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#selectLivingRoom" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Woonkamer">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
     </AnchorPane>
 </VBox>

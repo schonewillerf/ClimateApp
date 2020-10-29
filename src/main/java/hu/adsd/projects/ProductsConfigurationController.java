@@ -13,6 +13,9 @@ import java.util.ResourceBundle;
 
 public class ProductsConfigurationController implements Initializable
 {
+    private ProductsConfiguration productsConfiguration;
+    private int selectedConfiguration;
+
     @FXML
     private Label refEnergy;
 
@@ -25,10 +28,9 @@ public class ProductsConfigurationController implements Initializable
     @FXML
     private VBox buildingPartsBox;
 
-    ProductsConfiguration productsConfiguration;
-
     public ProductsConfigurationController( int selectedConfiguration )
     {
+        this.selectedConfiguration = selectedConfiguration;
         this.productsConfiguration = ClimateApp
                 .getProject()
                 .getConfigurations()
@@ -74,6 +76,6 @@ public class ProductsConfigurationController implements Initializable
 
     public void addProduct() throws IOException
     {
-        ClimateApp.goToScreen( "productsListView" );
+        ClimateApp.goToProductsScreen( selectedConfiguration );
     }
 }

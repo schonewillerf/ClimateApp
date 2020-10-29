@@ -31,7 +31,7 @@ public class StartController
 
             ClimateApp.setProject( project );
 
-            ClimateApp.goToScreen( "productsListView" );
+            ClimateApp.goToProductsScreen( 0 );
         }
     }
 }

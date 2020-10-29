@@ -1,6 +1,7 @@
 package hu.adsd;
 
 import hu.adsd.products.Product;
+import hu.adsd.products.ProductsListController;
 import hu.adsd.projects.ProductsConfigurationCompareController;
 import hu.adsd.projects.ProductsConfigurationController;
 import hu.adsd.projects.Project;
@@ -61,6 +62,14 @@ public class ClimateApp extends Application
         scene.setRoot( root );
     }
 
+    public static void goToProductsScreen( int selectedIndex ) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader( ClimateApp.class.getResource( "../../productsListView.fxml" ) );
+        fxmlLoader.setControllerFactory( controller -> new ProductsListController( selectedIndex ) );
+        Parent root = fxmlLoader.load();
+        scene.setRoot( root );
+    }
+
     public static void goToScreen( String fxmlDocument, int selected1, int selected2 ) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader( ClimateApp.class.getResource( "../../" + fxmlDocument + ".fxml" ) );
@@ -69,10 +78,10 @@ public class ClimateApp extends Application
         scene.setRoot( root );
     }
 
-    public static void addProductToProject( Product product )
+    public static void addProductToProject( Product product, int selected )
     {
         // This should be improved upon
-        project.getConfigurations().get( 0 ).addProduct( product );
+        project.getConfigurations().get( selected ).addProduct( product );
     }
 
     public static Project getProject()

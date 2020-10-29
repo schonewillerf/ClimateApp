@@ -19,12 +19,16 @@ import java.util.logging.Logger;
  */
 public class ProductsListController implements Initializable
 {
-    // Instantiate a logger for showing information about scene transition
-    Logger logger = Logger.getLogger( ProductsListController.class.getName() );
+    private int selected;
 
     // a layout component for stacking products in rows and columns
     @FXML
     private TilePane productsBox;
+
+    public ProductsListController( int selected )
+    {
+        this.selected = selected;
+    }
 
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
@@ -37,7 +41,7 @@ public class ProductsListController implements Initializable
     public void goToProject() throws IOException
     {
         // Change the Scene
-        ClimateApp.goToScreen( "projectView" );
+        ClimateApp.goToScreen( "projectProductsConfigurationView", selected );
     }
 
     // Set or Update productsBox TilePane content with ProductCards
@@ -55,7 +59,7 @@ public class ProductsListController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../../productCardView.fxml" ) );
 
             // Use the ProductCardController Constructor with the current Product from the Loop
-            fxmlLoader.setControllerFactory( controller -> new ProductCardController( product ) );
+            fxmlLoader.setControllerFactory( controller -> new ProductCardController( product, selected ) );
 
             // Load the VBox into the productsBox
             try
@@ -91,5 +95,10 @@ public class ProductsListController implements Initializable
     public void selectRoof()
     {
         setOrUpdateProductsBox( "dak" );
+    }
+
+    public void selectLivingRoom()
+    {
+        setOrUpdateProductsBox( "woonkamer" );
     }
 }

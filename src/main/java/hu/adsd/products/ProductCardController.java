@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 public class ProductCardController implements Initializable
 {
     private final Product product;
+    private final int selected;
 
     @FXML
     private Label productNameLabel;
@@ -29,8 +30,9 @@ public class ProductCardController implements Initializable
     @FXML
     private VBox rootElement;
 
-    public ProductCardController(Product product)
+    public ProductCardController(Product product, int selected)
     {
+        this.selected = selected;
         this.product = product;
     }
 
@@ -49,6 +51,6 @@ public class ProductCardController implements Initializable
 
 
         // Use lambda expression to addButton action
-         addButton.setOnAction( event -> ClimateApp.addProductToProject( this.product ) );
+         addButton.setOnAction( event -> ClimateApp.addProductToProject( this.product, selected ) );
     }
 }
