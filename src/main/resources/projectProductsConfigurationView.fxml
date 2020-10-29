@@ -19,11 +19,12 @@
                 <Font size="18.0" />
             </font>
         </Text>
-        <Button layoutX="713.0" layoutY="64.0" mnemonicParsing="false" onAction="#goToProject" text="Klik om terug te gaan naar Project" />
+        <Button layoutX="713.0" layoutY="64.0" mnemonicParsing="false" onAction="#addProduct" text="Bouwmateriaal Toevoegen" />
       <ScrollPane layoutX="43.0" layoutY="124.0" prefHeight="600.0" prefWidth="865.0">
          <content>
             <VBox fx:id="buildingPartsBox" prefHeight="580.0" prefWidth="845.0" />
          </content>
       </ScrollPane>
+      <Button layoutX="476.0" layoutY="64.0" mnemonicParsing="false" onAction="#goToProject" text="Klik om terug te gaan naar Project" />
     </AnchorPane>
 </VBox>
