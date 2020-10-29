@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -20,6 +21,9 @@ public class ProductCompaireCardController implements Initializable
     @FXML
     private ImageView productImage;
 
+    @FXML
+    private VBox rootElement;
+
     public ProductCompaireCardController(Product product)
     {
         this.product = product;
@@ -28,6 +32,9 @@ public class ProductCompaireCardController implements Initializable
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
+        // Set backgroundColor in rootElement
+        rootElement.setStyle( String.format( "-fx-background-color: %s; -fx-border-color: black; -fx-border-width: 1px", product.getBackgroundColor() ) );
+
         productNameLabel.setText( product.getName() );
 
         // Add image to productCardComponent

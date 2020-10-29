@@ -120,6 +120,11 @@ public class Product implements Cloneable
         return String.valueOf( circulationType );
     }
 
+    public String getBackgroundColor()
+    {
+        return circulationType.getColorCode();
+    }
+
     public String getImagePath()
     {
         return String.format( "../../../images/%s.jpg", this.id );

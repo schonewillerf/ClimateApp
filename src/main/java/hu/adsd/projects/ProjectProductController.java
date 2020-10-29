@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
 import java.awt.*;
 import java.io.InputStream;
@@ -47,6 +48,9 @@ public class ProjectProductController implements Initializable
     @FXML
     private Button deleteButton;
 
+    @FXML
+    private HBox rootElement;
+
     public ProjectProductController( Product product )
     {
         this.product = product;
@@ -55,6 +59,9 @@ public class ProjectProductController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        // Set backgroundColor in rootElement
+        rootElement.setStyle( String.format( "-fx-background-color: %s", product.getBackgroundColor() ) );
+
         // Add image to productCardComponent
         InputStream inputStream = getClass().getResourceAsStream( product.getImagePath() );
         javafx.scene.image.Image image = new Image( inputStream );
