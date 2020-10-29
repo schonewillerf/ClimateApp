@@ -81,6 +81,7 @@ public class ClimateApp extends Application
     public static void addProductToProject( Product product, int selected )
     {
         // This should be improved upon
+        product.setQuantity( 10 );
         project.getConfigurations().get( selected ).addProduct( product );
     }
 

@@ -33,7 +33,7 @@
                 </padding>
             </TilePane>
         </ScrollPane>
-        <Button layoutX="657.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="29.0" prefWidth="137.0" stylesheets="@Style.css" text="Terug naar variant" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="20.0" />
+        <Button layoutX="657.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="29.0" prefWidth="137.0" stylesheets="@Style.css" text="Variantweergave" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="20.0" />
         <ComboBox layoutX="462.0" layoutY="21.0" prefWidth="150.0" visible="false" AnchorPane.topAnchor="21.0" />
         <Label layoutX="362.0" layoutY="26.0" text="Sorteren op:" visible="false" />
       <VBox layoutX="14.0" layoutY="110.0" prefHeight="200.0" prefWidth="100.0">

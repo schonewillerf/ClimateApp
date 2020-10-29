@@ -30,8 +30,8 @@
                </padding></VBox>
          </content>
       </ScrollPane>
-      <Button layoutX="476.0" layoutY="64.0" mnemonicParsing="false" onAction="#goToProject" text="Klik om terug te gaan naar Project" />
-      <VBox layoutX="48.0" layoutY="717.0" prefHeight="65.0" prefWidth="110.0">
+      <Button layoutX="575.0" layoutY="64.0" mnemonicParsing="false" onAction="#goToProject" text="Projectweergave" />
+      <VBox layoutX="48.0" layoutY="717.0" prefHeight="65.0" prefWidth="287.0">
          <children>
             <Label fx:id="refEnergy" text="lineair" />
             <Label fx:id="totalEnergy" layoutX="10.0" layoutY="10.0" text="huidig" />

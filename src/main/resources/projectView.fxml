@@ -40,12 +40,12 @@
         <Button fx:id="compaireButton" layoutX="620.0" layoutY="513.0" mnemonicParsing="false" onAction="#goToProductsConfigurationCompare" stylesheets="@Style.css" text="Deze varianten vergelijken" />
       <VBox layoutX="770.0" layoutY="162.0" prefHeight="200.0" prefWidth="205.0" AnchorPane.rightAnchor="25.0">
          <children>
-            <Button layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#addConfiguration" prefHeight="28.0" prefWidth="183.0" stylesheets="@Style.css" text="Nieuw Configuratie">
+            <Button layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#addConfiguration" prefHeight="28.0" prefWidth="183.0" stylesheets="@Style.css" text="Variant Toevoegen">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Button>
-            <Label text="Geselecteerde Configuratie:">
+            <Label text="Geselecteerde variant:">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -64,11 +64,11 @@
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin></Button>
-            <Button layoutX="10.0" layoutY="147.0" mnemonicParsing="false" onAction="#exportConfiguration" prefHeight="28.0" prefWidth="183.0" stylesheets="@Style.css" text="Export BOM" />
+            <Button layoutX="10.0" layoutY="147.0" mnemonicParsing="false" onAction="#exportConfiguration" prefHeight="28.0" prefWidth="183.0" stylesheets="@Style.css" text="Exporteer CSV" />
          </children>
       </VBox>
       <Label fx:id="errorText" layoutX="620.0" layoutY="560.0" text="Vergelijk verschillende varianten" textFill="#f23b3b" visible="false" />
-      <Label fx:id="ExportLabel" layoutX="773.0" layoutY="392.0" prefHeight="39.0" prefWidth="216.0" text="De BOM is geëxporteerd" visible="false">
+      <Label fx:id="ExportLabel" layoutX="581.0" layoutY="392.0" prefHeight="39.0" prefWidth="408.0" text="De Bill of Material is geëxporteerd" visible="false">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

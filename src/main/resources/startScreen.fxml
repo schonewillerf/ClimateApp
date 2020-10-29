@@ -20,7 +20,7 @@
             <children>
                 <Label text="Projectnaam:" />
                 <TextField fx:id="projectField" />
-                <Label layoutX="10.0" layoutY="10.0" text="Conceptnaam:" />
+                <Label layoutX="10.0" layoutY="10.0" text="Variantnaam:" />
                 <TextField fx:id="conceptField" layoutX="10.0" layoutY="28.0" />
                 <Label fx:id="errorText" layoutX="10.0" layoutY="56.0" text="Error Tekst" textFill="#dd0a0a" visible="false" />
                 <Button mnemonicParsing="false" onAction="#createProject" prefHeight="63.0" prefWidth="143.0" stylesheets="@Style.css" text="Begin">
