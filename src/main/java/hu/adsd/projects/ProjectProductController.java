@@ -76,5 +76,19 @@ public class ProjectProductController implements Initializable
 
         quantityLabel.setText( String.valueOf(product.getQuantity()) );
 
+        quantityAddButton.setOnAction( event -> addQuantity( product ) );
+        quantitySubButton.setOnAction( event -> subQuantity( product ) );
+    }
+
+    public void addQuantity( Product product )
+    {
+        product.setQuantity( product.getQuantity() + 1 );
+        quantityLabel.setText( String.valueOf( product.getQuantity() ) );
+    }
+
+    public void subQuantity( Product product )
+    {
+        product.setQuantity( product.getQuantity() - 1 );
+        quantityLabel.setText( String.valueOf( product.getQuantity() ) );
     }
 }
