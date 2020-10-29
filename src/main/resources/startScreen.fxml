@@ -23,9 +23,9 @@
                 <Label layoutX="10.0" layoutY="10.0" text="Conceptnaam:" />
                 <TextField fx:id="conceptField" layoutX="10.0" layoutY="28.0" />
                 <Label fx:id="errorText" layoutX="10.0" layoutY="56.0" text="Error Tekst" textFill="#dd0a0a" visible="false" />
-                <Button mnemonicParsing="false" onAction="#createProject" text="Begin">
+                <Button mnemonicParsing="false" onAction="#createProject" prefHeight="63.0" prefWidth="143.0" stylesheets="@Style.css" text="Begin">
                     <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets left="103.0" top="20.0" />
                     </VBox.margin>
                     <font>
                         <Font size="29.0" />

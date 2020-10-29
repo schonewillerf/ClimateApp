@@ -35,12 +35,12 @@
                 <Font size="14.0" />
             </font>
         </Text>
-        <ChoiceBox fx:id="selectConfiguration1" layoutX="33.0" layoutY="513.0" prefHeight="28.0" prefWidth="269.0" />
-        <ChoiceBox fx:id="selectConfiguration2" layoutX="323.0" layoutY="513.0" prefHeight="28.0" prefWidth="269.0" />
-        <Button fx:id="compaireButton" layoutX="620.0" layoutY="513.0" mnemonicParsing="false" onAction="#goToProductsConfigurationCompare" text="Deze varianten vergelijken" />
+        <ChoiceBox fx:id="selectConfiguration1" layoutX="33.0" layoutY="513.0" prefHeight="28.0" prefWidth="269.0" styleClass="username-box" stylesheets="@Style.css" />
+        <ChoiceBox fx:id="selectConfiguration2" layoutX="323.0" layoutY="513.0" prefHeight="28.0" prefWidth="269.0" styleClass="username-box" stylesheets="@Style.css" />
+        <Button fx:id="compaireButton" layoutX="620.0" layoutY="513.0" mnemonicParsing="false" onAction="#goToProductsConfigurationCompare" stylesheets="@Style.css" text="Deze varianten vergelijken" />
       <VBox layoutX="770.0" layoutY="162.0" prefHeight="200.0" prefWidth="205.0" AnchorPane.rightAnchor="25.0">
          <children>
-            <Button layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#addConfiguration" prefHeight="28.0" prefWidth="183.0" text="Nieuw Configuratie">
+            <Button layoutX="10.0" layoutY="76.0" mnemonicParsing="false" onAction="#addConfiguration" prefHeight="28.0" prefWidth="183.0" stylesheets="@Style.css" text="Nieuw Configuratie">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -50,23 +50,28 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#editConfiguration" prefHeight="0.0" prefWidth="183.0" text="Bewerken">
+            <Button mnemonicParsing="false" onAction="#editConfiguration" prefHeight="0.0" prefWidth="183.0" stylesheets="@Style.css" text="Bewerken">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Button>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#copyConfiguration" prefHeight="28.0" prefWidth="183.0" text="Kopieren">
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#copyConfiguration" prefHeight="28.0" prefWidth="183.0" stylesheets="@Style.css" text="Kopieren">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Button>
-            <Button layoutX="10.0" layoutY="38.0" mnemonicParsing="false" onAction="#deleteConfiguration" prefHeight="28.0" prefWidth="183.0" text="Verwijderen">
+            <Button layoutX="10.0" layoutY="38.0" mnemonicParsing="false" onAction="#deleteConfiguration" prefHeight="28.0" prefWidth="183.0" stylesheets="@Style.css" text="Verwijderen">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin></Button>
-            <Button layoutX="10.0" layoutY="147.0" mnemonicParsing="false" onAction="#exportConfiguration" prefHeight="28.0" prefWidth="183.0" text="Export BOM" />
+            <Button layoutX="10.0" layoutY="147.0" mnemonicParsing="false" onAction="#exportConfiguration" prefHeight="28.0" prefWidth="183.0" stylesheets="@Style.css" text="Export BOM" />
          </children>
       </VBox>
       <Label fx:id="errorText" layoutX="620.0" layoutY="560.0" text="Vergelijk verschillende varianten" textFill="#f23b3b" visible="false" />
+      <Label fx:id="ExportLabel" layoutX="773.0" layoutY="392.0" prefHeight="39.0" prefWidth="216.0" text="De BOM is geëxporteerd" visible="false">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
     </AnchorPane>
 </VBox>

@@ -33,12 +33,12 @@
                 </padding>
             </TilePane>
         </ScrollPane>
-        <Button layoutX="657.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="29.0" prefWidth="137.0" text="Terug naar variant" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="20.0" />
+        <Button layoutX="657.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToProject" prefHeight="29.0" prefWidth="137.0" stylesheets="@Style.css" text="Terug naar variant" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="20.0" />
         <ComboBox layoutX="462.0" layoutY="21.0" prefWidth="150.0" visible="false" AnchorPane.topAnchor="21.0" />
         <Label layoutX="362.0" layoutY="26.0" text="Sorteren op:" visible="false" />
-        <Button layoutX="6.0" layoutY="110.0" mnemonicParsing="false" onAction="#selectToilet" prefHeight="29.0" prefWidth="101.0" text="Toilet" />
-        <Button layoutX="6.0" layoutY="139.0" mnemonicParsing="false" onAction="#selectBathroom" prefHeight="29.0" prefWidth="101.0" text="Badkamer" />
-        <Button layoutX="6.0" layoutY="168.0" mnemonicParsing="false" onAction="#selectKitchen" prefHeight="29.0" prefWidth="101.0" text="Keuken" />
-        <Button layoutX="6.0" layoutY="197.0" mnemonicParsing="false" onAction="#selectRoof" prefHeight="29.0" prefWidth="101.0" text="Dak" />
+        <Button layoutX="6.0" layoutY="110.0" mnemonicParsing="false" onAction="#selectToilet" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Toilet" />
+        <Button layoutX="6.0" layoutY="139.0" mnemonicParsing="false" onAction="#selectBathroom" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Badkamer" />
+        <Button layoutX="6.0" layoutY="168.0" mnemonicParsing="false" onAction="#selectKitchen" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Keuken" />
+        <Button layoutX="6.0" layoutY="197.0" mnemonicParsing="false" onAction="#selectRoof" prefHeight="29.0" prefWidth="101.0" stylesheets="@Style.css" text="Dak" />
     </AnchorPane>
 </VBox>
