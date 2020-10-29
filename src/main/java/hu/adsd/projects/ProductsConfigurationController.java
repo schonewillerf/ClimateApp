@@ -1,12 +1,10 @@
 package hu.adsd.projects;
 
 import hu.adsd.ClimateApp;
-import hu.adsd.products.Product;
-import hu.adsd.products.ProductCardController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -15,6 +13,15 @@ import java.util.ResourceBundle;
 
 public class ProductsConfigurationController implements Initializable
 {
+    @FXML
+    private Label refEnergy;
+
+    @FXML
+    private Label totalEnergy;
+
+    @FXML
+    private Label differenceEnergy;
+
     @FXML
     private VBox buildingPartsBox;
 
@@ -31,17 +38,11 @@ public class ProductsConfigurationController implements Initializable
     @Override
     public void initialize( URL url, ResourceBundle resourceBundle )
     {
-        System.out.println( "The following ProductsConfiguration was generously provided by your SM");
-        System.out.println( "ProductConfiguration " + productsConfiguration.getName() );
-
-
         // Create BuildingParts with inner BuildingMaterials
         for ( BuildingPart buildingPart : productsConfiguration.getBuildingParts() )
         {
             // Eerst nieuw vierkant maken
-            /*
-            buildingspartbox.getchildren().add(
-             */
+
             // Create loader for loading productCardView VBOX
             FXMLLoader fxmlLoader = new FXMLLoader( getClass().getResource( "../../../projectBuildingPartView.fxml" ) );
 
@@ -60,16 +61,15 @@ public class ProductsConfigurationController implements Initializable
 
         }
 
+        refEnergy.setText( "Lineair: " + productsConfiguration.getEmbodiedEnergy() );
+        totalEnergy.setText( "Huidig: " + productsConfiguration.getEmbodiedEnergy() );
+        differenceEnergy.setText( "Bespaard: " + productsConfiguration.getEmbodiedEnergy() );
+
     }
 
     public void goToProject() throws IOException
     {
         ClimateApp.goToScreen( "projectView" );
-    }
-
-    public void goToAvailableMaterials() throws IOException
-    {
-        ClimateApp.goToScreen( "productsListView" );
     }
 
     public void addProduct() throws IOException

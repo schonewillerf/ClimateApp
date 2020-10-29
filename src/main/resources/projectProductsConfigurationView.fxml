@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -21,7 +22,7 @@
             </font>
         </Text>
         <Button layoutX="713.0" layoutY="64.0" mnemonicParsing="false" onAction="#addProduct" text="Bouwmateriaal Toevoegen" />
-      <ScrollPane layoutX="43.0" layoutY="124.0" prefHeight="600.0" prefWidth="865.0">
+      <ScrollPane layoutX="43.0" layoutY="124.0" prefHeight="575.0" prefWidth="865.0">
          <content>
             <VBox fx:id="buildingPartsBox" prefHeight="580.0" prefWidth="845.0">
                <padding>
@@ -30,5 +31,12 @@
          </content>
       </ScrollPane>
       <Button layoutX="476.0" layoutY="64.0" mnemonicParsing="false" onAction="#goToProject" text="Klik om terug te gaan naar Project" />
+      <VBox layoutX="48.0" layoutY="717.0" prefHeight="65.0" prefWidth="110.0">
+         <children>
+            <Label fx:id="refEnergy" text="lineair" />
+            <Label fx:id="totalEnergy" layoutX="10.0" layoutY="10.0" text="huidig" />
+            <Label fx:id="differenceEnergy" layoutX="10.0" layoutY="28.0" text="bespaard" />
+         </children>
+      </VBox>
     </AnchorPane>
 </VBox>
