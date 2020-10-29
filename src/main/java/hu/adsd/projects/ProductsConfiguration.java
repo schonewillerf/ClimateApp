@@ -1,8 +1,12 @@
 package hu.adsd.projects;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import hu.adsd.products.Product;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class ProductsConfiguration
@@ -12,13 +16,30 @@ public class ProductsConfiguration
     private int numberOfProducts;
     private List<BuildingPart> buildingParts;
 
+    // Constructor with overloading
+    //
+    // Constructor without BuildingParts parameter
     public ProductsConfiguration( String name )
+    {
+        this( name, new ArrayList<>() );
+    }
+    //
+    //  Constructor with BuildingParts parameter
+    public ProductsConfiguration( String name, List<BuildingPart> buildingParts )
     {
         this.name = name;
 
-        this.embodiedEnergy = "0 mg / 0 kJ";
-        this.numberOfProducts = 0;
-        this.buildingParts = new ArrayList<>();
+        // Create deep copy from config with gson library
+        /**
+         * In a perfect world I would like to build my own house, grow my own food and make my own clothes,
+         * but usually there isn't that much time so I go to the shop. Similarly I could have written a
+         * method in order make a deep copy and though it feels like overkill, Gson saved some time and effort :)
+         */
+        Gson gson = new Gson();
+        Type setType = new TypeToken<ArrayList<BuildingPart>>(){}.getType();
+        this.buildingParts = gson.fromJson( gson.toJson( buildingParts ), setType );
+
+        updateProductsAndEnergy();
     }
 
     public String getName()
@@ -61,31 +82,57 @@ public class ProductsConfiguration
         this.buildingParts = buildingParts;
     }
 
+
     public void addProduct( Product product )
     {
-        // Increment number of products
-        this.numberOfProducts += product.getQuantity();
+        // Get existing or new BuildingPart
+        BuildingPart buildingPart = getExistingOrNewBuildingPart( product.getBuildingPart() );
 
-        // Loop over existing BuildingParts
+        // Add product to BuildingPart
+        buildingPart.addProduct( product );
+
+        // Update products and energy
+        updateProductsAndEnergy();
+    }
+
+    private BuildingPart getExistingOrNewBuildingPart( String buildingPartName )
+    {
+        BuildingPart buildingPart = new BuildingPart( buildingPartName );
+
+        // Check if BuildingPart is already in Configuration
+        //
+        // Returns true if names are same
+        if ( buildingParts.contains( buildingPart ) )
+        {
+            // Make buildingPart reference the BuildingPart from list
+            buildingPart = buildingParts.get( buildingParts.indexOf( buildingPart ) );
+        }
+        else
+        {
+            // Add the new BuildingPart to Configuration
+            buildingParts.add( buildingPart );
+        }
+
+        return buildingPart;
+    }
+
+    private void updateProductsAndEnergy()
+    {
+        int numberOfProductsCount = 0;
+        double totalCarbon = 0;
+        double totalJoule = 0;
+
         for ( BuildingPart buildingPart : buildingParts )
         {
-            // Check if building part matches product building part
-            if ( buildingPart.getName().equals( product.getBuildingPart() ))
+            for ( Product product : buildingPart.getProducts() )
             {
-                // Add product to building part if there is a match
-                buildingPart.getProducts().add( product );
-                // Also exit the method after product was added
-                return;
+                numberOfProductsCount += product.getQuantity();
+                totalCarbon += product.getTotalEmbodiedCarbon();
+                totalJoule += product.getTotalEmbodiedJoule();
             }
         }
 
-        // Will only execute if product is not added yet
-        //
-        // Add product to new building part
-        BuildingPart buildingPart = new BuildingPart( product.getBuildingPart() );
-        buildingPart.getProducts().add( product );
-        //
-        // Add building part to configuration
-        buildingParts.add( buildingPart );
+        this.numberOfProducts = numberOfProductsCount;
+        this.embodiedEnergy = String.format( "%s mg / %s kJ", totalCarbon, totalJoule );
     }
 }

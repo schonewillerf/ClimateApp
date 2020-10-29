@@ -20,11 +20,6 @@ public class ClimateApp extends Application
 
     private static Project project;
 
-    /*public ClimateApp()
-    {
-        project = new Project();
-    }*/
-
     // Start the JavaFX Application
     @Override
     public void start( Stage stage ) throws Exception
@@ -34,7 +29,7 @@ public class ClimateApp extends Application
         // Now the scene is initialised
         scene = new Scene( root );
 
-        scene.getStylesheets().add( ClimateApp.class.getResource( "../../Style.css" ).toExternalForm() );
+        // scene.getStylesheets().add( ClimateApp.class.getResource( "../../Style.css" ).toExternalForm() );
 
         stage.setScene( scene );
         stage.setTitle( "Klimaat App" );
