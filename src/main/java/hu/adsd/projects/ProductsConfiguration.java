@@ -30,11 +30,6 @@ public class ProductsConfiguration
         this.name = name;
 
         // Create deep copy from config with gson library
-        /**
-         * In a perfect world I would like to build my own house, grow my own food and make my own clothes,
-         * but usually there isn't that much time so I go to the shop. Similarly I could have written a
-         * method in order make a deep copy and though it feels like overkill, Gson saved some time and effort :)
-         */
         Gson gson = new Gson();
         Type setType = new TypeToken<ArrayList<BuildingPart>>(){}.getType();
         this.buildingParts = gson.fromJson( gson.toJson( buildingParts ), setType );
